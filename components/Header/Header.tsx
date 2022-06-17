@@ -14,6 +14,7 @@ const Header: NextPage = () => {
         <RightNav>
           <NavLink href="https://github.com/ayuthmang">GitHub</NavLink>
           <NavLink href="https://medium.com/@ayuthmang">Medium</NavLink>
+          <NavLink href="https://dev.to/ayuthmang">Dev</NavLink>
         </RightNav>
       </Wrapper>
     </MaxWidthWrapper>
@@ -64,7 +65,7 @@ const LeftNav = styled.div`
 const RightNav = styled.div`
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 16px;
 `
 
 export default Header
