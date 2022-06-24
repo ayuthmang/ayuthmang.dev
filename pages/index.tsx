@@ -13,14 +13,65 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Content></Content>
+
+      <HeroHeadingWrapper>
+        <Heading>Hello World</Heading>
+        <HandWrapper style={{ fontSize: '3rem' }}>
+          <Hand role="img" aria-label="Waving hand">
+            {' '}
+            👋
+          </Hand>
+        </HandWrapper>
+      </HeroHeadingWrapper>
       <Footer />
     </>
   )
 }
 
-const Content = styled.main`
+const HeroHeadingWrapper = styled.div`
   height: 100%;
+  width: 100%;
+  min-height: 650px;
+  max-height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Heading = styled.h1`
+  font-size: 4rem;
+  color: transparent;
+  background-color: rgb(255, 178, 62);
+  background-image: linear-gradient(
+    268.67deg,
+    rgb(255, 255, 255) 3.43%,
+    rgb(255, 240, 102) 15.69%,
+    rgb(255, 163, 26) 55.54%,
+    rgb(255, 0, 115) 99%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+`
+
+const Hand = styled.span``
+
+const HandWrapper = styled.p`
+  @keyframes wave {
+    from {
+      transform: rotate(-10deg);
+    }
+    to {
+      transform: rotate(30deg);
+    }
+  }
+
+  ${Hand} {
+    display: inline-block;
+    animation: wave 1000ms infinite alternate ease-in-out;
+    transform-origin: 75% 80%;
+  }
 `
 
 export default Home
