@@ -48,13 +48,14 @@ const Wrapper = styled.div`
 `
 
 const NavLink = styled.a`
+  font-weight: var(--font-weight-regular);
   text-decoration: none;
   cursor: pointer;
   color: inherit;
 `
 
 const HomeLink = styled(NavLink)`
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extra-bold);
   text-transform: uppercase;
 `
 
