@@ -13,7 +13,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-
       <HeroHeadingWrapper>
         <Heading>Hello World</Heading>
         <HandWrapper style={{ fontSize: '3rem' }}>
