@@ -1,16 +1,19 @@
 import { NextPage } from 'next'
 import styled from 'styled-components'
+import MaxWidthWrapper from '../MaxWidthWrapper'
 
 const Footer: NextPage = () => {
   return (
-    <Wrapper>
-      <div>© 2020-present Ayuth Mangmesap.</div>
-      <div>All Rights Reserved.</div>
-    </Wrapper>
+    <footer>
+      <Wrapper>
+        <div>© 2020-present Ayuth Mangmesap.</div>
+        <div>All Rights Reserved.</div>
+      </Wrapper>
+    </footer>
   )
 }
 
-const Wrapper = styled.footer`
+const Wrapper = styled(MaxWidthWrapper)`
   display: flex;
   flex-direction: column;
   align-items: center;

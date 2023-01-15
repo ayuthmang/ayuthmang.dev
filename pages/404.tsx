@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 `
 
 const EmojiText = styled.p`
-  font-size: 15vw;
+  font-size: 13vw;
 `
 
 const Text = styled.p`

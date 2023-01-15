@@ -60,8 +60,9 @@ html {
   --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
   --font-weight-extra-bold: 800;
-  --color-text: #ffffff;
   --color-background: #151118;
+  --color-backdrop: hsl(220deg 5% 40% / 0.8);
+  --color-text: hsl(0, 0%, 100%);
 
   font-family: var(--font-family);
   font-weight: var(--font-weight-regular);

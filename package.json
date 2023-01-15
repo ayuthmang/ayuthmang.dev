@@ -13,9 +13,12 @@
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
     "@next/mdx": "^13.0.7",
+    "@reach/dialog": "^0.18.0",
+    "feather-icons": "^4.29.0",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
