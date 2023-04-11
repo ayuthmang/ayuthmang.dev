@@ -11,7 +11,7 @@ const Header: NextPage = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   return (
-    <header>
+    <header style={{ position: 'sticky', top: 0 }}>
       <MainHeader>
         <DesktopNav>
           <HomeLink href="/">Ayuth</HomeLink>
@@ -34,10 +34,10 @@ const Header: NextPage = () => {
 }
 
 const MainHeader = styled(MaxWidthWrapper)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: sticky;
+  /* top: 0; */
+  /* left: 0; */
+  /* right: 0; */
   background: rgba(21, 17, 24, 0.5);
   padding-top: 16px;
   padding-bottom: 16px;
@@ -55,7 +55,7 @@ const NavLink = styled(NextLink)`
   cursor: pointer;
   color: inherit;
   opacity: 0.75;
-  transition: opacity 400ms ease 0s;
+  transition: opacity 0.2s ease-in-out 0s;
 
   &:hover {
     opacity: 1;

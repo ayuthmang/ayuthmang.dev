@@ -1,13 +1,12 @@
-import { NextPage } from 'next'
 import styled from 'styled-components'
 import MaxWidthWrapper from '../MaxWidthWrapper'
 
-const Footer: NextPage = () => {
+const Footer = () => {
   return (
     <footer>
       <Wrapper>
-        <div>© 2020-present Ayuth Mangmesap.</div>
-        <div>All Rights Reserved.</div>
+        <p>© 2020-present Ayuth Mangmesap.</p>
+        <p>All Rights Reserved.</p>
       </Wrapper>
     </footer>
   )
