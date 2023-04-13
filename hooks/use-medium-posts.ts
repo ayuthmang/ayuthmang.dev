@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import type { RssToJsonMediumResponse } from './use-medium-posts.type'
-import { useQuery } from '@tanstack/react-query'
 
 const rssToJsonUrl =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@ayuthmang'
