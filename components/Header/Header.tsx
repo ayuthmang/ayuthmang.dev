@@ -1,17 +1,18 @@
 import { NextPage } from 'next'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { QUERIES } from '../../constants'
 import Icon from '../Icon'
 import MobileMenu from '../MobileMenu'
 import { default as NextLink } from 'next/link'
 import MaxWidthWrapper from '../MaxWidthWrapper'
+import type {} from 'styled-components/cssprop'
 
 const Header: NextPage = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   return (
-    <header style={{ position: 'sticky', top: 0 }}>
+    <Wrapper>
       <MainHeader>
         <DesktopNav>
           <HomeLink href="/">Ayuth</HomeLink>
@@ -21,7 +22,9 @@ const Header: NextPage = () => {
             <NavLink href="https://dev.to/ayuthmang">Dev</NavLink>
           </RightNav>
           <MobileNav>
-            <Icon id="menu" onClick={() => setShowMobileMenu(true)} />
+            <UnstyledButton>
+              <Icon id="menu" onClick={() => setShowMobileMenu(true)} />
+            </UnstyledButton>
           </MobileNav>
         </DesktopNav>
         <MobileMenu
@@ -29,20 +32,23 @@ const Header: NextPage = () => {
           onDismiss={() => setShowMobileMenu(false)}
         />
       </MainHeader>
-    </header>
+    </Wrapper>
   )
 }
 
+const Wrapper = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+`
+
 const MainHeader = styled(MaxWidthWrapper)`
-  position: sticky;
-  /* top: 0; */
-  /* left: 0; */
-  /* right: 0; */
   background: rgba(21, 17, 24, 0.5);
   padding-top: 16px;
   padding-bottom: 16px;
-  /* backdrop-filter: blur(10px); */
-  /* border-bottom: 1px solid gray; */
+  backdrop-filter: blur(10px);
 `
 
 const DesktopNav = styled.nav`
@@ -82,6 +88,29 @@ const MobileNav = styled.div`
 
   @media ${QUERIES.phoneAndSmaller} {
     display: block;
+  }
+`
+
+type UnstyledButtonProps = {
+  display?: React.CSSProperties['display']
+}
+const UnstyledButton = styled.button<UnstyledButtonProps>`
+  display: ${(props) => props.display || 'block'};
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+
+  &:focus {
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
   }
 `
 

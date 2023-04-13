@@ -3,12 +3,12 @@ import styled, { keyframes } from 'styled-components'
 import { DialogOverlay, DialogContent } from '@reach/dialog'
 import Icon from '../Icon'
 
-type Props = {
+type MobileMenuProps = {
   isOpen?: boolean
   onDismiss: () => void
 }
 
-const MobileMenu: React.FC<Props> = ({ isOpen = false, onDismiss }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen = false, onDismiss }) => {
   return (
     <Wrapper isOpen={isOpen} onDismiss={onDismiss}>
       <InnerWrapper>

@@ -21,10 +21,10 @@ function Article({
   return (
     <Link href={link}>
       <Wrapper>
-        <Title>{title}</Title>
         <ImageWrapper>
           <Image src={thumbnail} alt="Article's cover image" />
         </ImageWrapper>
+        <Title>{title}</Title>
         {/* <Description dangerouslySetInnerHTML={{ __html: description }} /> */}
         <Tags>
           {categories.map((category) => {
@@ -49,9 +49,7 @@ const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 32px;
   border-radius: 8px;
-  /* width: 100%; */
 `
 
 const Title = styled.h3`
@@ -62,7 +60,7 @@ const Description = styled.p``
 
 const ImageWrapper = styled.div`
   position: relative;
-  border-radius: 16px 16px 4px 4px;
+  border-radius: 16px;
   overflow: hidden;
 `
 
@@ -72,13 +70,12 @@ const Image = styled.img`
 `
 
 const Tags = styled.div`
+  display: flex;
   overflow: hidden;
   overflow-x: scroll;
   /* text-overflow: ellipsis; */
   white-space: nowrap;
   padding: 4px 0;
-
-  display: flex;
 `
 
 export default Article

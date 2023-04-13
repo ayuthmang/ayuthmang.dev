@@ -11,6 +11,7 @@ const Wrapper = styled.span`
   display: inline-block;
   padding: 4px 8px;
   background: var(--color-gray-300);
+  border-radius: 8px;
   color: var(--color-gray-800);
   font-size: 0.875rem;
   font-weight: var(--font-weight-semi-bold);
