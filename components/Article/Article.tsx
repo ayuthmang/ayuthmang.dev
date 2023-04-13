@@ -12,6 +12,7 @@ export type ArticleProps = {
 }
 
 function Article({
+  guid,
   title,
   description,
   categories,
@@ -30,7 +31,7 @@ function Article({
           {categories.map((category) => {
             return (
               <>
-                <Tag key={category}>{category}</Tag>{' '}
+                <Tag key={`${guid}-${category}`}>{category}</Tag>{' '}
               </>
             )
           })}
