@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
+import Footer from 'components/Footer'
+import Header from 'components/Header'
 import ArticleGrid from 'components/ArticleGrid'
-import MainContent from 'components/MainContent/MainContent'
-import MaxWidthWrapper from 'components/MaxWidthWrapper/MaxWidthWrapper'
-import Paragraph from 'components/Paragraph/Paragraph'
+import MainContent from 'components/MainContent'
+import MaxWidthWrapper from 'components/MaxWidthWrapper'
+import { QUERIES } from '../constants'
 
 const Home: NextPage = () => {
   return (
@@ -34,19 +34,21 @@ const Home: NextPage = () => {
   )
 }
 
-const HeroHeadingWrapper = styled.div`
+const HeroHeadingWrapper = styled(MaxWidthWrapper)`
   height: 100%;
   width: 100%;
-  /* min-height: 650px; */
-  /* max-height: 750px; */
-  /* min-height: 100%; */
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  @media ${QUERIES.phoneAndSmaller} {
+    flex-direction: column;
+  }
 `
 
 const Heading = styled.h1`
-  font-size: 4rem;
+  font-size: 3rem;
   color: transparent;
   background-color: rgb(255, 178, 62);
   background-image: linear-gradient(
