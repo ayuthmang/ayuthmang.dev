@@ -1,7 +1,11 @@
 import React from 'react'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 
-const VisuallyHidden = ({ children, ...delegated }: React.PropsWithChildren<{}>) => {
+type VisuallyHiddenProps = {
+  children: React.ReactNode
+} & React.HTMLAttributes<HTMLDivElement>
+
+const VisuallyHidden = ({ children, ...delegated }: VisuallyHiddenProps) => {
   const [forceShow, setForceShow] = React.useState(false)
 
   React.useEffect(() => {
@@ -27,7 +31,7 @@ const VisuallyHidden = ({ children, ...delegated }: React.PropsWithChildren<{}>)
   }, [])
 
   if (forceShow) {
-    return children
+    return <>children</>
   }
 
   return <Wrapper {...delegated}>{children}</Wrapper>

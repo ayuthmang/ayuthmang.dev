@@ -5,8 +5,9 @@ import { QUERIES } from '../../constants'
 import Icon from '../Icon'
 import MobileMenu from '../MobileMenu'
 import { default as NextLink } from 'next/link'
-import MaxWidthWrapper from '../MaxWidthWrapper'
-import type {} from 'styled-components/cssprop'
+import MaxWidthWrapper from 'components/MaxWidthWrapper'
+import UnstyledButton from 'components/UnstyledButton'
+import VisuallyHidden from 'components/VisuallyHidden'
 
 const Header: NextPage = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -23,6 +24,7 @@ const Header: NextPage = () => {
           </RightNav>
           <MobileNav>
             <UnstyledButton>
+              <VisuallyHidden>Open menu</VisuallyHidden>
               <Icon id="menu" onClick={() => setShowMobileMenu(true)} />
             </UnstyledButton>
           </MobileNav>
@@ -88,29 +90,6 @@ const MobileNav = styled.div`
 
   @media ${QUERIES.phoneAndSmaller} {
     display: block;
-  }
-`
-
-type UnstyledButtonProps = {
-  display?: React.CSSProperties['display']
-}
-const UnstyledButton = styled.button<UnstyledButtonProps>`
-  display: ${(props) => props.display || 'block'};
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-
-  &:focus {
-    outline-offset: 2px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
   }
 `
 

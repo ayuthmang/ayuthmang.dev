@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import Icon from '../Icon'
 import * as Dialog from '@radix-ui/react-dialog'
-import UnstyledButton from 'components/UnstyledButton/UnstyledButton'
+import UnstyledButton from 'components/UnstyledButton'
 
 type MobileMenuProps = {
   isOpen?: boolean
@@ -19,7 +19,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         <Overlay />
         <Wrapper>
           <Content>
-          <Backdrop />
+            <Backdrop />
             <InnerWrapper>
               <Dialog.Close asChild>
                 <CloseButton>
@@ -89,7 +89,7 @@ const Wrapper = styled.div`
   /* background: var(--color-backdrop,); */
   display: flex;
   justify-content: flex-end;
-  animation: ${fadeIn} 500ms;
+  animation: ${slideIn} 500ms;
 `
 
 const Content = styled.div`

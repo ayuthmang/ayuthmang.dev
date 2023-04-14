@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
-const UnstyledButton = styled.button`
-  display: block;
+type UnstyledButtonProps = {
+  display?: React.CSSProperties['display']
+}
+
+const UnstyledButton = styled.button<UnstyledButtonProps>`
+  display: ${(props) => props.display || 'block'};
   margin: 0;
   padding: 0;
   border: none;
@@ -11,14 +15,13 @@ const UnstyledButton = styled.button`
   font: inherit;
   color: inherit;
 
-  /*
   &:focus {
     outline-offset: 2px;
   }
 
   &:focus:not(:focus-visible) {
     outline: none;
-  } */
+  }
 `
 
 export default UnstyledButton
