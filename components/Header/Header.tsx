@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from 'react'
+import styled, { keyframes } from 'styled-components'
 import { QUERIES } from '../../constants'
 import Icon from '../Icon'
 import MobileMenu from '../MobileMenu'
@@ -16,7 +16,9 @@ const Header: NextPage = () => {
     <Wrapper>
       <MainHeader>
         <DesktopNav>
-          <HomeLink href="/">Ayuth</HomeLink>
+          <LeftNav>
+            <HomeLink href="/">AYUTHMANG.DEV</HomeLink>
+          </LeftNav>
           <RightNav>
             <NavLink href="https://github.com/ayuthmang">GitHub</NavLink>
             <NavLink href="https://medium.com/@ayuthmang">Medium</NavLink>
@@ -70,9 +72,46 @@ const NavLink = styled(NextLink)`
   }
 `
 
+const dropIn = keyframes`
+  from {
+    transform: rotate(-30deg) translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotate(0deg) translateY(0);
+    opacity: 1;
+  }
+`
+
+const blinkCaret = keyframes`
+  from {
+    border-right: 2px solid var(--caret-color);
+  }
+
+  50% {
+    border-color: var(--caret-color);
+  }
+
+  to {
+    border-color: transparent;
+  }
+`
+
 const HomeLink = styled(NavLink)`
+  --caret-color: var(--color-gray-100);
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
+  animation: ${dropIn} 2s, ${blinkCaret} 1s infinite 3s;
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
+`
+
+const LeftNav = styled.div`
+  display: flex;
+  align-items: flex-start;
 `
 
 const RightNav = styled.div`

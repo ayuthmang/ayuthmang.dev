@@ -51,9 +51,7 @@ h6 {
 
 /* GLOBAL STYLES */
 html {
-  --font-family: 'Maven Pro', 'Open Sans', -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  --font-family: 'Open Sans', 'Maven Pro';
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -75,7 +73,9 @@ html {
   --color-gray-900: hsl(var(--gray-hue) 25% 20%);
   --color-gray-1000: hsl(var(--gray-hue) 15% 15%);
 
-  font-family: var(--font-family);
+  font-family: var(--font-family), -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
   font-weight: var(--font-weight-regular);
   color: var(--color-text);
   background-color: var(--color-background);

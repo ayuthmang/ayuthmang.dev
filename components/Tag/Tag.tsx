@@ -9,7 +9,7 @@ function Tag({ children }: React.PropsWithChildren<TagProps>): JSX.Element {
 
 const Wrapper = styled.span`
   display: inline-block;
-  padding: 4px 8px;
+  padding: 4px 12px;
   background: var(--color-gray-300);
   border-radius: 8px;
   color: var(--color-gray-800);
