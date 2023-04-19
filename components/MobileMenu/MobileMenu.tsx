@@ -92,7 +92,7 @@ const Wrapper = styled.div`
   animation: ${slideIn} 500ms;
 `
 
-const Content = styled.div`
+const Content = styled(Dialog.Content)`
   --overfill: 16px;
   display: flex;
   flex-direction: column;
