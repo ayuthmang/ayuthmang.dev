@@ -49,7 +49,7 @@ const Wrapper = styled.header`
 `
 
 const MainHeader = styled(MaxWidthWrapper)`
-  background: rgba(21, 17, 24, 0.5);
+  background: var(--background-color);
   padding-top: 16px;
   padding-bottom: 16px;
   backdrop-filter: blur(10px);
@@ -85,16 +85,13 @@ const dropIn = keyframes`
 `
 
 const blinkCaret = keyframes`
-  from {
-    border-right: 2px solid var(--caret-color);
+  from, to {
+    border-inline-end: 0.1em solid var(--caret-color);
+    border-color: transparent;
   }
 
   50% {
     border-color: var(--caret-color);
-  }
-
-  to {
-    border-color: transparent;
   }
 `
 
