@@ -46,6 +46,7 @@ const Wrapper = styled.header`
   left: 0;
   right: 0;
   z-index: 2;
+  font-family: var(--font-family-header);
 `
 
 const MainHeader = styled(MaxWidthWrapper)`
