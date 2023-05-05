@@ -40,9 +40,24 @@ function Article({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+`
 
-  &:hover {
-    cursor: pointer;
+const Image = styled.img`
+  display: inline;
+  height: 12rem;
+  width: 100%;
+  object-fit: cover;
+  will-change: transform;
+  transition: transform 600ms, filter 1000ms;
+  filter: brightness(90%);
+
+   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
+      transform: scale(1.1);
+      transition: transform 250ms, filter 400ms;
+      filter: brightness(100%);
+    }
   }
 `
 
@@ -63,13 +78,6 @@ const ImageWrapper = styled.div`
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-`
-
-const Image = styled.img`
-  display: inline;
-  height: 12rem;
-  width: 100%;
-  object-fit: cover;
 `
 
 const Tags = styled.div`
