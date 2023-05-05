@@ -28,13 +28,9 @@ function Article({
         <Title>{title}</Title>
         {/* <Description dangerouslySetInnerHTML={{ __html: description }} /> */}
         <Tags>
-          {categories.map((category) => {
-            return (
-              <>
-                <Tag key={`${guid}-${category}`}>{category}</Tag>{' '}
-              </>
-            )
-          })}
+          {categories.map((category) =>
+            <Tag key={`${guid}-${category}`}>{category}</Tag>
+          )}
         </Tags>
       </Wrapper>
     </Link>
@@ -44,6 +40,10 @@ function Article({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const Wrapper = styled.article`
@@ -66,8 +66,10 @@ const ImageWrapper = styled.div`
 `
 
 const Image = styled.img`
-  display: block;
+  display: inline;
+  height: 12rem;
   width: 100%;
+  object-fit: cover;
 `
 
 const Tags = styled.div`
