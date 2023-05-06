@@ -1,4 +1,4 @@
-import Article from 'components/Article/Article'
+import Article from '~/components/Article'
 import useMediumPosts from 'hooks/use-medium-posts'
 import React from 'react'
 import styled from 'styled-components'
@@ -11,6 +11,7 @@ function ArticleGrid(): JSX.Element {
       {posts?.map((post) => {
         return (
           <Article
+            key={post.guid}
             guid={post.guid}
             title={post.title}
             thumbnail={post.thumbnail}
