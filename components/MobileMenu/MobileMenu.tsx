@@ -90,9 +90,10 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
+  background: var(--color-backdrop);
+  font-family: var(--font-family-header);
 `
 
 const Content = styled(Dialog.Content)`
@@ -128,7 +129,6 @@ const NavLink = styled.a`
   font-size: 1.125rem;
   font-weight: var(--font-weight-medium);
   text-decoration: none;
-  text-transform: uppercase;
   cursor: pointer;
   color: inherit;
   opacity: 0.75;
