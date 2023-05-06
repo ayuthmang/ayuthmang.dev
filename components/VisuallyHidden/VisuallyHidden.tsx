@@ -31,7 +31,7 @@ const VisuallyHidden = ({ children, ...delegated }: VisuallyHiddenProps) => {
   }, [])
 
   if (forceShow) {
-    return <>children</>
+    return <>{children}</>
   }
 
   return <Wrapper {...delegated}>{children}</Wrapper>
