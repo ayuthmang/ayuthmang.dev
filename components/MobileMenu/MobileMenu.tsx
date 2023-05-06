@@ -6,15 +6,18 @@ import UnstyledButton from 'components/UnstyledButton'
 
 type MobileMenuProps = {
   isOpen?: boolean
-  onDismiss: () => void
+  onOpenChange: (open: boolean) => void
+  children: React.ReactNode
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({
   isOpen = false,
-  onDismiss,
+  onOpenChange,
+  children,
 }) => {
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onDismiss}>
+    <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
         <Overlay />
         <Wrapper>
@@ -68,7 +71,7 @@ const Overlay = styled(Dialog.Overlay)`
   bottom: 0;
   background: var(--color-backdrop);
   backdrop-filter: blur(5px);
-  animation: ${fadeIn} 500ms;
+  opacity: 0.25;
 `
 
 const Backdrop = styled.div`
@@ -77,7 +80,8 @@ const Backdrop = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: gray; // debug
+  background: var(--color-background);
+  animation: ${fadeIn} 500ms;
 `
 
 const Wrapper = styled.div`
@@ -86,10 +90,9 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: var(--color-backdrop,); */
+  background: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
-  animation: ${slideIn} 500ms;
 `
 
 const Content = styled(Dialog.Content)`
@@ -98,8 +101,13 @@ const Content = styled(Dialog.Content)`
   flex-direction: column;
   position: relative;
   height: 100%;
-  width: 300px;
+  width: calc(300px + var(--overfill));
   padding: 24px 32px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${slideIn} 500ms both cubic-bezier(0, 0.6, 0.32, 1.06);
+    animation-delay: 200ms;
+  }
 `
 
 const InnerWrapper = styled.div`

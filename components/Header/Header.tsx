@@ -1,13 +1,13 @@
 import { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { QUERIES } from '../../constants'
-import Icon from '../Icon'
-import MobileMenu from '../MobileMenu'
 import { default as NextLink } from 'next/link'
-import MaxWidthWrapper from 'components/MaxWidthWrapper'
-import UnstyledButton from 'components/UnstyledButton'
-import VisuallyHidden from 'components/VisuallyHidden'
+import React, { useState } from 'react'
+import styled, { keyframes } from 'styled-components'
+import { QUERIES } from '~/constants'
+import Icon from '~/components/Icon'
+import MobileMenu from '~/components/MobileMenu'
+import MaxWidthWrapper from '~/components/MaxWidthWrapper'
+import UnstyledButton from '~/components/UnstyledButton'
+import VisuallyHidden from '~/components/VisuallyHidden'
 
 const Header: NextPage = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -25,16 +25,17 @@ const Header: NextPage = () => {
             <NavLink href="https://dev.to/ayuthmang">Dev</NavLink>
           </RightNav>
           <MobileNav>
-            <UnstyledButton>
-              <VisuallyHidden>Open menu</VisuallyHidden>
-              <Icon id="menu" onClick={() => setShowMobileMenu(true)} />
-            </UnstyledButton>
+            <MobileMenu
+              isOpen={showMobileMenu}
+              onOpenChange={(open) => setShowMobileMenu(open)}
+            >
+              <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+                <VisuallyHidden>Open menu</VisuallyHidden>
+                <Icon id="menu" size={24} />
+              </UnstyledButton>
+            </MobileMenu>
           </MobileNav>
         </DesktopNav>
-        <MobileMenu
-          isOpen={showMobileMenu}
-          onDismiss={() => setShowMobileMenu(false)}
-        />
       </MainHeader>
     </Wrapper>
   )
