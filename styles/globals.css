@@ -87,11 +87,6 @@ html {
     color: var(--color-text);
     background-color: var(--selection-background-color);
   }
-
-  /* custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
 }
 
 html,
