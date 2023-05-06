@@ -63,6 +63,7 @@ const DesktopNav = styled.nav`
 `
 
 const NavLink = styled(NextLink)`
+  font-weight: var(--font-weight-semi-bold);
   text-decoration: none;
   cursor: pointer;
   color: inherit;
