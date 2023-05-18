@@ -1,13 +1,13 @@
 import { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { QUERIES } from '../../constants'
-import Icon from '../Icon'
-import MobileMenu from '../MobileMenu'
 import { default as NextLink } from 'next/link'
-import MaxWidthWrapper from 'components/MaxWidthWrapper'
-import UnstyledButton from 'components/UnstyledButton'
-import VisuallyHidden from 'components/VisuallyHidden'
+import React, { useState } from 'react'
+import styled, { keyframes } from 'styled-components'
+import { QUERIES } from '~/constants'
+import Icon from '~/components/Icon'
+import MobileMenu from '~/components/MobileMenu'
+import MaxWidthWrapper from '~/components/MaxWidthWrapper'
+import UnstyledButton from '~/components/UnstyledButton'
+import VisuallyHidden from '~/components/VisuallyHidden'
 
 const Header: NextPage = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -25,31 +25,33 @@ const Header: NextPage = () => {
             <NavLink href="https://dev.to/ayuthmang">Dev</NavLink>
           </RightNav>
           <MobileNav>
-            <UnstyledButton>
-              <VisuallyHidden>Open menu</VisuallyHidden>
-              <Icon id="menu" onClick={() => setShowMobileMenu(true)} />
-            </UnstyledButton>
+            <MobileMenu
+              isOpen={showMobileMenu}
+              onOpenChange={(open) => setShowMobileMenu(open)}
+            >
+              <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+                <VisuallyHidden>Open menu</VisuallyHidden>
+                <Icon id="menu" size={24} />
+              </UnstyledButton>
+            </MobileMenu>
           </MobileNav>
         </DesktopNav>
-        <MobileMenu
-          isOpen={showMobileMenu}
-          onDismiss={() => setShowMobileMenu(false)}
-        />
       </MainHeader>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 2;
+  font-family: var(--font-family-header);
 `
 
 const MainHeader = styled(MaxWidthWrapper)`
-  background: rgba(21, 17, 24, 0.5);
+  background: var(--background-color);
   padding-top: 16px;
   padding-bottom: 16px;
   backdrop-filter: blur(10px);
@@ -61,6 +63,7 @@ const DesktopNav = styled.nav`
 `
 
 const NavLink = styled(NextLink)`
+  font-weight: var(--font-weight-semi-bold);
   text-decoration: none;
   cursor: pointer;
   color: inherit;
@@ -85,16 +88,13 @@ const dropIn = keyframes`
 `
 
 const blinkCaret = keyframes`
-  from {
-    border-right: 2px solid var(--caret-color);
+  from, to {
+    border-inline-end: 0.1em solid var(--caret-color);
+    border-color: transparent;
   }
 
   50% {
     border-color: var(--caret-color);
-  }
-
-  to {
-    border-color: transparent;
   }
 `
 

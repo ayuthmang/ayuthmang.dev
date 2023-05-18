@@ -16,7 +16,6 @@ export default function useMediumPosts() {
         const data = await axios.get<RssToJsonMediumResponse>(rssToJsonUrl)
         const items = data.data.items
         setPosts(items)
-        console.log({ items })
       } catch (error) {}
     }
 

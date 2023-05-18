@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { QUERIES } from '~/constants'
 
 const MaxWidthWrapper = styled.div`
   width: 100%;
@@ -7,6 +8,11 @@ const MaxWidthWrapper = styled.div`
   margin-right: auto;
   padding-left: 32px;
   padding-right: 32px;
+
+  @media (${QUERIES.phoneAndSmaller}) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `
 
 export default MaxWidthWrapper
