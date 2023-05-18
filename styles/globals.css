@@ -51,14 +51,15 @@ h6 {
 
 /* GLOBAL STYLES */
 html {
-  --font-family: 'Open Sans', 'Maven Pro';
+  --font-family: 'Open Sans';
+  --font-family-header: 'Maven Pro';
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
   --font-weight-extra-bold: 800;
-  --color-background: #151118;
+  --color-background: #21272f;
   --color-backdrop: hsl(220deg 5% 40% / 0.8);
   --color-text: hsl(0, 0%, 100%);
   --gray-hue: 225deg;
@@ -72,6 +73,8 @@ html {
   --color-gray-800: hsl(var(--gray-hue) 20% 30%);
   --color-gray-900: hsl(var(--gray-hue) 25% 20%);
   --color-gray-1000: hsl(var(--gray-hue) 15% 15%);
+  --selection-color: #7e52da;
+  --selection-background-color: #7e52da;
 
   font-family: var(--font-family), -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
@@ -79,6 +82,11 @@ html {
   font-weight: var(--font-weight-regular);
   color: var(--color-text);
   background-color: var(--color-background);
+
+  ::selection {
+    color: var(--color-text);
+    background-color: var(--selection-background-color);
+  }
 }
 
 html,
