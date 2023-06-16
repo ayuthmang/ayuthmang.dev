@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import MaxWidthWrapper from '~/components/MaxWidthWrapper'
+import MaxWidthWrapper from '~/app/components/MaxWidthWrapper'
 
 const MainContent = ({ children }: React.PropsWithChildren<{}>) => {
   return <Main>{children}</Main>

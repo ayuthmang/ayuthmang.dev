@@ -1,14 +1,16 @@
+'use client'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
-import Footer from 'components/Footer'
-import Header from 'components/Header'
-import ArticleGrid from 'components/ArticleGrid'
-import MainContent from 'components/MainContent'
-import MaxWidthWrapper from 'components/MaxWidthWrapper'
-import { QUERIES } from '../constants'
+import Footer from '~/app/components/Footer'
+import Header from '~/app/components/Header'
+import ArticleGrid from '~/app/components/ArticleGrid'
+import MainContent from '~/app/components/MainContent'
+import MaxWidthWrapper from '~/app/components/MaxWidthWrapper'
+import { QUERIES } from '~/app/constants'
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
   return (
     <>
       <Head>
@@ -91,4 +93,4 @@ const PaperStyleWrapper = styled(MaxWidthWrapper)`
   padding: 52px 72px;
 `
 
-export default Home
+export default Page
