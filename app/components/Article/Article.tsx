@@ -1,5 +1,5 @@
 import React from 'react'
-import Tag from 'components/Tag'
+import Tag from '~/app/components/Tag'
 import styled from 'styled-components'
 
 export type ArticleProps = {
@@ -28,9 +28,9 @@ function Article({
         <Title>{title}</Title>
         {/* <Description dangerouslySetInnerHTML={{ __html: description }} /> */}
         <Tags>
-          {categories.map((category) =>
+          {categories.map((category) => (
             <Tag key={`${guid}-${category}`}>{category}</Tag>
-          )}
+          ))}
         </Tags>
       </Wrapper>
     </Link>
@@ -51,7 +51,7 @@ const Image = styled.img`
   transition: transform 600ms, filter 1000ms;
   filter: brightness(90%);
 
-   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     ${Link}:hover &,
     ${Link}:focus & {
       transform: scale(1.1);
