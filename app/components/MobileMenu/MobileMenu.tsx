@@ -1,7 +1,7 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import Icon from '../Icon'
-import * as Dialog from '@radix-ui/react-dialog'
+import Icon from '~/app/components/Icon'
 import UnstyledButton from '~/app/components/UnstyledButton'
 
 type MobileMenuProps = {
