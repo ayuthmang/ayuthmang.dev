@@ -1,6 +1,5 @@
-import { NextPage } from 'next'
 import { default as NextLink } from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { QUERIES } from '~/app/constants'
 import Icon from '~/app/components/Icon'
@@ -9,8 +8,8 @@ import MaxWidthWrapper from '~/app/components/MaxWidthWrapper'
 import UnstyledButton from '~/app/components/UnstyledButton'
 import VisuallyHidden from '~/app/components/VisuallyHidden'
 
-const Header: NextPage = () => {
-  const [showMobileMenu, setShowMobileMenu] = useState(false)
+const Header = () => {
+  const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (
     <Wrapper>
