@@ -1,10 +1,10 @@
 import Article from '~/components/Article'
-import useMediumPosts from '~/hooks/use-medium-posts'
+import { getLatestMediumPosts } from '~/app/api/medium'
 import React from 'react'
 import styled from 'styled-components'
 
-function ArticleGrid(): JSX.Element {
-  const { posts } = useMediumPosts()
+export async function ArticleGrid() {
+  const posts = await getLatestMediumPosts('@ayuthmang')
 
   return (
     <Wrapper>

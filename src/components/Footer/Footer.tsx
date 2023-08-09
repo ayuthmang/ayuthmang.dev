@@ -5,7 +5,7 @@ import MaxWidthWrapper from '../MaxWidthWrapper'
 const Footer = () => {
   return (
     <Wrapper as="footer">
-      <p>© 2020-present Ayuth Mangmesap.</p>
+      <p>© 2022-present Ayuth Mangmesap.</p>
       <p>All Rights Reserved.</p>
     </Wrapper>
   )
