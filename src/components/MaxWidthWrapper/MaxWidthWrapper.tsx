@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { QUERIES } from '~/app/constants'
+import { QUERIES } from '~/constants'
 
 const MaxWidthWrapper = styled.div`
   width: 100%;

@@ -1,5 +1,5 @@
-import Article from '~/app/components/Article'
-import useMediumPosts from '~/app/hooks/use-medium-posts'
+import Article from '~/components/Article'
+import useMediumPosts from '~/hooks/use-medium-posts'
 import React from 'react'
 import styled from 'styled-components'
 
