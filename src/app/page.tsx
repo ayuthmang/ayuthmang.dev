@@ -1,16 +1,9 @@
 'use client'
-
-import type { Metadata } from 'next'
 import styled from 'styled-components'
-import ArticleGrid from '~/app/components/ArticleGrid'
-import MainContent from '~/app/components/MainContent'
-import MaxWidthWrapper from '~/app/components/MaxWidthWrapper'
-import { QUERIES } from '~/app/constants'
-
-export const metadata: Metadata = {
-  title: 'Ayuth Mangmesap',
-  description: 'My personal website',
-}
+import ArticleGrid from '~/components/ArticleGrid'
+import MainContent from '~/components/MainContent'
+import MaxWidthWrapper from '~/components/MaxWidthWrapper'
+import { QUERIES } from '~/constants'
 
 const Page = () => {
   return (

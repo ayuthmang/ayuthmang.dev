@@ -1,14 +1,13 @@
+'use client'
 import styled from 'styled-components'
 import MaxWidthWrapper from '../MaxWidthWrapper'
 
 const Footer = () => {
   return (
-    <footer>
-      <Wrapper>
-        <p>© 2020-present Ayuth Mangmesap.</p>
-        <p>All Rights Reserved.</p>
-      </Wrapper>
-    </footer>
+    <Wrapper as="footer">
+      <p>© 2020-present Ayuth Mangmesap.</p>
+      <p>All Rights Reserved.</p>
+    </Wrapper>
   )
 }
 

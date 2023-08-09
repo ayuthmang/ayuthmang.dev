@@ -10,17 +10,17 @@ export default function useMediumPosts() {
     RssToJsonMediumResponse['items'] | null
   >(null)
 
-  useEffect(() => {
-    async function runEffect() {
-      try {
-        const data = await axios.get<RssToJsonMediumResponse>(rssToJsonUrl)
-        const items = data.data.items
-        setPosts(items)
-      } catch (error) {}
-    }
+  // useEffect(() => {
+  //   async function runEffect() {
+  //     try {
+  //       const data = await axios.get<RssToJsonMediumResponse>(rssToJsonUrl)
+  //       const items = data.data.items
+  //       setPosts(items)
+  //     } catch (error) {}
+  //   }
 
-    runEffect()
-  }, [])
+  //   runEffect()
+  // }, [])
 
   return { posts }
 }
