@@ -1,29 +1,3 @@
-// export interface MediumRssResponse {
-//   version: string
-//   title: string
-//   home_page_url: string
-//   description: string
-//   author: Author
-//   items: Item[]
-// }
-
-// export interface Author {
-//   name: string
-// }
-
-// export interface Item {
-//   guid: string
-//   url: string
-//   title: string
-//   content_html: string
-//   date_published: string
-//   author: Author2
-// }
-
-// export interface Author2 {
-//   name: string
-// }
-
 export interface RssToJsonMediumResponse {
   status: string
   feed: Feed
