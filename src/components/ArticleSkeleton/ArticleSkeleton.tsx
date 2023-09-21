@@ -46,7 +46,7 @@ const PreviewImageSkeleton = styled.div`
   width: 100%;
   background-color: gray;
   height: 100%;
-  min-height: 12rem;
+  min-height: 15rem;
   animation: ${pulse} 1000ms ease-in-out infinite alternate;
 
   &::after {

@@ -44,7 +44,7 @@ const Link = styled.a`
 
 const Image = styled.img`
   display: inline;
-  height: 12rem;
+  height: 15rem;
   width: 100%;
   object-fit: cover;
   will-change: transform;
