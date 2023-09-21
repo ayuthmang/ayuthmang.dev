@@ -17,11 +17,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <StyledComponentsRegistry>
-          <Header />
-          {children}
-          <Footer />
-        </StyledComponentsRegistry>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
   )

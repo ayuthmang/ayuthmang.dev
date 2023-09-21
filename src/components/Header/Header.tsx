@@ -1,7 +1,7 @@
 'use client'
 import { default as NextLink } from 'next/link'
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { QUERIES } from '~/constants'
 import Icon from '~/components/Icon'
 import MobileMenu from '~/components/MobileMenu'
@@ -14,52 +14,74 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <MainHeader>
+      <MainHeader as="header">
+        <HomeLink href="/">AYUTHMANG.DEV</HomeLink>
         <DesktopNav>
-          <LeftNav>
-            <HomeLink href="/">AYUTHMANG.DEV</HomeLink>
-          </LeftNav>
-          <RightNav>
+          <Filler />
+          <DesktopActions>
             <NavLink href="https://github.com/ayuthmang">GitHub</NavLink>
             <NavLink href="https://medium.com/@ayuthmang">Medium</NavLink>
             <NavLink href="https://dev.to/ayuthmang">Dev</NavLink>
-          </RightNav>
-          <MobileNav>
-            <MobileMenu
-              isOpen={showMobileMenu}
-              onOpenChange={(open) => setShowMobileMenu(open)}
-            >
-              <UnstyledButton onClick={() => setShowMobileMenu(true)}>
-                <VisuallyHidden>Open menu</VisuallyHidden>
-                <Icon id="menu" size={24} />
-              </UnstyledButton>
-            </MobileMenu>
-          </MobileNav>
+          </DesktopActions>
         </DesktopNav>
+        <MobileNav>
+          <MobileMenu
+            isOpen={showMobileMenu}
+            onOpenChange={(open) => setShowMobileMenu(open)}
+          >
+            <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+              <VisuallyHidden>Open menu</VisuallyHidden>
+              <Icon id="menu" size={24} />
+            </UnstyledButton>
+          </MobileMenu>
+        </MobileNav>
       </MainHeader>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.header`
+const Wrapper = styled.div`
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
   font-family: var(--font-family-header);
 `
 
 const MainHeader = styled(MaxWidthWrapper)`
+  display: flex;
+  align-items: center;
   background: var(--background-color);
   padding-top: 16px;
   padding-bottom: 16px;
   backdrop-filter: blur(10px);
+
+  @media ${QUERIES.phoneAndSmaller} {
+    justify-content: space-between;
+  }
 `
 
 const DesktopNav = styled.nav`
   display: flex;
+  align-items: center;
+  flex: 1;
   justify-content: space-between;
+  gap: 24px;
+  padding-left: 24px;
+
+  @media ${QUERIES.phoneAndSmaller} {
+    display: none;
+  }
+`
+
+const DesktopActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+`
+
+const Filler = styled.div`
+  flex: 1;
 `
 
 const NavLink = styled(NextLink)`
@@ -75,48 +97,14 @@ const NavLink = styled(NextLink)`
   }
 `
 
-const dropIn = keyframes`
-  from {
-    transform: rotate(-30deg) translateY(-100%);
-    opacity: 0;
-  }
-
-  to {
-    transform: rotate(0deg) translateY(0);
-    opacity: 1;
-  }
-`
-
-const blinkCaret = keyframes`
-  from, to {
-    border-inline-end: 0.1em solid var(--caret-color);
-    border-color: transparent;
-  }
-
-  50% {
-    border-color: var(--caret-color);
-  }
-`
-
 const HomeLink = styled(NavLink)`
   --caret-color: var(--color-gray-100);
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
-  animation: ${dropIn} 2s, ${blinkCaret} 1s infinite 3s;
-
-  @media (prefers-reduced-motion) {
-    animation: none;
-  }
-`
-
-const LeftNav = styled.div`
-  display: flex;
-  align-items: flex-start;
 `
 
 const RightNav = styled.div`
   display: flex;
-  align-items: baseline;
   gap: 24px;
 
   @media ${QUERIES.phoneAndSmaller} {
