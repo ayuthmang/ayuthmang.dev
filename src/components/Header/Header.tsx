@@ -9,7 +9,7 @@ import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 import UnstyledButton from '~/components/UnstyledButton'
 import VisuallyHidden from '~/components/VisuallyHidden'
 
-const Header = () => {
+const Header: React.FC = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (
@@ -17,6 +17,9 @@ const Header = () => {
       <MainHeader as="header">
         <HomeLink href="/">AYUTHMANG.DEV</HomeLink>
         <DesktopNav>
+          <DesktopActions>
+            <NavLink href="/about">About</NavLink>
+          </DesktopActions>
           <Filler />
           <DesktopActions>
             <NavLink href="https://github.com/ayuthmang">GitHub</NavLink>
