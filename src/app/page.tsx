@@ -10,13 +10,11 @@ import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 function Page() {
   return (
     <>
-      <Header />
       <MainContent>
         <React.Suspense fallback={<ArticleGridSkeleton rows={3} columns={3} />}>
           <ArticleGrid />
         </React.Suspense>
       </MainContent>
-      <Footer />
     </>
   )
 }
