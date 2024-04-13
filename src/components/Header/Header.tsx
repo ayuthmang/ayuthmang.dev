@@ -1,8 +1,7 @@
 'use client'
+
 import { default as NextLink } from 'next/link'
 import React from 'react'
-import styled from 'styled-components'
-import { QUERIES } from '~/constants'
 import Icon from '~/components/Icon'
 import MobileMenu from '~/components/MobileMenu'
 import MaxWidthWrapper from '~/components/MaxWidthWrapper'
@@ -14,7 +13,7 @@ const Header: React.FC = () => {
 
   return (
     <Wrapper>
-      <MainHeader as="header">
+      <MainHeader>
         <HomeLink href="/">AYUTHMANG.DEV</HomeLink>
         <DesktopNav>
           <DesktopActions>
@@ -32,7 +31,7 @@ const Header: React.FC = () => {
             isOpen={showMobileMenu}
             onOpenChange={(open) => setShowMobileMenu(open)}
           >
-            <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+            <UnstyledButton>
               <VisuallyHidden>Open menu</VisuallyHidden>
               <Icon id="menu" size={24} />
             </UnstyledButton>
@@ -43,84 +42,67 @@ const Header: React.FC = () => {
   )
 }
 
-const Wrapper = styled.div`
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-family: var(--font-family-header);
-`
+function Wrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
+  return <div className="sticky left-0 right-0 top-0 font-sans">{children}</div>
+}
 
-const MainHeader = styled(MaxWidthWrapper)`
-  display: flex;
-  align-items: center;
-  background: var(--background-color);
-  padding-top: 16px;
-  padding-bottom: 16px;
-  backdrop-filter: blur(10px);
+function MainHeader({
+  children,
+  ...delegated
+}: React.ComponentPropsWithoutRef<'header'>) {
+  return (
+    <MaxWidthWrapper
+      className="flex justify-between py-4 backdrop-blur md:items-center"
+      {...delegated}
+    >
+      {children}
+    </MaxWidthWrapper>
+  )
+}
 
-  @media ${QUERIES.phoneAndSmaller} {
-    justify-content: space-between;
-  }
-`
+function DesktopNav({ children }: React.ComponentPropsWithoutRef<'nav'>) {
+  return (
+    <nav className="hidden flex-1 items-center justify-between md:flex md:gap-6 md:pl-6">
+      {children}
+    </nav>
+  )
+}
 
-const DesktopNav = styled.nav`
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: space-between;
-  gap: 24px;
-  padding-left: 24px;
+function DesktopActions({ children }: React.ComponentPropsWithoutRef<'div'>) {
+  return <div className="flex items-center gap-6">{children}</div>
+}
 
-  @media ${QUERIES.phoneAndSmaller} {
-    display: none;
-  }
-`
+function Filler({ children }: React.ComponentPropsWithoutRef<'div'>) {
+  return <div className="flex-1">{children}</div>
+}
 
-const DesktopActions = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 24px;
-`
+function NavLink({
+  children,
+  ...delegated
+}: React.ComponentProps<typeof NextLink>) {
+  return (
+    <NextLink
+      className="cursor-pointer font-semibold text-gray-100 text-inherit opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100"
+      {...delegated}
+    >
+      {children}
+    </NextLink>
+  )
+}
 
-const Filler = styled.div`
-  flex: 1;
-`
+function HomeLink({
+  children,
+  ...delegated
+}: React.ComponentProps<typeof NextLink>) {
+  return (
+    <NextLink className="font-bold uppercase" {...delegated}>
+      {children}
+    </NextLink>
+  )
+}
 
-const NavLink = styled(NextLink)`
-  font-weight: var(--font-weight-semi-bold);
-  text-decoration: none;
-  cursor: pointer;
-  color: inherit;
-  opacity: 0.75;
-  transition: opacity 0.2s ease-in-out 0s;
-
-  &:hover {
-    opacity: 1;
-  }
-`
-
-const HomeLink = styled(NavLink)`
-  --caret-color: var(--color-gray-100);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-`
-
-const RightNav = styled.div`
-  display: flex;
-  gap: 24px;
-
-  @media ${QUERIES.phoneAndSmaller} {
-    display: none;
-  }
-`
-
-const MobileNav = styled.div`
-  display: none;
-
-  @media ${QUERIES.phoneAndSmaller} {
-    display: block;
-  }
-`
+function MobileNav({ children }: React.ComponentPropsWithoutRef<'div'>) {
+  return <div className="block md:hidden">{children}</div>
+}
 
 export default Header
