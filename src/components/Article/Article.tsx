@@ -83,7 +83,7 @@ const ImageWrapper = styled.div`
 const Tags = styled.div`
   display: flex;
   overflow: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   /* text-overflow: ellipsis; */
   white-space: nowrap;
   padding: 4px 0;
