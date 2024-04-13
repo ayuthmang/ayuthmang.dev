@@ -1,19 +1,18 @@
 'use client'
-import styled from 'styled-components'
-import { QUERIES } from '~/constants'
 
-const MaxWidthWrapper = styled.div`
-  width: 100%;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 32px;
-  padding-right: 32px;
+import { cn } from '~/utils'
 
-  @media (${QUERIES.phoneAndSmaller}) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-`
+export function MaxWidthWrapper({
+  children,
+  className,
+}: React.ComponentPropsWithoutRef<'div'>) {
+  return (
+    <div
+      className={cn('px-4 w-full max-w-[1100px] mx-auto md:px-8', className)}
+    >
+      {children}
+    </div>
+  )
+}
 
 export default MaxWidthWrapper

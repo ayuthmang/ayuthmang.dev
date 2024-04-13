@@ -1,27 +1,28 @@
-import styled from 'styled-components'
+import React from 'react'
+import { cn } from '~/utils'
 
-type UnstyledButtonProps = {
-  display?: React.CSSProperties['display']
-}
+export const UnstyledButton = React.forwardRef(function UnstyledButton(
+  {
+    children,
+    className,
+    ...delegated
+  }: React.ComponentPropsWithoutRef<'button'>,
 
-const UnstyledButton = styled.button<UnstyledButtonProps>`
-  display: ${(props) => props.display || 'block'};
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-
-  &:focus {
-    outline-offset: 2px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-`
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  return (
+    <button
+      className={cn(
+        'font-inherit color-inherit m-0 cursor-pointer border-none bg-transparent p-0 text-left',
+        'focus:not(:focus-visible)]:outline-none focus:outline-offset-2',
+        className,
+      )}
+      {...delegated}
+      ref={ref}
+    >
+      {children}
+    </button>
+  )
+})
 
 export default UnstyledButton
