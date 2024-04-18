@@ -1,14 +1,14 @@
 import Article from '~/components/Article'
-import { getLatestMediumPosts } from '~/app/api/medium'
 import React from 'react'
 import styled from 'styled-components'
+import { useLatestMediumPosts } from '~/app/api/medium/use-medium-posts.hooks'
 
 export async function ArticleGrid() {
-  const posts = await getLatestMediumPosts('@ayuthmang')
+  const { data } = useLatestMediumPosts('@ayuthmang')
 
   return (
     <Wrapper>
-      {posts?.map((post) => {
+      {data?.items?.map((post) => {
         return (
           <Article
             key={post.guid}
