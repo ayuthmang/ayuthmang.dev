@@ -13,9 +13,9 @@ function Page() {
   return (
     <>
       <MainContent>
-        {/* <React.Suspense fallback={<ArticleGridSkeleton rows={3} columns={3} />}>
+        <React.Suspense fallback={<ArticleGridSkeleton rows={3} columns={3} />}>
           <ArticleGrid />
-        </React.Suspense> */}
+        </React.Suspense>
       </MainContent>
     </>
   )
