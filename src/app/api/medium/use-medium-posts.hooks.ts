@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { RssToJsonMediumResponse } from './type'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
 const rssToJsonUrl =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/{username}'
@@ -13,7 +13,7 @@ async function getLatestMediumPosts(username: string) {
 }
 
 export function useLatestMediumPosts(username: string) {
-  const postsQuery = useQuery({
+  const postsQuery = useSuspenseQuery({
     queryKey: ['mediumPosts', username],
     queryFn: () => getLatestMediumPosts(username),
   })
