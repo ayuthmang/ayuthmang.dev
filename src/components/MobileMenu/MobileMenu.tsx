@@ -4,8 +4,7 @@ import Icon from '~/components/Icon'
 import UnstyledButton from '~/components/UnstyledButton'
 import styles from './MobileMenu.module.css'
 import clsx from 'clsx'
-import { cn } from '~/utils'
-import styled, { Componen } from 'styled-components'
+import { PROFILE_LINKS } from '~/constants'
 
 export type MobileMenuProps = {
   isOpen?: boolean
@@ -42,9 +41,9 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
               <Filler />
               <Nav>
                 <NavLink href="/">Home</NavLink>
-                <NavLink href="/">GitHub</NavLink>
-                <NavLink href="/">Medium</NavLink>
-                <NavLink href="/">Dev</NavLink>
+                <NavLink href={PROFILE_LINKS.GITHUB}>GitHub</NavLink>
+                <NavLink href={PROFILE_LINKS.MEDIUM}>Medium</NavLink>
+                <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>
               </Nav>
               <Filler />
             </InnerWrapper>
@@ -54,19 +53,6 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
     </Dialog.Root>
   )
 }
-
-// styled.label.attrs({})
-
-// const Overlay = styled(Dialog.Overlay)`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background: var(--color-backdrop);
-//   backdrop-filter: blur(5px);
-//   opacity: 0.25;
-// `
 
 function Backdrop({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
