@@ -10,7 +10,6 @@ function ArticleSkeleton() {
       <LineSkeleton />
       <LineSkeleton width="50%" />
       <LineSkeleton width="75%" />
-
       <TagsWrapper>
         <LineSkeleton width={5 + 'em'} height="1.75rem" />
         <LineSkeleton width={5 + 'em'} height="1.75rem" />
@@ -80,7 +79,7 @@ const TagsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   gap: 12px;
   white-space: nowrap;
 `

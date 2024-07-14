@@ -1,4 +1,6 @@
 'use client'
+
+import clsx from 'clsx'
 import React from 'react'
 import styled from 'styled-components'
 import ArticleGrid from '~/components/ArticleGrid'
@@ -19,9 +21,16 @@ function Page() {
   )
 }
 
-const MainContent = styled(MaxWidthWrapper)`
-  padding-top: 32px;
-  padding-bottom: 32px;
-`
+function MainContent({
+  children,
+  className,
+  ...delegated
+}: React.ComponentPropsWithoutRef<'div'>) {
+  return (
+    <div className={clsx('py-8', className)} {...delegated}>
+      {children}
+    </div>
+  )
+}
 
 export default Page

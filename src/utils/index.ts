@@ -23,3 +23,5 @@ export const random = (
     return partialVal + min
   }
 }
+
+export * from './classnames.utils'

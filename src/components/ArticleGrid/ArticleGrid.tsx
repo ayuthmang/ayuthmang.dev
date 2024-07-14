@@ -1,14 +1,14 @@
 import Article from '~/components/Article'
-import { getLatestMediumPosts } from '~/app/api/medium'
 import React from 'react'
+import { useLatestMediumPosts } from '~/app/api/medium/use-medium-posts.hooks'
 import styled from 'styled-components'
 
-export async function ArticleGrid() {
-  const posts = await getLatestMediumPosts('@ayuthmang')
+export function ArticleGrid() {
+  const { data } = useLatestMediumPosts('@ayuthmang')
 
   return (
     <Wrapper>
-      {posts?.map((post) => {
+      {data?.items?.map((post) => {
         return (
           <Article
             key={post.guid}
@@ -25,10 +25,8 @@ export async function ArticleGrid() {
   )
 }
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
-  gap: 32px;
-`
+const Wrapper = styled.div.attrs({
+  className: 'grid grid-cols-[repeat(auto-fill,_minmax(275px,_1fr))] gap-8',
+})``
 
 export default ArticleGrid
