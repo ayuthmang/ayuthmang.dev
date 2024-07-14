@@ -5,6 +5,7 @@ import StyledComponentsRegistry from '~/components/StyledComponentsRegistry'
 import './globals.css'
 import React from 'react'
 import MaxWidthWrapper from '~/components/MaxWidthWrapper'
+import Providers from './providers'
 
 export const metadata: Metadata = {
   title: 'Ayuth Mangmesap',
@@ -19,11 +20,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html>
       <body suppressHydrationWarning={true}>
-        <StyledComponentsRegistry>
+        <Providers>
           <Header />
           <MaxWidthWrapper>{children}</MaxWidthWrapper>
           <Footer />
-        </StyledComponentsRegistry>
+        </Providers>
       </body>
     </html>
   )

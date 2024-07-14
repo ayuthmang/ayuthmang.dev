@@ -1,22 +1,14 @@
-'use client'
-import styled from 'styled-components'
 import MaxWidthWrapper from '../MaxWidthWrapper'
 
-const Footer = () => {
+function Footer() {
   return (
-    <Wrapper as="footer">
-      <p>© 2022-present Ayuth Mangmesap.</p>
-      <p>All Rights Reserved.</p>
-    </Wrapper>
+    <MaxWidthWrapper>
+      <footer className="flex flex-col items-center gap-2 p-8">
+        <p>© 2022-present Ayuth Mangmesap.</p>
+        <p>All Rights Reserved.</p>
+      </footer>
+    </MaxWidthWrapper>
   )
 }
-
-const Wrapper = styled(MaxWidthWrapper)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 32px;
-`
 
 export default Footer
