@@ -7,6 +7,7 @@ import MobileMenu from '~/components/MobileMenu'
 import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 import UnstyledButton from '~/components/UnstyledButton'
 import VisuallyHidden from '~/components/VisuallyHidden'
+import { PROFILE_LINKS } from '~/constants'
 
 const Header: React.FC = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
@@ -21,9 +22,9 @@ const Header: React.FC = () => {
           </DesktopActions>
           <Filler />
           <DesktopActions>
-            <NavLink href="https://github.com/ayuthmang">GitHub</NavLink>
-            <NavLink href="https://medium.com/@ayuthmang">Medium</NavLink>
-            <NavLink href="https://dev.to/ayuthmang">Dev</NavLink>
+            <NavLink href={PROFILE_LINKS.GITHUB}>GitHub</NavLink>
+            <NavLink href={PROFILE_LINKS.MEDIUM}>Medium</NavLink>
+            <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>
           </DesktopActions>
         </DesktopNav>
         <MobileNav>

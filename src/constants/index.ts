@@ -10,4 +10,10 @@ export const QUERIES = {
   laptopAndSmaller: `(max-width: ${BREAKPOINTS.laptop / 16}rem)`,
 } as const
 
+export const PROFILE_LINKS = {
+  GITHUB: 'https://github.com/ayuthmang',
+  MEDIUM: 'https://medium.com/@ayuthmang',
+  DEV: 'https://dev.to/ayuthmang',
+}
+
 export * from './route.constants'
