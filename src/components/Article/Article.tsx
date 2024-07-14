@@ -1,6 +1,6 @@
 import React from 'react'
 import Tag from '~/components/Tag'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export type ArticleProps = {
   guid: string
@@ -14,7 +14,6 @@ export type ArticleProps = {
 function Article({
   guid,
   title,
-  description,
   categories,
   thumbnail,
   link,
@@ -29,7 +28,6 @@ function Article({
           />
         </ImageWrapper>
         <Title>{title}</Title>
-        {/* <Description dangerouslySetInnerHTML={{ __html: description }} /> */}
         <Tags>
           {categories.map((category) => (
             <Tag key={`${guid}-${category}`}>{category}</Tag>
