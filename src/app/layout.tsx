@@ -21,11 +21,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html>
       <body suppressHydrationWarning={true}>
         <Providers>
-          <StyledComponentsRegistry>
-            <Header />
-            <MaxWidthWrapper>{children}</MaxWidthWrapper>
-            <Footer />
-          </StyledComponentsRegistry>
+          <Header />
+          <MaxWidthWrapper>{children}</MaxWidthWrapper>
+          <Footer />
         </Providers>
       </body>
     </html>
