@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { RssToJsonMediumResponse } from './type'
+import type { RssToJsonMediumResponse } from './use-medium-posts.types'
 import { useSuspenseQuery } from '@tanstack/react-query'
 
 const rssToJsonUrl =

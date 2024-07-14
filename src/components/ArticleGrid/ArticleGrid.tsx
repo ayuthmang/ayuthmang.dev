@@ -1,6 +1,6 @@
 import Article from '~/components/Article'
 import React from 'react'
-import { useLatestMediumPosts } from '~/app/api/medium/use-medium-posts.hooks'
+import { useLatestMediumPosts } from '~/hooks/use-medium-posts.hooks'
 import styled from 'styled-components'
 
 export function ArticleGrid() {
