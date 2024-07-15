@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['"Open Sans"'],
+      header: ['"Maven Pro"'],
     },
-    extend: {},
   },
   plugins: [],
 }

@@ -1,11 +1,10 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
-import StyledComponentsRegistry from '~/components/StyledComponentsRegistry'
-import './globals.css'
 import React from 'react'
 import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 import Providers from './providers'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Ayuth Mangmesap',

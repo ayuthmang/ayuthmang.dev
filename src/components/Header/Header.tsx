@@ -44,7 +44,7 @@ const Header: React.FC = () => {
 }
 
 function Wrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
-  return <div className="sticky left-0 right-0 top-0 font-sans">{children}</div>
+  return <div className="sticky left-0 right-0 top-0">{children}</div>
 }
 
 function MainHeader({
@@ -96,7 +96,7 @@ function HomeLink({
   ...delegated
 }: React.ComponentProps<typeof NextLink>) {
   return (
-    <NextLink className="font-bold uppercase" {...delegated}>
+    <NextLink className="font-header font-bold uppercase" {...delegated}>
       {children}
     </NextLink>
   )
