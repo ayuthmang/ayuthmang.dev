@@ -2,12 +2,8 @@
 
 import clsx from 'clsx'
 import React from 'react'
-import styled from 'styled-components'
 import ArticleGrid from '~/components/ArticleGrid'
 import ArticleGridSkeleton from '~/components/ArticleGridSkeleton/ArticleGridSkeleton'
-import Footer from '~/components/Footer'
-import Header from '~/components/Header'
-import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 
 function Page() {
   return (

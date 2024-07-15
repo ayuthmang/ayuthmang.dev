@@ -21,12 +21,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay
-          className="fixed bottom-0 left-0 right-0 top-0 bg-[var(--color-backdrop)] opacity-25"
-          style={{
-            backdropFilter: 'blur(5px)',
-          }}
-        >
+        <Dialog.Overlay className="fixed bottom-0 left-0 right-0 top-0 bg-[var(--color-backdrop)] opacity-25 backdrop-blur">
           {children}
         </Dialog.Overlay>
         <div className="fixed bottom-0 left-0 right-0 top-0 flex justify-end bg-[var(--color-backdrop)]">
