@@ -1,3 +1,4 @@
+import {test, expect} from 'vitest'
 import { cn } from '../classnames.utils'
 
 test('should override classnames properly', () => {
