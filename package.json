@@ -11,7 +11,7 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
-    "test:debug": "vitest --inspect-brk"
+    "test:debug": "vitest --inspect-brk --no-file-parallelism"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
