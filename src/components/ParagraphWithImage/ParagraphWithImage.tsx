@@ -10,7 +10,7 @@ type ParagraphWithImageProps = {
   children: React.ReactNode
 }
 
-const ParagraphWithImage: React.FC<ParagraphWithImageProps> = (props) => {
+export function ParagraphWithImage(props: ParagraphWithImageProps) {
   const { imageSrc, imageAlt, imageWidth, imageHeight, children } = props
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
 

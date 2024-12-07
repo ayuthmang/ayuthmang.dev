@@ -11,21 +11,12 @@ export type ArticleProps = {
   link: string
 }
 
-function Article({
-  guid,
-  title,
-  categories,
-  thumbnail,
-  link,
-}: ArticleProps): JSX.Element {
+function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
   return (
     <Link href={link}>
       <Wrapper>
         <ImageWrapper>
-          <Image
-            src={thumbnail}
-            alt="Article's cover image"
-          />
+          <Image src={thumbnail} alt="Article's cover image" />
         </ImageWrapper>
         <Title>{title}</Title>
         <Tags>
