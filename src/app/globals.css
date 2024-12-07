@@ -5,6 +5,27 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  @apply h-full;
+}
+
+body {
+  font-family:
+    'Open Sans',
+    'Maven Pro',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Helvetica Neue',
+    sans-serif;
+}
+
 @layer base {
   /* GLOBAL STYLES */
   :root {
