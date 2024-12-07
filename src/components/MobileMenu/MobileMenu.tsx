@@ -12,11 +12,11 @@ export type MobileMenuProps = {
   children: React.ReactNode
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({
+export function MobileMenu({
   isOpen = false,
   onOpenChange,
   children,
-}) => {
+}: MobileMenuProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -26,6 +26,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         </Dialog.Overlay>
         <div className="fixed bottom-0 left-0 right-0 top-0 flex justify-end bg-[var(--color-backdrop)]">
           <Content>
+            <Dialog.Title>Mobile Menu</Dialog.Title>
             <Backdrop />
             <InnerWrapper>
               <Dialog.Close asChild>

@@ -9,7 +9,7 @@ import UnstyledButton from '~/components/UnstyledButton'
 import VisuallyHidden from '~/components/VisuallyHidden'
 import { PROFILE_LINKS } from '~/constants'
 
-const Header: React.FC = () => {
+export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (

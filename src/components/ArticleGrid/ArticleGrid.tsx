@@ -7,7 +7,7 @@ export function ArticleGrid() {
   const { data } = useLatestMediumPosts('@ayuthmang')
 
   return (
-    <Wrapper>
+    <div className="grid grid-cols-[repeat(auto-fill,_minmax(275px,_1fr))] gap-8">
       {data?.items?.map((post) => {
         return (
           <Article
@@ -21,12 +21,8 @@ export function ArticleGrid() {
           />
         )
       })}
-    </Wrapper>
+    </div>
   )
 }
-
-const Wrapper = styled.div.attrs({
-  className: 'grid grid-cols-[repeat(auto-fill,_minmax(275px,_1fr))] gap-8',
-})``
 
 export default ArticleGrid
