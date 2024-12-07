@@ -14,7 +14,7 @@ async function getLatestMediumPosts(username: string) {
 
 export function useLatestMediumPosts(username: string) {
   const postsQuery = useSuspenseQuery({
-    queryKey: ['mediumPosts', username],
+    queryKey: ['medium', username],
     queryFn: () => getLatestMediumPosts(username),
   })
 
