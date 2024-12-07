@@ -8,7 +8,7 @@ export function MaxWidthWrapper({
 }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
-      className={cn('px-4 w-full max-w-[1100px] mx-auto md:px-8', className)}
+      className={cn('mx-auto w-full max-w-[1100px] px-4 md:px-8', className)}
     >
       {children}
     </div>
