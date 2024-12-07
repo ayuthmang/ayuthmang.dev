@@ -14,39 +14,40 @@
     "test:debug": "vitest --inspect-brk --no-file-parallelism"
   },
   "dependencies": {
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@tanstack/react-query": "^5.51.1",
-    "axios": "^1.6.7",
-    "clsx": "^2.1.0",
-    "feather-icons": "^4.29.1",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@tanstack/react-query": "^5.62.3",
+    "axios": "^1.7.9",
+    "clsx": "^2.1.1",
+    "feather-icons": "^4.29.2",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-feather": "^2.0.10",
-    "styled-components": "^6.1.11",
-    "tailwind-merge": "^2.2.2"
+    "styled-components": "^6.1.13",
+    "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.13",
-    "@tanstack/react-query-devtools": "^5.51.1",
-    "@types/node": "^20.11.25",
+    "@tailwindcss/typography": "^0.5.15",
+    "@tanstack/react-query-devtools": "^5.62.3",
+    "@types/node": "^20.17.9",
     "@types/react": "npm:types-react@19.0.0-rc.1",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "eslint": "8.57.0",
     "eslint-config-next": "15.0.2",
-    "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.13",
-    "tailwindcss": "^3.4.3",
-    "ts-jest": "^29.1.2",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.16",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.4"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   },
   "pnpm": {
     "overrides": {
       "@types/react": "npm:types-react@19.0.0-rc.1"
     }
-  }
+  },
+  "packageManager": "pnpm@9.15.0"
 }
