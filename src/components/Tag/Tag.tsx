@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-type TagProps = {}
-
-function Tag({ children }: React.PropsWithChildren<TagProps>): JSX.Element {
+function Tag({ children }: { children: React.ReactNode }) {
   return <Wrapper>{children}</Wrapper>
 }
 
