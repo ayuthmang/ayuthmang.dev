@@ -2,12 +2,12 @@
 
 import { default as NextLink } from 'next/link'
 import React from 'react'
-import Icon from '~/components/Icon'
 import MobileMenu from '~/components/MobileMenu'
 import MaxWidthWrapper from '~/components/MaxWidthWrapper'
 import UnstyledButton from '~/components/UnstyledButton'
 import VisuallyHidden from '~/components/VisuallyHidden'
 import { PROFILE_LINKS } from '~/constants'
+import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
@@ -34,7 +34,7 @@ export function Header() {
           >
             <UnstyledButton>
               <VisuallyHidden>Open menu</VisuallyHidden>
-              <Icon id="menu" size={24} />
+              <HamburgerMenuIcon width={24} height={24} />
             </UnstyledButton>
           </MobileMenu>
         </MobileNav>

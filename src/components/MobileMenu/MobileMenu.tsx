@@ -5,6 +5,7 @@ import UnstyledButton from '~/components/UnstyledButton'
 import styles from './MobileMenu.module.css'
 import clsx from 'clsx'
 import { PROFILE_LINKS } from '~/constants'
+import {Cross1Icon} from '@radix-ui/react-icons'
 
 export type MobileMenuProps = {
   isOpen?: boolean
@@ -31,7 +32,7 @@ export function MobileMenu({
             <InnerWrapper>
               <Dialog.Close asChild>
                 <CloseButton>
-                  <Icon id="x" size={32} />
+                  <Cross1Icon width={32} height={32} />
                 </CloseButton>
               </Dialog.Close>
               <Filler />
