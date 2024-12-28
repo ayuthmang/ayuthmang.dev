@@ -1,48 +1,24 @@
-'use client'
-
 import Link from 'next/link'
-import styled from 'styled-components'
 
 function FourOFour() {
   return (
-    <>
-      <Wrapper>
-        <EmojiText>{'(๑ > ᴗ < ๑)'}</EmojiText>
-        <Text>Page does not exist</Text>
-        <LinkText href="/">🛖 Bring me home</LinkText>
-      </Wrapper>
-    </>
+    <div className="flex  min-h-96 w-full flex-col items-center justify-center">
+      <p className="text-4xl">{'(๑ > ᴗ < ๑)'}</p>
+      <p className="text-xl">Page does not exist</p>
+      <div className="my-4"></div>
+      <LinkText href="/">👉 Bring me home 👈</LinkText>
+    </div>
   )
 }
 
-const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-`
-
-const EmojiText = styled.p`
-  font-size: 13vw;
-`
-
-const Text = styled.p`
-  font-size: 3vw;
-`
-
-const LinkText = styled(Link)`
-  text-decoration: none;
-  color: white;
-  opacity: 0.75;
-  transition: opacity 400ms ease 0s;
-  font-size: 3vw;
-
-  &:hover {
-    text-decoration: underline;
-    opacity: 1;
-  }
-`
-
+function LinkText({ children, ...props }: React.ComponentProps<typeof Link>) {
+  return (
+    <Link
+      className="text-xl no-underline opacity-75 transition-opacity hover:underline hover:opacity-100"
+      {...props}
+    >
+      {children}
+    </Link>
+  )
+}
 export default FourOFour
