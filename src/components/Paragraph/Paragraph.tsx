@@ -1,7 +1,5 @@
-import styled from 'styled-components'
-
-const Paragraph = styled.p`
-  margin-bottom: 1.5rem;
-`
+function Paragraph({ children }: React.ComponentPropsWithoutRef<'p'>) {
+  return <p className="mb-6">{children}</p>
+}
 
 export default Paragraph

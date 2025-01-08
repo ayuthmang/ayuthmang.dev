@@ -13,7 +13,7 @@ export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (
-    <Wrapper>
+    <div className="sticky left-0 right-0 top-0 isolate">
       <MainHeader>
         <HomeLink href="/">AYUTHMANG.DEV</HomeLink>
         <DesktopNav>
@@ -22,9 +22,15 @@ export function Header() {
           </DesktopActions>
           <Filler />
           <DesktopActions>
-            <NavLink href={PROFILE_LINKS.GITHUB}>GitHub</NavLink>
-            <NavLink href={PROFILE_LINKS.MEDIUM}>Medium</NavLink>
-            <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>
+            <NavLink href={PROFILE_LINKS.GITHUB} target="_blank">
+              GitHub
+            </NavLink>
+            <NavLink href={PROFILE_LINKS.MEDIUM} target="_blank">
+              Medium
+            </NavLink>
+            <NavLink href={PROFILE_LINKS.DEV} target="_blank">
+              Dev
+            </NavLink>
           </DesktopActions>
         </DesktopNav>
         <MobileNav>
@@ -39,12 +45,8 @@ export function Header() {
           </MobileMenu>
         </MobileNav>
       </MainHeader>
-    </Wrapper>
+    </div>
   )
-}
-
-function Wrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
-  return <div className="sticky left-0 right-0 top-0">{children}</div>
 }
 
 function MainHeader({
