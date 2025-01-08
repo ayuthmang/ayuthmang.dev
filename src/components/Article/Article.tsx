@@ -1,6 +1,6 @@
 import React from 'react'
 import Tag from '~/components/Tag'
-import styled, { keyframes } from 'styled-components'
+import { cn } from '~/utils'
 
 export type ArticleProps = {
   guid: string
@@ -13,78 +13,34 @@ export type ArticleProps = {
 
 function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
   return (
-    <Link href={link}>
-      <Wrapper>
-        <ImageWrapper>
-          <Image src={thumbnail} alt="Article's cover image" />
-        </ImageWrapper>
-        <Title>{title}</Title>
-        <Tags>
+    <a href={link} className="group text-inherit no-underline">
+      <article className="flex flex-col gap-3 rounded-lg">
+        <div className="relative h-60 w-full overflow-hidden rounded-2xl">
+          {/* eslint-disable-next-line @next/next/no-img-element, @next/next/no-img-element */}
+          <img
+            className={cn(
+              'inline h-full w-full object-cover brightness-90 transition-[transform,filter] duration-[600ms,1000ms] will-change-transform',
+              'group-hover:scale-110 group-hover:brightness-100',
+              'group-hover:brightness-100 group-hover:transition-[transform,filter] group-hover:duration-[250ms,400ms]',
+            )}
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU3HFVnkYFJ_OIogo__Qv58bmhwRqZJcQhOA&s"
+            alt="Article's cover image"
+            style={
+              {
+                // transition: 'transform 600ms, filter 1000ms',
+              }
+            }
+          />
+        </div>
+        <h3 className="font-bold">{title}</h3>
+        <div className="flex overflow-hidden overflow-x-auto overflow-ellipsis px-1 py-0">
           {categories.map((category) => (
             <Tag key={`${guid}-${category}`}>{category}</Tag>
           ))}
-        </Tags>
-      </Wrapper>
-    </Link>
+        </div>
+      </article>
+    </a>
   )
 }
-
-const Link = styled.a`
-  text-decoration: none;
-  color: inherit;
-`
-
-const Image = styled.img`
-  display: inline;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  will-change: transform;
-  transition:
-    transform 600ms,
-    filter 1000ms;
-  filter: brightness(90%);
-
-  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    ${Link}:hover &,
-    ${Link}:focus & {
-      transform: scale(1.1);
-      transition:
-        transform 250ms,
-        filter 400ms;
-      filter: brightness(100%);
-    }
-  }
-`
-
-const Wrapper = styled.article`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border-radius: 8px;
-`
-
-const Title = styled.h3`
-  font-weight: var(--font-weight-bold);
-`
-
-const Description = styled.p``
-
-const ImageWrapper = styled.div`
-  position: relative;
-  height: 15rem;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-`
-
-const Tags = styled.div`
-  display: flex;
-  overflow: hidden;
-  overflow-x: auto;
-  /* text-overflow: ellipsis; */
-  white-space: nowrap;
-  padding: 4px 0;
-`
 
 export default Article

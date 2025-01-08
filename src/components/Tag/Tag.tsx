@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 function Tag({ children }: { children: React.ReactNode }) {
-  return <Wrapper>{children}</Wrapper>
+  return <Wrapper className="whitespace-nowrap">{children}</Wrapper>
 }
 
 const Wrapper = styled.span`

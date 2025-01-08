@@ -17,6 +17,5 @@ export function useLatestMediumPosts(username: string) {
     queryKey: ['medium', username],
     queryFn: () => getLatestMediumPosts(username),
   })
-
   return postsQuery
 }

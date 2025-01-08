@@ -19,10 +19,6 @@ function ArticleSkeleton() {
   )
 }
 
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max)
-}
-
 const pulse = keyframes`
   from {
     opacity: .5;
@@ -63,11 +59,10 @@ const PreviewImageSkeleton = styled.div`
   }
 `
 
-type LineSkeletonProps = {
+const LineSkeleton = styled.span<{
   width?: string
   height?: string
-}
-const LineSkeleton = styled.span<LineSkeletonProps>`
+}>`
   background-color: gray;
   border-radius: 8px;
   width: ${(props) => props.width ?? '100%'};
@@ -75,13 +70,12 @@ const LineSkeleton = styled.span<LineSkeletonProps>`
   min-height: 1rem;
 `
 
-const TagsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-  overflow-x: auto;
-  gap: 12px;
-  white-space: nowrap;
-`
+function TagsWrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
+  return (
+    <div className="flex flex-row gap-3 overflow-hidden overflow-y-auto whitespace-nowrap">
+      {children}
+    </div>
+  )
+}
 
 export default ArticleSkeleton
