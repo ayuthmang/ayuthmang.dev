@@ -17,7 +17,6 @@ async function getLatestMediumPosts(username: string) {
       thumbnail: extractImg(item.content) || '',
     }
   })
-  console.log({ responseData })
   return responseData
 }
 

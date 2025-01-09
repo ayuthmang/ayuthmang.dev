@@ -1,79 +1,45 @@
-'use client'
 import React from 'react'
-import styled from 'styled-components'
-import Paragraph from '@/components/Paragraph'
 import ParagraphWithImage from '@/components/ParagraphWithImage'
+import styles from './page.module.css'
 
-const AboutPage: React.FC = () => {
+function AboutPage() {
   return (
-    <>
-      <HeroContainer>
-        <Heading>
-          Hi there{' '}
-          <HandWrapper>
-            <Hand role="img" aria-label="Waving hand">
-              👋
-            </Hand>
-          </HandWrapper>
-        </Heading>
-        <ParagraphWithImage
-          imageAlt={'coding cat'}
-          imageSrc="https://media.tenor.com/G5YA-Jm1pG4AAAAi/peeposhy-pepe-the-frog.gif"
-          imageWidth={250}
-          imageHeight={250}
-        >
-          I&apos;m a Full-stack Web Developer who loves memes.
-        </ParagraphWithImage>
-        <ParagraphWithImage
-          imageAlt={'cinderella drinking coffee'}
-          imageSrc="https://64.media.tumblr.com/c10da7d3592bddfca6a8d2586b15c153/tumblr_of7di4D6mW1tr7vtjo1_500.gif"
-          imageWidth={250}
-          imageHeight={250}
-        >
-          I drink coffee to keep me alive, not for the taste.
-        </ParagraphWithImage>
-      </HeroContainer>
-    </>
+    <HeroContainer>
+      <Heading>
+        Hi there <WavingHand />
+      </Heading>
+      <ParagraphWithImage
+        imageAlt="pepe is so shy"
+        imageSrc="https://media.tenor.com/G5YA-Jm1pG4AAAAi/peeposhy-pepe-the-frog.gif"
+        imageWidth={250}
+        imageHeight={250}
+      >
+        I&apos;m a Full-stack Web Developer who loves memes.
+      </ParagraphWithImage>
+    </HeroContainer>
   )
 }
 
-const Hand = styled.span``
+function WavingHand() {
+  return (
+    <div className="inline-block text-4xl">
+      <p role="img" aria-label="Waving hand" className={styles.animateWave}>
+        👋
+      </p>
+    </div>
+  )
+}
 
-const HandWrapper = styled.div`
-  font-size: 2rem;
-  display: inline-block;
+function HeroContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex h-full max-h-[46rem] min-h-[54rem] flex-col items-center justify-center">
+      {children}
+    </div>
+  )
+}
 
-  @keyframes wave {
-    from {
-      transform: rotate(-10deg);
-    }
-    to {
-      transform: rotate(30deg);
-    }
-  }
-
-  ${Hand} {
-    display: inline-block;
-    animation: wave 1000ms infinite alternate ease-in-out;
-    transform-origin: 75% 80%;
-  }
-`
-
-const HeroContainer = styled.div`
-  min-height: 650px;
-  max-height: 750px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`
-
-const Heading = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  text-align: center;
-`
+function Heading({ children }: { children: React.ReactNode }) {
+  return <h2 className="mb-4 text-center text-4xl font-bold">{children}</h2>
+}
 
 export default AboutPage

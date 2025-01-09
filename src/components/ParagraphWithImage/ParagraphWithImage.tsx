@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-import ParagraphBase from '@/components/Paragraph'
-import React from 'react'
+'use client';
+import React, { useState } from 'react'
 
 type ParagraphWithImageProps = {
   imageSrc: string
@@ -12,7 +11,7 @@ type ParagraphWithImageProps = {
 
 export function ParagraphWithImage(props: ParagraphWithImageProps) {
   const { imageSrc, imageAlt, imageWidth, imageHeight, children } = props
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   const handleOnMouseMove = (event: React.MouseEvent<HTMLParagraphElement>) => {
     setMousePosition({
@@ -20,9 +19,14 @@ export function ParagraphWithImage(props: ParagraphWithImageProps) {
       y: event.clientY - (event.target as HTMLElement).offsetTop,
     })
   }
+  console.log({
+    mousePositionX: mousePosition.x,
+    mousePositionY: mousePosition.y,
+  })
 
   return (
-    <Paragraph
+    <p
+      className="group relative text-lg leading-9"
       onMouseMove={handleOnMouseMove}
       style={
         {
@@ -32,32 +36,19 @@ export function ParagraphWithImage(props: ParagraphWithImageProps) {
       }
     >
       {children}
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element, @next/next/no-img-element */}
+      <img
+        className={`
+          absolute left-0 top-0 hidden translate-x-[var(--x)] translate-y-[var(--y)]
+          group-hover:inline-block`}
         role="decorative"
         src={imageSrc}
         alt={imageAlt}
         width={imageWidth}
         height={imageHeight}
       />
-    </Paragraph>
+    </p>
   )
 }
-
-const Paragraph = styled(ParagraphBase)`
-  position: relative;
-  font-size: 1.125rem;
-`
-
-const Image = styled.img`
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(var(--x), -100%);
-
-  ${Paragraph}:hover & {
-    display: inline-block;
-  }
-`
 
 export default ParagraphWithImage
