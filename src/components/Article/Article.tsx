@@ -25,11 +25,6 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
             )}
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU3HFVnkYFJ_OIogo__Qv58bmhwRqZJcQhOA&s"
             alt="Article's cover image"
-            style={
-              {
-                // transition: 'transform 600ms, filter 1000ms',
-              }
-            }
           />
         </div>
         <h3 className="font-bold">{title}</h3>
