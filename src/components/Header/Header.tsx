@@ -2,11 +2,11 @@
 
 import { default as NextLink } from 'next/link'
 import React from 'react'
-import MobileMenu from '~/components/MobileMenu'
-import MaxWidthWrapper from '~/components/MaxWidthWrapper'
-import UnstyledButton from '~/components/UnstyledButton'
-import VisuallyHidden from '~/components/VisuallyHidden'
-import { PROFILE_LINKS } from '~/constants'
+import MobileMenu from '@/components/MobileMenu'
+import MaxWidthWrapper from '@/components/MaxWidthWrapper'
+import UnstyledButton from '@/components/UnstyledButton'
+import VisuallyHidden from '@/components/VisuallyHidden'
+import { PROFILE_LINKS } from '@/constants'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 export function Header() {
