@@ -19,6 +19,10 @@ export interface Item {
   link: string
   guid: string
   author: string
+  /**
+   * For the older version of API, it returns the thumbnail image url.
+   * I'm no sure when it's changed, but we'll use the parser to get the thumbnail from response and attach to this property.
+   */
   thumbnail: string
   description: string
   content: string
