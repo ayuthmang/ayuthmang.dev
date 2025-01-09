@@ -1,9 +1,8 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
 
 function ArticleSkeleton() {
   return (
-    <Wrapper>
+    <div className="flex animate-pulse flex-col gap-3 rounded-lg">
       <SkeletonImageWrapper>
         <PreviewImageSkeleton />
       </SkeletonImageWrapper>
@@ -11,64 +10,50 @@ function ArticleSkeleton() {
       <LineSkeleton width="50%" />
       <LineSkeleton width="75%" />
       <TagsWrapper>
-        <LineSkeleton width={5 + 'em'} height="1.75rem" />
-        <LineSkeleton width={5 + 'em'} height="1.75rem" />
-        <LineSkeleton width={7 + 'em'} height="1.75rem" />
+        <LineSkeleton width="5em" height="1.75rem" />
+        <LineSkeleton width="5em" height="1.75rem" />
+        <LineSkeleton width="7em" height="1.75rem" />
       </TagsWrapper>
-    </Wrapper>
+    </div>
+  )
+}
+function SkeletonImageWrapper({
+  children,
+}: React.ComponentPropsWithoutRef<'div'>) {
+  return <div className="relative overflow-hidden rounded-2xl">{children}</div>
+}
+
+function PreviewImageSkeleton({
+  children,
+}: React.ComponentPropsWithoutRef<'div'>) {
+  return (
+    <div
+      className={`
+        h-full min-h-60 w-full bg-gray-500
+        after:absolute after:bottom-0 after:left-0 after:right-[-100%] after:top-0 after:translate-y-[-35%] after:rotate-[10deg] after:bg-[color:hsl(0deg_0%_100%/0.2)] after:mix-blend-plus-lighter
+        after:will-change-transform after:content-['']
+      `}
+      style={{}}
+    >
+      {children}
+    </div>
   )
 }
 
-const pulse = keyframes`
-  from {
-    opacity: .5;
-  }
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border-radius: 8px;
-`
-const SkeletonImageWrapper = styled.div`
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-`
-
-const PreviewImageSkeleton = styled.div`
-  width: 100%;
-  background-color: gray;
-  height: 100%;
-  min-height: 15rem;
-  animation: ${pulse} 1000ms ease-in-out infinite alternate;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: -100%;
-    bottom: 0;
-    background: hsl(0deg 0% 100% / 0.2);
-    transform: translateY(-35%) rotate(10deg);
-    transition: transform 200ms;
-    will-change: transform;
-    mix-blend-mode: plus-lighter;
-  }
-`
-
-const LineSkeleton = styled.span<{
+function LineSkeleton({
+  width = '100%',
+  height = '1rem',
+}: {
   width?: string
   height?: string
-}>`
-  background-color: gray;
-  border-radius: 8px;
-  width: ${(props) => props.width ?? '100%'};
-  height: ${(props) => props.height ?? '1rem'};
-  min-height: 1rem;
-`
+}) {
+  return (
+    <span
+      className="rounded-lg bg-gray-500"
+      style={{ width, height, minHeight: '1rem' }}
+    />
+  )
+}
 
 function TagsWrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
