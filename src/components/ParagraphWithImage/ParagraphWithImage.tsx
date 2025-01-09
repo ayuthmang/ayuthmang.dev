@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import ParagraphBase from '~/components/Paragraph'
+import ParagraphBase from '@/components/Paragraph'
 import React from 'react'
 
 type ParagraphWithImageProps = {

@@ -1,6 +1,6 @@
 import React from 'react'
-import Tag from '~/components/Tag'
-import { cn } from '~/utils'
+import Tag from '@/components/Tag'
+import { cn } from '@/utils'
 
 export type ArticleProps = {
   guid: string

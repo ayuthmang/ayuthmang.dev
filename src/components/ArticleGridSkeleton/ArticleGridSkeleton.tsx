@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react'
 import { styled } from 'styled-components'
-import { range } from '~/utils'
+import { range } from '@/utils'
 import ArticleSkeleton from '../ArticleSkeleton/'
 
 export type ArticleGridSkeletonProps = {

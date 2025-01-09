@@ -1,10 +1,10 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import React from 'react'
-import Icon from '~/components/Icon'
-import UnstyledButton from '~/components/UnstyledButton'
+import Icon from '@/components/Icon'
+import UnstyledButton from '@/components/UnstyledButton'
 import styles from './MobileMenu.module.css'
 import clsx from 'clsx'
-import { PROFILE_LINKS } from '~/constants'
+import { PROFILE_LINKS } from '@/constants'
 import {Cross1Icon} from '@radix-ui/react-icons'
 
 export type MobileMenuProps = {

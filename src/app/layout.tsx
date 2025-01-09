@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Footer from '~/components/Footer'
-import Header from '~/components/Header'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import React from 'react'
-import MaxWidthWrapper from '~/components/MaxWidthWrapper'
+import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Providers from './providers'
 import './globals.css'
 

@@ -1,6 +1,6 @@
-import Article from '~/components/Article'
+import Article from '@/components/Article'
 import React from 'react'
-import { useLatestMediumPosts } from '~/hooks/use-medium-posts'
+import { useLatestMediumPosts } from '@/hooks/use-medium-posts'
 
 export function ArticleGrid() {
   const { data } = useLatestMediumPosts('@ayuthmang')

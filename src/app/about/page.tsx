@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import Paragraph from '~/components/Paragraph'
-import ParagraphWithImage from '~/components/ParagraphWithImage'
+import Paragraph from '@/components/Paragraph'
+import ParagraphWithImage from '@/components/ParagraphWithImage'
 
 const AboutPage: React.FC = () => {
   return (
