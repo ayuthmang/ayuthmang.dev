@@ -1,0 +1,14 @@
+@keyframes wave {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}
+
+.animateWave {
+  display: inline-block;
+  animation: wave 1000ms infinite alternate ease-in-out;
+  transform-origin: 75% 80%;
+}
