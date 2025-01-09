@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React, { useState } from 'react'
 
 type ParagraphWithImageProps = {
@@ -19,10 +19,6 @@ export function ParagraphWithImage(props: ParagraphWithImageProps) {
       y: event.clientY - (event.target as HTMLElement).offsetTop,
     })
   }
-  console.log({
-    mousePositionX: mousePosition.x,
-    mousePositionY: mousePosition.y,
-  })
 
   return (
     <p
