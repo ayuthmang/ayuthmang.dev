@@ -23,7 +23,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
               'group-hover:scale-110 group-hover:brightness-100',
               'group-hover:brightness-100 group-hover:transition-[transform,filter] group-hover:duration-[250ms,400ms]',
             )}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU3HFVnkYFJ_OIogo__Qv58bmhwRqZJcQhOA&s"
+            src={thumbnail}
             alt="Article's cover image"
           />
         </div>
