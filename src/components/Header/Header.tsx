@@ -1,19 +1,20 @@
 'use client'
-
-import { default as NextLink } from 'next/link'
-import React from 'react'
-import MobileMenu from '@/components/MobileMenu'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
+import MobileMenu from '@/components/MobileMenu'
 import UnstyledButton from '@/components/UnstyledButton'
 import VisuallyHidden from '@/components/VisuallyHidden'
 import { PROFILE_LINKS } from '@/constants'
+import { cn } from '@/utils'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
+import { default as NextLink } from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
+import React from 'react'
 
 export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (
-    <div className="sticky left-0 right-0 top-0 isolate z-1">
+    <div className="z-1 sticky left-0 right-0 top-0 isolate">
       <MainHeader>
         <HomeLink href="/">AYUTH</HomeLink>
         <DesktopNav>
@@ -51,12 +52,12 @@ export function Header() {
 
 function MainHeader({
   children,
-  ...delegated
+  ...props
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
     <MaxWidthWrapper
       className="flex justify-between py-4 backdrop-blur md:items-center"
-      {...delegated}
+      {...props}
     >
       {children}
     </MaxWidthWrapper>
@@ -81,12 +82,20 @@ function Filler({ children }: React.ComponentPropsWithoutRef<'div'>) {
 
 function NavLink({
   children,
-  ...delegated
+  href,
+  ...props
 }: React.ComponentProps<typeof NextLink>) {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
   return (
     <NextLink
-      className="cursor-pointer font-semibold text-gray-100 text-inherit opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100"
-      {...delegated}
+      className={cn(
+        'cursor-pointer font-semibold text-gray-100 text-inherit opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100',
+        { 'opacity-100': isActive },
+      )}
+      href={href}
+      {...props}
     >
       {children}
     </NextLink>
@@ -95,10 +104,10 @@ function NavLink({
 
 function HomeLink({
   children,
-  ...delegated
+  ...props
 }: React.ComponentProps<typeof NextLink>) {
   return (
-    <NextLink className="font-header font-bold uppercase" {...delegated}>
+    <NextLink className="font-header font-bold uppercase" {...props}>
       {children}
     </NextLink>
   )
