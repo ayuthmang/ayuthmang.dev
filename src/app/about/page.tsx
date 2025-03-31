@@ -1,5 +1,5 @@
 import React from 'react'
-import ParagraphWithImage from '@/components/ParagraphWithImage'
+import ParagraphWithImage from 'src/components/paragraph-with-image'
 import styles from './page.module.css'
 
 function AboutPage() {
