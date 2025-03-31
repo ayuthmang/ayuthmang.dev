@@ -1,4 +1,4 @@
-import { extractImg } from '../medium-post-parser'
+import { extractImg } from '@/hooks/use-medium'
 import { expect, test } from 'vitest'
 
 test('parse figure image properly', () => {

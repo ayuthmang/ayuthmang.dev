@@ -1,7 +1,6 @@
 import axios from 'axios'
 import type { RssToJsonMediumResponse } from './use-medium.types'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { extractImg } from '@/helpers/medium-post-parser'
 
 const rssToJsonUrl =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/{username}'
@@ -27,4 +26,14 @@ export function useLatestMediumPosts(username: string) {
   })
 
   return postsQuery
+}
+/**
+ * Extracts the image from the response of the `use-medium-posts` hook
+ *
+ * @param response Response from `use-medium-posts` hook}
+ */
+export function extractImg(response: string): string | null {
+  const regex = /src\s*=\s*"(.+?)"/
+  const match = response.match(regex)
+  return match && match[1]
 }
