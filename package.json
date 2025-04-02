@@ -20,7 +20,7 @@
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "feather-icons": "^4.29.2",
-    "next": "15.2.3",
+    "next": "15.2.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-feather": "^2.0.10",
