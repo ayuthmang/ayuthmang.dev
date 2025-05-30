@@ -1,6 +1,6 @@
 'use client'
-import { default as NextLink } from 'next/link'
-import React from 'react'
+
+import NextLink from 'next/link'
 import MobileMenu from '@/components/mobile-menu'
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import UnstyledButton from '@/components/unstyled-button'
@@ -8,15 +8,14 @@ import VisuallyHidden from '@/components/visually-hidden'
 import { PROFILE_LINKS } from '@/constants'
 import { cn } from '@/utils'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
-import { default as NextLink } from 'next/link'
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (
-    <div className="z-1 sticky left-0 right-0 top-0 isolate">
+    <div className="z-10 sticky left-0 right-0 top-0">
       <MainHeader>
         <HomeLink href="/">AYUTH</HomeLink>
         <DesktopNav>
