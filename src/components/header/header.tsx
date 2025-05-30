@@ -15,7 +15,7 @@ export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
   return (
-    <div className="z-10 sticky left-0 right-0 top-0">
+    <>
       <MainHeader>
         <HomeLink href="/">AYUTH</HomeLink>
         <DesktopNav>
@@ -47,7 +47,8 @@ export function Header() {
           </MobileMenu>
         </MobileNav>
       </MainHeader>
-    </div>
+      <div className="h-[--navbar-height]" />
+    </>
   )
 }
 
@@ -57,7 +58,7 @@ function MainHeader({
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
     <MaxWidthWrapper
-      className="flex justify-between py-4 backdrop-blur md:items-center"
+      className="fixed left-0 right-0 top-0 z-10 flex h-[--navbar-height] justify-between py-4 backdrop-blur md:items-center"
       {...props}
     >
       {children}
@@ -67,7 +68,7 @@ function MainHeader({
 
 function DesktopNav({ children }: React.ComponentPropsWithoutRef<'nav'>) {
   return (
-    <nav className="hidden flex-1 items-center justify-between md:flex md:gap-6 md:pl-6">
+    <nav className="hidden h-[--navbar-height] flex-1 items-center justify-between md:flex md:gap-6 md:pl-6">
       {children}
     </nav>
   )
