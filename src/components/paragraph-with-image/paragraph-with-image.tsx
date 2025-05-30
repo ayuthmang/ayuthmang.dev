@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState } from 'react'
 
 type ParagraphWithImageProps = {
@@ -9,8 +10,13 @@ type ParagraphWithImageProps = {
   children: React.ReactNode
 }
 
-export function ParagraphWithImage(props: ParagraphWithImageProps) {
-  const { imageSrc, imageAlt, imageWidth, imageHeight, children } = props
+export function ParagraphWithImage({
+  imageSrc,
+  imageAlt,
+  imageWidth,
+  imageHeight,
+  children,
+}: ParagraphWithImageProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   const handleOnMouseMove = (event: React.MouseEvent<HTMLParagraphElement>) => {
@@ -34,9 +40,7 @@ export function ParagraphWithImage(props: ParagraphWithImageProps) {
       {children}
       {/* eslint-disable-next-line @next/next/no-img-element, @next/next/no-img-element */}
       <img
-        className={`
-          absolute left-0 top-0 hidden translate-x-[var(--x)] translate-y-[var(--y)]
-          group-hover:inline-block`}
+        className="absolute left-0 top-0 hidden translate-x-[var(--x)] translate-y-[var(--y)] group-hover:inline-block"
         role="decorative"
         src={imageSrc}
         alt={imageAlt}
