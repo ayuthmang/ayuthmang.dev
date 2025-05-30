@@ -26,7 +26,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
           <img
             className={cn(
               'inline h-full w-full object-cover brightness-90 transition-[transform,filter] duration-[600ms,1000ms] will-change-transform',
-              'group-hover:scale-110 group-hover:brightness-100 group-hover:transition-[transform,filter] group-hover:duration-[250ms,400ms]',
+              'group-hover:delay-50 group-hover:scale-110 group-hover:brightness-100 group-hover:transition-[transform,filter] group-hover:duration-[250ms,400ms]',
             )}
             src={thumbnail}
             alt="Article's cover image"
