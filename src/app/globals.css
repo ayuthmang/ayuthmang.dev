@@ -29,8 +29,6 @@ body {
 @layer base {
   /* GLOBAL STYLES */
   :root {
-    --navbar-height: 3.5rem;
-    --font-weight-light: 300;
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-semi-bold: 600;
@@ -55,10 +53,9 @@ body {
 
     color: var(--color-text);
     background-color: var(--color-background);
-  }
 
-  [inert] ::-webkit-scrollbar {
-    display: no;
+    /* App variables */
+    --navbar-height: 3.5rem;
   }
 
   ::selection {
