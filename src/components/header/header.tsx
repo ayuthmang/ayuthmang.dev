@@ -47,7 +47,7 @@ export function Header() {
           </MobileMenu>
         </MobileNav>
       </MainHeader>
-      <div className="h-[--navbar-height]" />
+      <div className="block h-[--navbar-height] md:hidden" />
     </>
   )
 }
@@ -58,7 +58,7 @@ function MainHeader({
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
     <MaxWidthWrapper
-      className="fixed left-0 right-0 top-0 z-10 flex h-[--navbar-height] justify-between py-4 backdrop-blur md:items-center"
+      className="fixed z-[0] left-0 right-0 top-0 flex h-[--navbar-height] justify-between py-4 backdrop-blur md:items-center isolate"
       {...props}
     >
       {children}
@@ -109,7 +109,10 @@ function HomeLink({
   ...props
 }: React.ComponentProps<typeof NextLink>) {
   return (
-    <NextLink className="font-header font-bold uppercase" {...props}>
+    <NextLink
+      className="font-header font-bold uppercase transition-all duration-300 ease-in-out hover:scale-110"
+      {...props}
+    >
       {children}
     </NextLink>
   )
