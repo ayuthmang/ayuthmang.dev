@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import ArticleGrid from 'src/components/article-grid'
+import ArticleGrid from '@/components/article-grid'
 import ArticleGridSkeleton from '@/components/article-grid-skeleton'
 
 function HomePage() {
