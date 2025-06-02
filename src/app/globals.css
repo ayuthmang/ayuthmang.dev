@@ -29,11 +29,6 @@ body {
 @layer base {
   /* GLOBAL STYLES */
   :root {
-    --font-weight-regular: 400;
-    --font-weight-medium: 500;
-    --font-weight-semi-bold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extra-bold: 800;
     --color-background: #21272f;
     --color-backdrop: hsl(220deg 5% 40% / 0.8);
     --color-text: hsl(0, 0%, 100%);
