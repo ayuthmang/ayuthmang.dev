@@ -33,7 +33,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
           />
         </div>
         <h3 className="font-bold">{title}</h3>
-        <div className="flex overflow-hidden overflow-x-auto overflow-ellipsis px-1 py-0">
+        <div className="flex overflow-hidden overflow-x-auto overflow-ellipsis px-1 py-0 gap-2">
           {categories.map((category) => (
             <Tag key={`${guid}-${category}`}>{category}</Tag>
           ))}
