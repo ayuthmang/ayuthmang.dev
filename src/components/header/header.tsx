@@ -47,7 +47,9 @@ export function Header() {
           </MobileMenu>
         </MobileNav>
       </MainHeader>
-      <div className="block h-[--navbar-height] md:hidden" />
+
+      {/* Sticky Spacer */}
+      <div className="h-(--navbar-height) block" />
     </>
   )
 }
@@ -58,7 +60,7 @@ function MainHeader({
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
     <MaxWidthWrapper
-      className="fixed z-[0] left-0 right-0 top-0 flex h-[--navbar-height] justify-between py-4 backdrop-blur md:items-center isolate"
+      className="h-(--navbar-height) fixed left-0 right-0 top-0 isolate z-10 flex justify-between py-4 backdrop-blur md:items-center"
       {...props}
     >
       {children}
