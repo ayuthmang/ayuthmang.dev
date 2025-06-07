@@ -30,7 +30,7 @@ function PreviewImageSkeleton({
     <div
       className={`
         h-full min-h-60 w-full bg-gray-500
-        after:absolute after:bottom-0 after:left-0 after:right-[-100%] after:top-0 after:translate-y-[-35%] after:rotate-[10deg] after:bg-[color:hsl(0deg_0%_100%/0.2)] after:mix-blend-plus-lighter
+        after:absolute after:bottom-0 after:left-0 after:-right-full after:top-0 after:translate-y-[-35%] after:rotate-10 after:bg-[hsl(0deg_0%_100%/0.2)] after:mix-blend-plus-lighter
         after:will-change-transform after:content-['']
       `}
       style={{}}

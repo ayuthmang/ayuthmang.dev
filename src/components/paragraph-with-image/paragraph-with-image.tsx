@@ -40,7 +40,9 @@ export function ParagraphWithImage({
       {children}
       {/* eslint-disable-next-line @next/next/no-img-element, @next/next/no-img-element */}
       <img
-        className="absolute left-0 top-0 hidden translate-x-[var(--x)] translate-y-[var(--y)] group-hover:inline-block"
+        className={`
+          absolute left-0 top-0 hidden translate-x-(--x) translate-y-(--y)
+          group-hover:inline-block`}
         role="decorative"
         src={imageSrc}
         alt={imageAlt}

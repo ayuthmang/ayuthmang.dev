@@ -31,7 +31,7 @@ function VisuallyHidden({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="absolute m-0 hidden h-[1px] w-[1px] border-0 p-0"
+      className="absolute m-0 hidden h-px w-px border-0 p-0"
       style={{ clip: 'rect(0 0 0 0)' }}
     >
       {children}
