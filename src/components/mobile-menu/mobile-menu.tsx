@@ -21,10 +21,10 @@ export function MobileMenu({
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed bottom-0 left-0 right-0 top-0 bg-(--color-backdrop) opacity-25 backdrop-blur-sm">
+        <Dialog.Overlay className="bg-(--color-backdrop) fixed bottom-0 left-0 right-0 top-0 opacity-25 backdrop-blur-sm">
           {children}
         </Dialog.Overlay>
-        <div className="fixed bottom-0 left-0 right-0 top-0 flex justify-end bg-(--color-backdrop)">
+        <div className="bg-(--color-backdrop) fixed bottom-0 left-0 right-0 top-0 z-50 flex justify-end">
           <Content>
             <Dialog.Title>Mobile Menu</Dialog.Title>
             <Backdrop />
@@ -54,7 +54,7 @@ function Backdrop({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       className={clsx(
-        'absolute bottom-0 left-0 right-0 top-0 bg-(--color-background)',
+        'bg-(--color-background) absolute bottom-0 left-0 right-0 top-0',
       )}
       style={{
         animation: `${styles.fadeIn} 500ms`,
@@ -69,7 +69,7 @@ function Content({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <Dialog.Content
       className={clsx(
-        'relative flex h-full w-[calc(300px+var(--overfill))] flex-col bg-(--color-background) p-6',
+        'bg-(--color-background) relative z-50 flex h-full w-[calc(300px+var(--overfill))] flex-col p-6',
       )}
       style={
         {
@@ -129,7 +129,7 @@ function CloseButton({
 }: React.ComponentPropsWithoutRef<typeof UnstyledButton>) {
   return (
     <UnstyledButton
-      className="absolute right-(--overfill) top-2.5 p-4"
+      className="absolute right-[var(--overfill)] top-2.5 p-4"
       {...delegated}
     >
       {children}
