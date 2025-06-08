@@ -6,7 +6,7 @@ import ArticleGridSkeleton from '@/components/article-grid-skeleton'
 
 function HomePage() {
   return (
-    <div className="py-8">
+    <div className="my-4">
       <React.Suspense fallback={<ArticleGridSkeleton rows={3} columns={3} />}>
         <ArticleGrid />
       </React.Suspense>
