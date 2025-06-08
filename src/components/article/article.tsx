@@ -1,6 +1,6 @@
 import React from 'react'
-import Tag from '@/components/tag'
 import { cn } from '@/utils'
+import { Badge } from '@/components/ui/badge'
 
 export type ArticleProps = {
   guid: string
@@ -33,9 +33,9 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
           />
         </div>
         <h3 className="font-bold">{title}</h3>
-        <div className="flex overflow-hidden overflow-x-auto text-ellipsis px-1 py-0">
+        <div className="flex gap-2 overflow-hidden overflow-x-auto text-ellipsis">
           {categories.map((category) => (
-            <Tag key={`${guid}-${category}`}>{category}</Tag>
+            <Badge key={`${guid}-${category}`}>{category}</Badge>
           ))}
         </div>
       </article>
