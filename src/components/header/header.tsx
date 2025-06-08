@@ -18,8 +18,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
-import Link from 'next/link'
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from 'lucide-react'
 
 export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
@@ -131,31 +129,31 @@ export function BlogsNavMenu() {
             <ul className="grid w-[200px] gap-4">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link
+                  <NavLink
                     href={PROFILE_LINKS.GITHUB}
                     className="flex-row items-center gap-2"
                   >
                     <GitHubIcon />
                     GitHub
-                  </Link>
+                  </NavLink>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link
+                  <NavLink
                     href={PROFILE_LINKS.MEDIUM}
                     className="flex-row items-center gap-2"
                   >
                     <MediumIcon />
                     Medium
-                  </Link>
+                  </NavLink>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link
+                  <NavLink
                     href={PROFILE_LINKS.DEV}
                     className="flex-row items-center gap-2"
                   >
                     <DevIcon />
                     Dev
-                  </Link>
+                  </NavLink>
                 </NavigationMenuLink>
               </li>
             </ul>
