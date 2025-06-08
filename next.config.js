@@ -2,8 +2,11 @@
 const nextConfig = {
   compiler: {
     styledComponents: {
-      ssr: true
-    }
+      ssr: true,
+    },
+  },
+  images: {
+    remotePatterns: [new URL('https://*.medium.com/**')],
   },
 }
 
