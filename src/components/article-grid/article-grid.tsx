@@ -6,7 +6,7 @@ export function ArticleGrid() {
   const { data } = useLatestMediumPosts('@ayuthmang')
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-8">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-4">
       {data?.items?.map((post) => {
         return (
           <Article
