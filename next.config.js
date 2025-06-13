@@ -6,7 +6,10 @@ const nextConfig = {
     },
   },
   images: {
-    remotePatterns: [new URL('https://*.medium.com/**')],
+    remotePatterns: [
+      new URL('https://*.medium.com/**'),
+      new URL('https://media.tenor.com/**'),
+    ],
   },
 }
 
