@@ -18,6 +18,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
+import { ModeToggle } from '../mode-toggle'
 
 export function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
@@ -32,7 +33,9 @@ export function Header() {
             <BlogsNavMenu />
           </DesktopActions>
           <Filler />
-          <DesktopActions></DesktopActions>
+          <DesktopActions>
+            <ModeToggle />
+          </DesktopActions>
         </DesktopNav>
         <MobileNav>
           <MobileMenu
