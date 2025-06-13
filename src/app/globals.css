@@ -45,16 +45,17 @@
   /* GLOBAL STYLES */
   :root {
     --color-backdrop: hsl(220deg 5% 40% / 0.8);
-    --selection-color: #7e52da;
-    --selection-background-color: #7e52da;
+    --selection-color: oklch(0.98 0 0); /* Light text for contrast */
+    --selection-background-color: oklch(0.55 0.2 260); /* Professional purple */
 
     /* App variables */
     --navbar-height: 3.5rem;
   }
 
   ::selection {
-    color: var(--color-text);
+    color: var(--selection-color);
     background-color: var(--selection-background-color);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
 
   * {
@@ -62,7 +63,6 @@
   }
 
   body {
-    @apply bg-background text-foreground;
     font-family: 'Open Sans', 'Maven Pro';
   }
 }
