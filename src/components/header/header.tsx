@@ -51,7 +51,7 @@ export function Header() {
       </MainHeader>
 
       {/* Sticky Spacer */}
-      <div className="h-(--navbar-height) block" />
+      <div className="block h-(--navbar-height)" />
     </>
   )
 }
@@ -62,7 +62,7 @@ function MainHeader({
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
     <MaxWidthWrapper
-      className="h-(--navbar-height) fixed left-0 right-0 top-0 isolate z-10 flex justify-between py-4 backdrop-blur md:items-center"
+      className="fixed top-0 right-0 left-0 isolate z-10 flex h-(--navbar-height) justify-between py-4 backdrop-blur md:items-center"
       {...props}
     >
       {children}
@@ -97,7 +97,7 @@ function NavLink({
   return (
     <NextLink
       className={cn(
-        'cursor-pointer font-semibold text-gray-100 text-inherit opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100',
+        'cursor-pointer font-semibold opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100',
         { 'opacity-100': isActive },
       )}
       href={href}
