@@ -1,4 +1,5 @@
 import React from 'react'
+import { cn } from '../../utils'
 
 function ArticleSkeleton() {
   return (
@@ -17,6 +18,7 @@ function ArticleSkeleton() {
     </div>
   )
 }
+
 function SkeletonImageWrapper({
   children,
 }: React.ComponentPropsWithoutRef<'div'>) {
@@ -28,11 +30,11 @@ function PreviewImageSkeleton({
 }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
-      className={`
-        h-full min-h-60 w-full bg-gray-500
-        after:absolute after:bottom-0 after:left-0 after:-right-full after:top-0 after:translate-y-[-35%] after:rotate-10 after:bg-[hsl(0deg_0%_100%/0.2)] after:mix-blend-plus-lighter
-        after:will-change-transform after:content-['']
-      `}
+      className={cn(
+        'h-full min-h-60 w-full bg-gray-500',
+        'after:absolute after:top-0 after:-right-full after:bottom-0 after:left-0 after:translate-y-[-35%] after:rotate-10 after:bg-[hsl(0deg_0%_100%/0.2)] after:mix-blend-plus-lighter',
+        "after:will-change-transform after:content-['']",
+      )}
       style={{}}
     >
       {children}

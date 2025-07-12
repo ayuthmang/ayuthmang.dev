@@ -1,6 +1,4 @@
-'use client'
 import * as React from 'react'
-import { styled } from 'styled-components'
 import { range } from '@/utils'
 import ArticleSkeleton from '@/components/article-skeleton'
 
@@ -14,20 +12,14 @@ function ArticleGridSkeleton({
   columns = 3,
 }: ArticleGridSkeletonProps) {
   return (
-    <Wrapper>
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-4 lg:gap-6">
       {range(0, rows).map((row) => {
         return range(0, columns).map((column) => (
           <ArticleSkeleton key={`${row}-${column}`} />
         ))
       })}
-    </Wrapper>
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
-  gap: 32px;
-`
 
 export default ArticleGridSkeleton
