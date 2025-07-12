@@ -5,6 +5,7 @@ import styles from './mobile-menu.module.css'
 import clsx from 'clsx'
 import { PROFILE_LINKS } from '@/constants'
 import { Cross1Icon } from '@radix-ui/react-icons'
+import { ModeToggle } from '../mode-toggle'
 
 export type MobileMenuProps = {
   isOpen?: boolean
@@ -21,10 +22,10 @@ export function MobileMenu({
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-(--color-backdrop) fixed bottom-0 left-0 right-0 top-0 opacity-25 backdrop-blur-sm">
+        <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 bg-(--color-backdrop) opacity-25 backdrop-blur-sm">
           {children}
         </Dialog.Overlay>
-        <div className="bg-(--color-backdrop) fixed bottom-0 left-0 right-0 top-0 z-50 flex justify-end">
+        <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-end bg-(--color-backdrop)">
           <Content>
             <Dialog.Title>Mobile Menu</Dialog.Title>
             <Backdrop />
@@ -42,6 +43,9 @@ export function MobileMenu({
                 <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>
               </Nav>
               <Filler />
+              <div>
+                <ModeToggle />
+              </div>
             </InnerWrapper>
           </Content>
         </div>
@@ -54,7 +58,7 @@ function Backdrop({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       className={clsx(
-        'bg-(--color-background) absolute bottom-0 left-0 right-0 top-0',
+        'absolute top-0 right-0 bottom-0 left-0 bg-(--color-background)',
       )}
       style={{
         animation: `${styles.fadeIn} 500ms`,
@@ -69,7 +73,7 @@ function Content({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <Dialog.Content
       className={clsx(
-        'bg-(--color-background) relative z-50 flex h-full w-[calc(300px+var(--overfill))] flex-col p-6',
+        'relative z-50 flex h-full w-[calc(300px+var(--overfill))] flex-col bg-(--color-background) p-6',
       )}
       style={
         {
@@ -129,7 +133,7 @@ function CloseButton({
 }: React.ComponentPropsWithoutRef<typeof UnstyledButton>) {
   return (
     <UnstyledButton
-      className="absolute right-[var(--overfill)] top-2.5 p-4"
+      className="absolute top-2.5 right-[var(--overfill)] p-4"
       {...delegated}
     >
       {children}
