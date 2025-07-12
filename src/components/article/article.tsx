@@ -17,13 +17,14 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
     <a
       href={link}
       className={cn(
+        '-m-3 p-3',
         'group overflow-hidden rounded-lg text-inherit no-underline',
         'border border-transparent transition-all duration-300 ease-out',
-        'hover:rounded-xl hover:bg-gray-100/80 hover:shadow-md hover:dark:bg-gray-800/60',
+        'hover:rounded-xl hover:bg-gray-200/80 hover:shadow-md hover:dark:bg-gray-800/60',
         'hover:translate-y-[-2px]',
       )}
     >
-      <article className="m-3 flex flex-col gap-3">
+      <article className="flex flex-col gap-3">
         <div className="relative h-60 w-full overflow-hidden rounded-2xl">
           <Image
             className={cn(
