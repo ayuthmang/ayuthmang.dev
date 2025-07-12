@@ -22,10 +22,10 @@ export function MobileMenu({
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 bg-(--color-backdrop) opacity-25 backdrop-blur-sm">
+        <Dialog.Overlay className="fixed inset-0 bg-(--color-backdrop) opacity-25 backdrop-blur-sm">
           {children}
         </Dialog.Overlay>
-        <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-end bg-(--color-backdrop)">
+        <div className="fixed inset-0 z-50 flex justify-end bg-(--color-backdrop)">
           <Content>
             <Dialog.Title>Mobile Menu</Dialog.Title>
             <Backdrop />
