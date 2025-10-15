@@ -19,7 +19,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
       className={cn(
         'group -m-3 overflow-hidden rounded-lg p-3',
         'border border-transparent transition-all duration-300 ease-out',
-        'hover:rounded-xl hover:bg-gray-100/50 hover:shadow-md hover:dark:bg-gray-200/20',
+        'hover:rounded-xl hover:bg-gray-300/50 hover:shadow-md hover:dark:bg-gray-200/20',
         'hover:translate-y-[-2px]',
       )}
     >
