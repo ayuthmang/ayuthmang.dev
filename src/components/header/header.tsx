@@ -145,7 +145,7 @@ export function BlogsNavMenu() {
                     href={PROFILE_LINKS.MEDIUM}
                     className="flex-row items-center gap-2"
                   >
-                    <MediumIcon />
+                    <MediumIcon className='fill-mode-initial dark:fill-white'/>
                     Medium
                   </NavLink>
                 </NavigationMenuLink>
@@ -154,7 +154,7 @@ export function BlogsNavMenu() {
                     href={PROFILE_LINKS.DEV}
                     className="flex-row items-center gap-2"
                   >
-                    <DevIcon />
+                    <DevIcon className='fill-mode-initial dark:fill-white' />
                     Dev
                   </NavLink>
                 </NavigationMenuLink>
@@ -188,13 +188,7 @@ function MediumIcon(props: React.ComponentProps<'svg'>) {
 
 function GitHubIcon(props: React.ComponentProps<'svg'>) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={800}
-      height={800}
-      viewBox="0 0 73 73"
-      {...props}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 73" {...props}>
       <title>{'team-collaboration/version-control/github'}</title>
       <g fill="none" fillRule="nonzero" transform="translate(2 2)">
         <rect
