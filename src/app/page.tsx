@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import ArticleGrid from '@/components/article-grid'
 import ArticleGridSkeleton from '@/components/article-grid-skeleton'

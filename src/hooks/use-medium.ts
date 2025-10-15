@@ -5,7 +5,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 const rssToJsonUrl =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/{username}'
 
-async function getLatestMediumPosts(username: string) {
+export async function getLatestMediumPosts(username: string) {
   const response = await axios.get<RssToJsonMediumResponse>(
     rssToJsonUrl.replace('{username}', username),
   )
