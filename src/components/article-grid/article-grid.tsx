@@ -1,13 +1,13 @@
 import Article from '@/components/article'
-import React from 'react'
-import { useLatestMediumPosts } from '@/hooks/use-medium'
+import React, { use } from 'react'
+import { getLatestMediumPosts } from '@/hooks/use-medium'
 
-export function ArticleGrid() {
-  const { data } = useLatestMediumPosts('@ayuthmang')
+export async function ArticleGrid() {
+  const { items } = await getLatestMediumPosts('@ayuthmang')
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(275px,1fr))] lg:gap-6 gap-4">
-      {data?.items?.map((post) => {
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-4 lg:gap-6">
+      {items?.map((post) => {
         return (
           <Article
             key={post.guid}
