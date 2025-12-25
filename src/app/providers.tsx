@@ -3,7 +3,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import React from 'react'
-import StyledComponentsRegistry from '@/components/styled-components-registry'
 import { ThemeProvider } from '../components/theme-provider'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -17,7 +16,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         enableSystem
         disableTransitionOnChange
       >
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        {children}
       </ThemeProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
