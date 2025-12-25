@@ -1,6 +1,5 @@
 import React from 'react'
 import { Menu, X } from 'react-feather'
-import styled from 'styled-components'
 
 const icons = {
   menu: Menu,
@@ -13,30 +12,34 @@ type IconProps = {
   size?: number
   strokeWidth?: number
 } & React.HTMLAttributes<HTMLDivElement>
+
 const Icon: React.FC<IconProps> = ({
   id,
   color,
   size,
   strokeWidth,
+  className,
   ...delegated
 }) => {
   const Component = icons[id]
+
   return (
-    <Wrapper strokeWidth={strokeWidth} {...delegated}>
-      <Component color={color} size={size} />
-    </Wrapper>
+    <div
+      className={className}
+      style={
+        strokeWidth !== undefined
+          ? ({ ['--stroke-width']: `${strokeWidth}px` } as React.CSSProperties)
+          : undefined
+      }
+      {...delegated}
+    >
+      <Component
+        color={color}
+        size={size}
+        className="block [stroke-width:var(--stroke-width)]"
+      />
+    </div>
   )
 }
-
-type WrapperProps = {
-  strokeWidth?: number
-}
-const Wrapper = styled.div<WrapperProps>`
-  & > svg {
-    display: block;
-    stroke-width: ${(p) =>
-      p.strokeWidth !== undefined ? p.strokeWidth + 'px' : undefined};
-  }
-`
 
 export default Icon
