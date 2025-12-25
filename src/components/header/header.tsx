@@ -62,7 +62,7 @@ function MainHeader({
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
     <MaxWidthWrapper
-      className="fixed top-0 right-0 left-0 isolate z-10 flex h-(--navbar-height) justify-between py-4 backdrop-blur md:items-center"
+      className="fixed top-0 right-0 left-0 isolate z-10 flex h-(--navbar-height) justify-between border-b bg-background/95 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:items-center"
       {...props}
     >
       {children}
@@ -114,7 +114,11 @@ function HomeLink({
 }: React.ComponentProps<typeof NextLink>) {
   return (
     <NextLink
-      className="font-header font-bold uppercase transition-all duration-300 ease-in-out hover:scale-110"
+      className={cn(
+        "bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400",
+        "font-header font-bold uppercase text-transparent text-xl",
+        "transition-all duration-300 ease-in-out hover:scale-110"
+      )}
       {...props}
     >
       {children}
