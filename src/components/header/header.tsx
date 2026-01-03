@@ -61,12 +61,14 @@ function MainHeader({
   ...props
 }: React.ComponentPropsWithoutRef<'header'>) {
   return (
-    <MaxWidthWrapper
-      className="fixed top-0 right-0 left-0 isolate z-10 flex h-(--navbar-height) justify-between border-b bg-background/95 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:items-center"
+    <header
+      className="bg-background/95 supports-backdrop-filter:bg-background/60 fixed top-0 right-0 left-0 isolate z-10 backdrop-blur"
       {...props}
     >
-      {children}
-    </MaxWidthWrapper>
+      <MaxWidthWrapper className="flex h-(--navbar-height) justify-between py-4 md:items-center">
+        {children}
+      </MaxWidthWrapper>
+    </header>
   )
 }
 
