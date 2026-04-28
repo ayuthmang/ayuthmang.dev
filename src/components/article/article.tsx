@@ -20,7 +20,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
         'group -m-3 overflow-hidden rounded-lg p-3',
         'border border-transparent transition-all duration-300 ease-out',
         'hover:rounded-xl hover:bg-gray-300/50 hover:shadow-md hover:dark:bg-gray-200/20',
-        'hover:translate-y-[-2px]',
+        'hover:-translate-y-0.5',
       )}
     >
       <article className="flex flex-col gap-3">
