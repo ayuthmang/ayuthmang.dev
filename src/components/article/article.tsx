@@ -16,6 +16,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
   return (
     <a
       href={link}
+      target="_blank"
       className={cn(
         'group -m-3 overflow-hidden rounded-lg p-3',
         'border border-transparent transition-all duration-300 ease-out',
