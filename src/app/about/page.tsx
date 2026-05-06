@@ -9,31 +9,158 @@ import Image from 'next/image'
 
 function AboutPage() {
   return (
-    <HeroContainer>
-      <Heading>
-        Hi there <WavingHand />
-      </Heading>
-      <div>
-        I&apos;m a Full-stack Web Developer who loves{' '}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span className="relative cursor-pointer">
-              memes
-              <span className="absolute bottom-0 left-0 w-full h-[6px] bg-yellow-300/60 -z-10 translate-y-[2px]"></span>
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="flex flex-col items-center p-4">
-            <Image
-              src="https://media.tenor.com/G5YA-Jm1pG4AAAAi/peeposhy-pepe-the-frog.gif"
-              alt="cute pepe"
-              width="120"
-              height="120"
-              className="rounded-md"
-            />
-          </TooltipContent>
-        </Tooltip>.
+    <div className="py-12 max-w-4xl mx-auto px-4">
+      <div className="mb-12">
+        <Heading>
+          Hi there <WavingHand />
+        </Heading>
+        <p className="text-center text-lg text-gray-600 dark:text-gray-400 mb-8">
+          I&apos;m a full-stack developer building the future of web experiences
+        </p>
       </div>
-    </HeroContainer>
+
+      <div className="space-y-8">
+        {/* Main intro */}
+        <Section>
+          <SectionTitle>About Me</SectionTitle>
+          <p className="text-base leading-relaxed">
+            I&apos;m a Full-Stack Developer with a passion for building scalable, user-centric applications. Currently at{' '}
+            <strong>OOZOU</strong>, I work on high-impact projects ranging from cryptocurrency trading platforms to B2B e-commerce solutions.
+            With experience spanning fintech, banking, and innovation labs, I thrive in fast-paced environments where I can collaborate with talented international teams and push the boundaries of what&apos;s possible.
+          </p>
+          <p className="text-base leading-relaxed mt-4">
+            Beyond code, I love{' '}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="relative cursor-pointer font-semibold">
+                  exploring vulnerabilities
+                  <span className="absolute bottom-0 left-0 w-full h-[6px] bg-yellow-300/60 -z-10 translate-y-[2px]"></span>
+                </span>
+              </TooltipTrigger>
+              <TooltipContent className="flex flex-col items-center p-4">
+                <Image
+                  src="https://media.tenor.com/G5YA-Jm1pG4AAAAi/peeposhy-pepe-the-frog.gif"
+                  alt="security researcher"
+                  width="120"
+                  height="120"
+                  className="rounded-md"
+                />
+              </TooltipContent>
+            </Tooltip>, contributing to open-source, and sharing knowledge through technical writing on{' '}
+            <a href="https://medium.com/@ayuthmang" className="text-blue-600 dark:text-blue-400 hover:underline">Medium</a> and{' '}
+            <a href="https://dev.to/ayuthmang" className="text-blue-600 dark:text-blue-400 hover:underline">DEV</a>.
+          </p>
+        </Section>
+
+        {/* Professional Experience */}
+        <Section>
+          <SectionTitle>Professional Journey</SectionTitle>
+          <div className="space-y-6">
+            <ExperienceItem
+              company="OOZOU"
+              position="Full-Stack Developer"
+              period="Aug 2023 – Present"
+              description="Building high-performance cryptocurrency and e-commerce platforms using modern JavaScript technologies. Leading initiatives to improve collaboration workflows and reduce iteration cycles by 50%."
+            />
+            <ExperienceItem
+              company="SCB TechX"
+              position="Technology Evangelist & Software Engineer"
+              period="Jul 2021 – Jul 2023"
+              description="Developed reusable component libraries, implemented internal engagement platforms with NFT integration, and mentored teams on Web 3.0 and smart contract development."
+            />
+            <ExperienceItem
+              company="Siam Commercial Bank"
+              position="Software Engineer - SCB Digital Academy"
+              period="Sep 2019 – Jun 2021"
+              description="Built internal applications, taught web development bootcamps, and established testing standards achieving 80%+ code coverage from the ground up."
+            />
+          </div>
+        </Section>
+
+        {/* Technical Skills */}
+        <Section>
+          <SectionTitle>Technical Stack</SectionTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <SkillCategory
+              category="Frontend"
+              skills={['React', 'Next.js', 'Vue.js', 'TypeScript', 'HTML5/CSS3']}
+            />
+            <SkillCategory
+              category="Backend"
+              skills={['Node.js', 'Nest.js', 'Express', 'Spring Boot', 'Python']}
+            />
+            <SkillCategory
+              category="Databases & Cloud"
+              skills={['PostgreSQL', 'MongoDB', 'AWS', 'GCP', 'Docker', 'Kubernetes']}
+            />
+            <SkillCategory
+              category="Mobile"
+              skills={['React Native', 'Flutter', 'Kotlin']}
+            />
+          </div>
+        </Section>
+
+        {/* Achievements */}
+        <Section>
+          <SectionTitle>Highlights</SectionTitle>
+          <ul className="space-y-3">
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🏆</span>
+              <span>1st Runner-Up, SCB Innovation Bootcamp 2022 for a reusable components library that accelerated development by 40%</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🔐</span>
+              <span>Security researcher discovering and responsibly disclosing vulnerabilities in high-profile platforms</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">📚</span>
+              <span>Active technical writer and speaker, sharing knowledge on Web 3.0, cloud architecture, and development best practices</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🚀</span>
+              <span>GitKraken Ambassador, passionate about developer tools and community engagement</span>
+            </li>
+          </ul>
+        </Section>
+
+        {/* Education & Certifications */}
+        <Section>
+          <SectionTitle>Education & Certifications</SectionTitle>
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-semibold">Chulalongkorn University</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Master&apos;s in Computer Science (2024 – Present)</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Thammasat University</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Bachelor of Science in Computer Science (2015 – 2019)</p>
+            </div>
+            <div>
+              <p className="text-sm">Microsoft Certified: Azure (AI Fundamentals, Data Fundamentals, Fundamentals)</p>
+            </div>
+          </div>
+        </Section>
+
+        {/* Connect */}
+        <Section>
+          <SectionTitle>Let&apos;s Connect</SectionTitle>
+          <p className="text-base leading-relaxed mb-4">
+            I&apos;m always interested in discussing new projects, innovative technologies, and challenging problems. Feel free to reach out!
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a href="mailto:ayuth.mang@gmail.com" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+              Email
+            </a>
+            <a href="https://linkedin.com" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+              LinkedIn
+            </a>
+            <a href="https://github.com" className="px-4 py-2 bg-gray-800 dark:bg-gray-200 text-white dark:text-black rounded-lg hover:bg-gray-900 dark:hover:bg-gray-300 transition">
+              GitHub
+            </a>
+          </div>
+        </Section>
+      </div>
+    </div>
   )
 }
 
@@ -54,16 +181,61 @@ function WavingHand() {
   )
 }
 
-function HeroContainer({ children }: { children: React.ReactNode }) {
+function Heading({ children }: { children: React.ReactNode }) {
+  return <h2 className="mb-2 text-center text-4xl font-bold">{children}</h2>
+}
+
+function Section({ children }: { children: React.ReactNode }) {
+  return <section className="border-b border-gray-200 dark:border-gray-800 pb-8">{children}</section>
+}
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return <h3 className="text-2xl font-bold mb-4">{children}</h3>
+}
+
+interface ExperienceItemProps {
+  company: string
+  position: string
+  period: string
+  description: string
+}
+
+function ExperienceItem({ company, position, period, description }: ExperienceItemProps) {
   return (
-    <div className="flex h-full max-h-184 min-h-216 flex-col items-center justify-center">
-      {children}
+    <div>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+        <div>
+          <h4 className="text-lg font-semibold">{position}</h4>
+          <p className="text-blue-600 dark:text-blue-400 font-medium">{company}</p>
+        </div>
+        <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-0">{period}</span>
+      </div>
+      <p className="text-gray-700 dark:text-gray-300">{description}</p>
     </div>
   )
 }
 
-function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="mb-4 text-center text-4xl font-bold">{children}</h2>
+interface SkillCategoryProps {
+  category: string
+  skills: string[]
+}
+
+function SkillCategory({ category, skills }: SkillCategoryProps) {
+  return (
+    <div>
+      <h4 className="font-semibold mb-2">{category}</h4>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span
+            key={skill}
+            className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-sm"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default AboutPage

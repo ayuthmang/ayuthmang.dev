@@ -29,8 +29,8 @@ export function Header() {
         <HomeLink href="/">AYUTH</HomeLink>
         <DesktopNav>
           <DesktopActions>
-            {/* <NavLink href="/about">About</NavLink> */}
             <BlogsNavMenu />
+            <NavLink href="/about">About</NavLink>
           </DesktopActions>
           <Filler />
           <DesktopActions>

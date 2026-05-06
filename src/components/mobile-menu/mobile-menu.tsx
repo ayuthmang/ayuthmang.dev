@@ -38,6 +38,7 @@ export function MobileMenu({
               <Filler />
               <Nav>
                 <NavLink href="/">Home</NavLink>
+                <NavLink href="/about">About</NavLink>
                 <NavLink href={PROFILE_LINKS.GITHUB}>GitHub</NavLink>
                 <NavLink href={PROFILE_LINKS.MEDIUM}>Medium</NavLink>
                 <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>
@@ -112,7 +113,7 @@ function NavLink({
 }: React.ComponentPropsWithoutRef<'a'>) {
   return (
     <a
-      className="cursor-pointer font-semibold text-gray-100 text-inherit opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100"
+      className="cursor-pointer font-semibold text-gray-100 opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100"
       style={{
         transition: 'opacity 0.2s ease-in-out 0s',
       }}
