@@ -39,27 +39,33 @@ export function extractImg(response: string): string | null {
   return match && match[1]
 }
 
+function stripQueryAndHash(value: string): string {
+  return value.split('?')[0].split('#')[0]
+}
+
 /**
- * Derives a URL-safe slug from a Medium article link.
- * Medium links follow the pattern:
- *   https://medium.com/@username/article-title-abc123
- * The last path segment is used as the slug.
+ * Derives a short URL-safe slug from a Medium article link.
+ * Medium article URLs end with a stable post id after the final hyphen.
  */
 export function slugFromLink(link: string): string {
-  return link.split('/').filter(Boolean).pop() ?? ''
+  const lastSegment = stripQueryAndHash(link).split('/').filter(Boolean).pop() ?? ''
+  if (!lastSegment) return ''
+
+  const decodedSegment = decodeURIComponent(lastSegment)
+  return decodedSegment.split('-').pop() ?? decodedSegment
 }
 
 /**
  * Finds a single Medium post by its slug.
  */
 export async function getMediumPostBySlug(username: string, slug: string) {
+  const normalizedSlug = decodeURIComponent(slug)
   const { items } = await getLatestMediumPosts(username)
   return (
     items.find((item) => {
-      return slugFromLink(encodeURIComponent(item.link)).includes(
-        // there is some RSS feed in query params 🥲
-        encodeURIComponent(slug),
-      )
+      const itemPath = stripQueryAndHash(item.link).split('/').filter(Boolean).pop() ?? ''
+      const decodedItemPath = decodeURIComponent(itemPath)
+      return [slugFromLink(item.link), decodedItemPath].includes(normalizedSlug)
     }) ?? null
   )
 }

@@ -138,14 +138,19 @@ describe('extractImg', () => {
 // ---------------------------------------------------------------------------
 
 describe('slugFromLink', () => {
-  test('extracts the last path segment from a standard Medium URL', () => {
+  test('extracts the post id from a standard Medium URL', () => {
     const url = 'https://medium.com/@ayuthmang/understanding-react-hooks-abc123def456'
-    expect(slugFromLink(url)).toBe('understanding-react-hooks-abc123def456')
+    expect(slugFromLink(url)).toBe('abc123def456')
+  })
+
+  test('strips query parameters before extracting the slug', () => {
+    const url = 'https://medium.com/@ayuthmang/my-article-abc123?source=rss-37b3ab8c5bd------2'
+    expect(slugFromLink(url)).toBe('abc123')
   })
 
   test('handles a URL with a trailing slash', () => {
     const url = 'https://medium.com/@ayuthmang/my-article-abc123/'
-    expect(slugFromLink(url)).toBe('my-article-abc123')
+    expect(slugFromLink(url)).toBe('abc123')
   })
 
   test('handles a URL whose only path is the username', () => {
@@ -158,7 +163,7 @@ describe('slugFromLink', () => {
   })
 
   test('works with a path-only string (no domain)', () => {
-    expect(slugFromLink('/blog/my-post-xyz')).toBe('my-post-xyz')
+    expect(slugFromLink('/blog/my-post-xyz')).toBe('xyz')
   })
 })
 
@@ -220,6 +225,16 @@ describe('getMediumPostBySlug', () => {
 
     expect(result).not.toBeNull()
     expect(result?.title).toBe(MEDIUM_RESPONSE_FIXTURE.items[0].title)
+  })
+
+  test('still matches the legacy long Medium slug', async () => {
+    const result = await getMediumPostBySlug(
+      MEDIUM_USERNAME,
+      'แหล่งเรียนรู้-git-สำหรับผู้เริ่มต้นถึงระดับสูง-by-gitkraken-337b6ff5f540',
+    )
+
+    expect(result).not.toBeNull()
+    expect(result?.guid).toBe(MEDIUM_RESPONSE_FIXTURE.items[0].guid)
   })
 
   test('returns null when no post matches the slug', async () => {
