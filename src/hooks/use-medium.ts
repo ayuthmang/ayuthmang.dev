@@ -1,7 +1,6 @@
 import axios from 'axios'
 import type { RssToJsonMediumResponse } from './use-medium.types'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { encode } from 'punycode'
 
 const rssToJsonUrl =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/{username}'
@@ -24,6 +23,7 @@ export function useLatestMediumPosts(username: string) {
   const postsQuery = useSuspenseQuery({
     queryKey: ['medium', username],
     queryFn: () => getLatestMediumPosts(username),
+    staleTime: 60 * 60 * 1000, // 1 hrs
   })
 
   return postsQuery
@@ -34,7 +34,7 @@ export function useLatestMediumPosts(username: string) {
  * @param response Response from `use-medium-posts` hook}
  */
 export function extractImg(response: string): string | null {
-  const regex = /src\s*=\s*"(.+?)"/
+  const regex = /<img[^>]*src\s*=\s*["']([^"']+)["']/i
   const match = response.match(regex)
   return match && match[1]
 }
