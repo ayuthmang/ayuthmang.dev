@@ -1,6 +1,7 @@
 import axios from 'axios'
 import type { RssToJsonMediumResponse } from './use-medium.types'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { encode } from 'punycode'
 
 const rssToJsonUrl =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/{username}'
@@ -36,4 +37,29 @@ export function extractImg(response: string): string | null {
   const regex = /src\s*=\s*"(.+?)"/
   const match = response.match(regex)
   return match && match[1]
+}
+
+/**
+ * Derives a URL-safe slug from a Medium article link.
+ * Medium links follow the pattern:
+ *   https://medium.com/@username/article-title-abc123
+ * The last path segment is used as the slug.
+ */
+export function slugFromLink(link: string): string {
+  return link.split('/').filter(Boolean).pop() ?? ''
+}
+
+/**
+ * Finds a single Medium post by its slug.
+ */
+export async function getMediumPostBySlug(username: string, slug: string) {
+  const { items } = await getLatestMediumPosts(username)
+  return (
+    items.find((item) => {
+      return slugFromLink(encodeURIComponent(item.link)).includes(
+        // there is some RSS feed in query params 🥲
+        encodeURIComponent(slug),
+      )
+    }) ?? null
+  )
 }

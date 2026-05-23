@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { cn } from '@/utils'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
@@ -9,14 +10,13 @@ export type ArticleProps = {
   description: string
   categories: string[]
   thumbnail: string
-  link: string
+  slug: string
 }
 
-function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
+function Article({ guid, title, categories, thumbnail, slug }: ArticleProps) {
   return (
-    <a
-      href={link}
-      target="_blank"
+    <Link
+      href={`/blog/${slug}`}
       className={cn(
         'group -m-3 overflow-hidden rounded-lg p-3',
         'border border-transparent transition-all duration-300 ease-out',
@@ -45,7 +45,7 @@ function Article({ guid, title, categories, thumbnail, link }: ArticleProps) {
           ))}
         </div>
       </article>
-    </a>
+    </Link>
   )
 }
 
