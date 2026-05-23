@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ayuth Mangmesap',
     description: 'Personal website of Ayuth Mangmesap.',
-    url: 'https://ayuthmang.dev',
+    url: 'https://ayuthmang-dev.vercel.app',
   },
   alternates: {
-    canonical: 'https://ayuthmang.dev',
+    canonical: 'https://ayuthmang-dev.vercel.app',
   },
 }
 

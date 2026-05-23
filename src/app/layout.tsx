@@ -6,7 +6,7 @@ import MaxWidthWrapper from '@/components/max-width-wrapper'
 import Providers from './providers'
 import './globals.css'
 
-const siteUrl = 'https://ayuthmang.dev'
+const siteUrl = 'https://ayuthmang-dev.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

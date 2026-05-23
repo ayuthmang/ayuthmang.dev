@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     title: 'About | Ayuth Mangmesap',
     description:
       'Full-Stack Developer at OOZOU with experience across fintech, banking, and Web 3.0. Security researcher and open-source contributor.',
-    url: 'https://ayuthmang.dev/about',
+    url: 'https://ayuthmang-dev.vercel.app/about',
   },
   alternates: {
-    canonical: 'https://ayuthmang.dev/about',
+    canonical: 'https://ayuthmang-dev.vercel.app/about',
   },
 }
 

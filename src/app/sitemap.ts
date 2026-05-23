@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const siteUrl = 'https://ayuthmang.dev'
+const siteUrl = 'https://ayuthmang-dev.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
