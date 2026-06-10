@@ -5,36 +5,42 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { BentoGrid, BentoCard } from '@/components/bento-grid'
+import { PlaygroundCard } from '@/components/playground-card'
 import Image from 'next/image'
 
 function AboutPage() {
   return (
-    <div className="py-12 max-w-4xl mx-auto px-4">
+    <div className="mx-auto max-w-5xl px-4 py-12">
       <div className="mb-12">
         <Heading>
           Hi there <WavingHand />
         </Heading>
-        <p className="text-center text-lg text-gray-600 dark:text-gray-400 mb-8">
+        <p className="mb-8 text-center text-lg text-gray-600 dark:text-gray-400">
           I&apos;m a full-stack developer building the future of web experiences
         </p>
       </div>
 
-      <div className="space-y-8">
-        {/* Main intro */}
-        <Section>
-          <SectionTitle>About Me</SectionTitle>
+      <BentoGrid>
+        {/* Main intro — large card */}
+        <BentoCard title="👨‍💻 About Me" className="md:col-span-2 md:row-span-2">
           <p className="text-base leading-relaxed">
-            I&apos;m a Full-Stack Developer with a passion for building scalable, user-centric applications. Currently at{' '}
-            <strong>OOZOU</strong>, I work on high-impact projects ranging from cryptocurrency trading platforms to B2B e-commerce solutions.
-            With experience spanning fintech, banking, and innovation labs, I thrive in fast-paced environments where I can collaborate with talented international teams and push the boundaries of what&apos;s possible.
+            I&apos;m a Full-Stack Developer with a passion for building
+            scalable, user-centric applications. Currently at{' '}
+            <strong>OOZOU</strong>, I work on high-impact projects ranging from
+            cryptocurrency trading platforms to B2B e-commerce solutions. With
+            experience spanning fintech, banking, and innovation labs, I thrive
+            in fast-paced environments where I can collaborate with talented
+            international teams and push the boundaries of what&apos;s
+            possible.
           </p>
-          <p className="text-base leading-relaxed mt-4">
+          <p className="mt-4 text-base leading-relaxed">
             Beyond code, I love{' '}
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="relative cursor-pointer font-semibold">
                   exploring vulnerabilities
-                  <span className="absolute bottom-0 left-0 w-full h-[6px] bg-yellow-300/60 -z-10 translate-y-[2px]"></span>
+                  <span className="absolute bottom-0 left-0 -z-10 h-[6px] w-full translate-y-[2px] bg-yellow-300/60"></span>
                 </span>
               </TooltipTrigger>
               <TooltipContent className="flex flex-col items-center p-4">
@@ -46,15 +52,62 @@ function AboutPage() {
                   className="rounded-md"
                 />
               </TooltipContent>
-            </Tooltip>, contributing to open-source, and sharing knowledge through technical writing on{' '}
-            <a href="https://medium.com/@ayuthmang" className="text-blue-600 dark:text-blue-400 hover:underline">Medium</a> and{' '}
-            <a href="https://dev.to/ayuthmang" className="text-blue-600 dark:text-blue-400 hover:underline">DEV</a>.
+            </Tooltip>
+            , contributing to open-source, and sharing knowledge through
+            technical writing on{' '}
+            <a
+              href="https://medium.com/@ayuthmang"
+              className="text-blue-600 hover:underline dark:text-blue-400"
+            >
+              Medium
+            </a>{' '}
+            and{' '}
+            <a
+              href="https://dev.to/ayuthmang"
+              className="text-blue-600 hover:underline dark:text-blue-400"
+            >
+              DEV
+            </a>
+            .
           </p>
-        </Section>
+        </BentoCard>
 
-        {/* Professional Experience */}
-        <Section>
-          <SectionTitle>Professional Journey</SectionTitle>
+        {/* Highlights — tall card */}
+        <BentoCard title="✨ Highlights" className="md:row-span-2">
+          <ul className="space-y-3">
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🏆</span>
+              <span>
+                1st Runner-Up, SCB Innovation Bootcamp 2022 for a reusable
+                components library that accelerated development by 40%
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🔐</span>
+              <span>
+                Security researcher discovering and responsibly disclosing
+                vulnerabilities in high-profile platforms
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">📚</span>
+              <span>
+                Active technical writer and speaker, sharing knowledge on Web
+                3.0, cloud architecture, and development best practices
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🚀</span>
+              <span>
+                GitKraken Ambassador, passionate about developer tools and
+                community engagement
+              </span>
+            </li>
+          </ul>
+        </BentoCard>
+
+        {/* Professional Experience — wide card */}
+        <BentoCard title="💼 Professional Journey" className="md:col-span-2">
           <div className="space-y-6">
             <ExperienceItem
               company="OOZOU"
@@ -75,12 +128,35 @@ function AboutPage() {
               description="Built internal applications, taught web development bootcamps, and established testing standards achieving 80%+ code coverage from the ground up."
             />
           </div>
-        </Section>
+        </BentoCard>
 
-        {/* Technical Skills */}
-        <Section>
-          <SectionTitle>Technical Stack</SectionTitle>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Education & Certifications */}
+        <BentoCard title="🎓 Education & Certifications">
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-semibold">Chulalongkorn University</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Master&apos;s in Computer Science (2024 – Present)
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Thammasat University</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Bachelor of Science in Computer Science (2015 – 2019)
+              </p>
+            </div>
+            <div>
+              <p className="text-sm">
+                Microsoft Certified: Azure (AI Fundamentals, Data Fundamentals,
+                Fundamentals)
+              </p>
+            </div>
+          </div>
+        </BentoCard>
+
+        {/* Technical Skills — wide card */}
+        <BentoCard title="🛠️ Technical Stack" className="md:col-span-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <SkillCategory
               category="Frontend"
               skills={['React', 'Next.js', 'Vue.js', 'TypeScript', 'HTML5/CSS3']}
@@ -98,68 +174,41 @@ function AboutPage() {
               skills={['React Native', 'Flutter', 'Kotlin']}
             />
           </div>
-        </Section>
-
-        {/* Achievements */}
-        <Section>
-          <SectionTitle>Highlights</SectionTitle>
-          <ul className="space-y-3">
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">🏆</span>
-              <span>1st Runner-Up, SCB Innovation Bootcamp 2022 for a reusable components library that accelerated development by 40%</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">🔐</span>
-              <span>Security researcher discovering and responsibly disclosing vulnerabilities in high-profile platforms</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">📚</span>
-              <span>Active technical writer and speaker, sharing knowledge on Web 3.0, cloud architecture, and development best practices</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">🚀</span>
-              <span>GitKraken Ambassador, passionate about developer tools and community engagement</span>
-            </li>
-          </ul>
-        </Section>
-
-        {/* Education & Certifications */}
-        <Section>
-          <SectionTitle>Education & Certifications</SectionTitle>
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold">Chulalongkorn University</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Master&apos;s in Computer Science (2024 – Present)</p>
-            </div>
-            <div>
-              <h4 className="font-semibold">Thammasat University</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Bachelor of Science in Computer Science (2015 – 2019)</p>
-            </div>
-            <div>
-              <p className="text-sm">Microsoft Certified: Azure (AI Fundamentals, Data Fundamentals, Fundamentals)</p>
-            </div>
-          </div>
-        </Section>
+        </BentoCard>
 
         {/* Connect */}
-        <Section>
-          <SectionTitle>Let&apos;s Connect</SectionTitle>
-          <p className="text-base leading-relaxed mb-4">
-            I&apos;m always interested in discussing new projects, innovative technologies, and challenging problems. Feel free to reach out!
+        <BentoCard title="🤝 Let's Connect">
+          <p className="mb-4 text-base leading-relaxed">
+            I&apos;m always interested in discussing new projects, innovative
+            technologies, and challenging problems. Feel free to reach out!
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a href="mailto:ayuth.mang@gmail.com" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+          <div className="mt-auto flex flex-wrap gap-3">
+            <a
+              href="mailto:ayuth.mang@gmail.com"
+              className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+            >
               Email
             </a>
-            <a href="https://linkedin.com" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            <a
+              href="https://linkedin.com"
+              className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+            >
               LinkedIn
             </a>
-            <a href="https://github.com" className="px-4 py-2 bg-gray-800 dark:bg-gray-200 text-white dark:text-black rounded-lg hover:bg-gray-900 dark:hover:bg-gray-300 transition">
+            <a
+              href="https://github.com"
+              className="rounded-lg bg-gray-800 px-4 py-2 text-white transition hover:bg-gray-900 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-300"
+            >
               GitHub
             </a>
           </div>
-        </Section>
-      </div>
+        </BentoCard>
+
+        {/* Playground — interactive frontend toys */}
+        <BentoCard title="🎮 Playground" className="md:col-span-2">
+          <PlaygroundCard />
+        </BentoCard>
+      </BentoGrid>
     </div>
   )
 }
@@ -168,11 +217,13 @@ function WavingHand() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <div className="inline-block text-4xl">
-          <p role="img" aria-label="Waving hand" className={styles.animateWave}>
-            👋
-          </p>
-        </div>
+        <span
+          role="img"
+          aria-label="Waving hand"
+          className={`${styles.animateWave} text-4xl`}
+        >
+          👋
+        </span>
       </TooltipTrigger>
       <TooltipContent>
         <p>Friendly greeting!</p>
@@ -182,15 +233,11 @@ function WavingHand() {
 }
 
 function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="mb-2 text-center text-4xl font-bold">{children}</h2>
-}
-
-function Section({ children }: { children: React.ReactNode }) {
-  return <section className="border-b border-gray-200 dark:border-gray-800 pb-8">{children}</section>
-}
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-2xl font-bold mb-4">{children}</h3>
+  return (
+    <h2 className="font-header mb-2 text-center text-4xl font-bold">
+      {children}
+    </h2>
+  )
 }
 
 interface ExperienceItemProps {
@@ -200,15 +247,24 @@ interface ExperienceItemProps {
   description: string
 }
 
-function ExperienceItem({ company, position, period, description }: ExperienceItemProps) {
+function ExperienceItem({
+  company,
+  position,
+  period,
+  description,
+}: ExperienceItemProps) {
   return (
     <div>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+      <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h4 className="text-lg font-semibold">{position}</h4>
-          <p className="text-blue-600 dark:text-blue-400 font-medium">{company}</p>
+          <p className="font-medium text-blue-600 dark:text-blue-400">
+            {company}
+          </p>
         </div>
-        <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-0">{period}</span>
+        <span className="mt-1 text-sm text-gray-600 sm:mt-0 dark:text-gray-400">
+          {period}
+        </span>
       </div>
       <p className="text-gray-700 dark:text-gray-300">{description}</p>
     </div>
@@ -223,12 +279,12 @@ interface SkillCategoryProps {
 function SkillCategory({ category, skills }: SkillCategoryProps) {
   return (
     <div>
-      <h4 className="font-semibold mb-2">{category}</h4>
+      <h4 className="mb-2 font-semibold">{category}</h4>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
           <span
             key={skill}
-            className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-sm"
+            className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800 dark:bg-gray-800 dark:text-gray-200"
           >
             {skill}
           </span>
