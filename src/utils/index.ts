@@ -25,3 +25,16 @@ export const random = (
 }
 
 export * from './classnames.utils'
+
+/**
+ * Converts any string into a deterministic HSL hue value (0–360).
+ * Same input always produces the same hue, so cards get a consistent
+ * accent color across renders.
+ */
+export function stringToHue(str: string): number {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash)
+  }
+  return Math.abs(hash) % 360
+}

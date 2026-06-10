@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import React from 'react'
 import styles from './page.module.css'
 import {
@@ -8,6 +9,21 @@ import {
 import { BentoGrid, BentoCard } from '@/components/bento-grid'
 import { PlaygroundCard } from '@/components/playground-card'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    "Ayuth Mangmesap is a Full-Stack Developer at OOZOU with experience in fintech, banking, and Web 3.0. Currently pursuing a Master's in Computer Science at Chulalongkorn University.",
+  openGraph: {
+    title: 'About | Ayuth Mangmesap',
+    description:
+      'Full-Stack Developer at OOZOU with experience across fintech, banking, and Web 3.0. Security researcher and open-source contributor.',
+    url: 'https://ayuthmang-dev.vercel.app/about',
+  },
+  alternates: {
+    canonical: 'https://ayuthmang-dev.vercel.app/about',
+  },
+}
 
 function AboutPage() {
   return (
@@ -159,15 +175,34 @@ function AboutPage() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <SkillCategory
               category="Frontend"
-              skills={['React', 'Next.js', 'Vue.js', 'TypeScript', 'HTML5/CSS3']}
+              skills={[
+                'React',
+                'Next.js',
+                'Vue.js',
+                'TypeScript',
+                'HTML5/CSS3',
+              ]}
             />
             <SkillCategory
               category="Backend"
-              skills={['Node.js', 'Nest.js', 'Express', 'Spring Boot', 'Python']}
+              skills={[
+                'Node.js',
+                'Nest.js',
+                'Express',
+                'Spring Boot',
+                'Python',
+              ]}
             />
             <SkillCategory
               category="Databases & Cloud"
-              skills={['PostgreSQL', 'MongoDB', 'AWS', 'GCP', 'Docker', 'Kubernetes']}
+              skills={[
+                'PostgreSQL',
+                'MongoDB',
+                'AWS',
+                'GCP',
+                'Docker',
+                'Kubernetes',
+              ]}
             />
             <SkillCategory
               category="Mobile"
