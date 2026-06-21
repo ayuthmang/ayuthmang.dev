@@ -1,9 +1,16 @@
 allowBuilds:
   esbuild: true
+  msw: true
   sharp: true
+  unrs-resolver: true
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
   - sharp
 overrides:
   '@types/react': 19.2.17
+peerDependencyRules:
+  allowedVersions:
+    eslint: '10'
+    typescript: '6'
+    tailwindcss: '4'
