@@ -6,6 +6,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { BentoGrid, BentoCard } from '@/components/bento-grid'
+import { PlaygroundCard } from '@/components/playground-card'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
 
 function AboutPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12">
+    <div className="mx-auto max-w-5xl px-4 py-12">
       <div className="mb-12">
         <Heading>
           Hi there <WavingHand />
@@ -35,10 +37,9 @@ function AboutPage() {
         </p>
       </div>
 
-      <div className="space-y-8">
-        {/* Main intro */}
-        <Section>
-          <SectionTitle>About Me</SectionTitle>
+      <BentoGrid>
+        {/* Main intro — large card */}
+        <BentoCard title="👨‍💻 About Me" className="md:col-span-2 md:row-span-2">
           <p className="text-base leading-relaxed">
             I&apos;m a Full-Stack Developer with a passion for building
             scalable, user-centric applications. Currently at{' '}
@@ -46,7 +47,8 @@ function AboutPage() {
             cryptocurrency trading platforms to B2B e-commerce solutions. With
             experience spanning fintech, banking, and innovation labs, I thrive
             in fast-paced environments where I can collaborate with talented
-            international teams and push the boundaries of what&apos;s possible.
+            international teams and push the boundaries of what&apos;s
+            possible.
           </p>
           <p className="mt-4 text-base leading-relaxed">
             Beyond code, I love{' '}
@@ -84,11 +86,44 @@ function AboutPage() {
             </a>
             .
           </p>
-        </Section>
+        </BentoCard>
 
-        {/* Professional Experience */}
-        <Section>
-          <SectionTitle>Professional Journey</SectionTitle>
+        {/* Highlights — tall card */}
+        <BentoCard title="✨ Highlights" className="md:row-span-2">
+          <ul className="space-y-3">
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🏆</span>
+              <span>
+                1st Runner-Up, SCB Innovation Bootcamp 2022 for a reusable
+                components library that accelerated development by 40%
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🔐</span>
+              <span>
+                Security researcher discovering and responsibly disclosing
+                vulnerabilities in high-profile platforms
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">📚</span>
+              <span>
+                Active technical writer and speaker, sharing knowledge on Web
+                3.0, cloud architecture, and development best practices
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-3 text-lg">🚀</span>
+              <span>
+                GitKraken Ambassador, passionate about developer tools and
+                community engagement
+              </span>
+            </li>
+          </ul>
+        </BentoCard>
+
+        {/* Professional Experience — wide card */}
+        <BentoCard title="💼 Professional Journey" className="md:col-span-2">
           <div className="space-y-6">
             <ExperienceItem
               company="OOZOU"
@@ -109,12 +144,35 @@ function AboutPage() {
               description="Built internal applications, taught web development bootcamps, and established testing standards achieving 80%+ code coverage from the ground up."
             />
           </div>
-        </Section>
+        </BentoCard>
 
-        {/* Technical Skills */}
-        <Section>
-          <SectionTitle>Technical Stack</SectionTitle>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {/* Education & Certifications */}
+        <BentoCard title="🎓 Education & Certifications">
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-semibold">Chulalongkorn University</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Master&apos;s in Computer Science (2024 – Present)
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Thammasat University</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Bachelor of Science in Computer Science (2015 – 2019)
+              </p>
+            </div>
+            <div>
+              <p className="text-sm">
+                Microsoft Certified: Azure (AI Fundamentals, Data Fundamentals,
+                Fundamentals)
+              </p>
+            </div>
+          </div>
+        </BentoCard>
+
+        {/* Technical Skills — wide card */}
+        <BentoCard title="🛠️ Technical Stack" className="md:col-span-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <SkillCategory
               category="Frontend"
               skills={[
@@ -151,76 +209,15 @@ function AboutPage() {
               skills={['React Native', 'Flutter', 'Kotlin']}
             />
           </div>
-        </Section>
-
-        {/* Achievements */}
-        <Section>
-          <SectionTitle>Highlights</SectionTitle>
-          <ul className="space-y-3">
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">🏆</span>
-              <span>
-                1st Runner-Up, SCB Innovation Bootcamp 2022 for a reusable
-                components library that accelerated development by 40%
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">🔐</span>
-              <span>
-                Security researcher discovering and responsibly disclosing
-                vulnerabilities in high-profile platforms
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">📚</span>
-              <span>
-                Active technical writer and speaker, sharing knowledge on Web
-                3.0, cloud architecture, and development best practices
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 text-lg">🚀</span>
-              <span>
-                GitKraken Ambassador, passionate about developer tools and
-                community engagement
-              </span>
-            </li>
-          </ul>
-        </Section>
-
-        {/* Education & Certifications */}
-        <Section>
-          <SectionTitle>Education & Certifications</SectionTitle>
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold">Chulalongkorn University</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Master&apos;s in Computer Science (2024 – Present)
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold">Thammasat University</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Bachelor of Science in Computer Science (2015 – 2019)
-              </p>
-            </div>
-            <div>
-              <p className="text-sm">
-                Microsoft Certified: Azure (AI Fundamentals, Data Fundamentals,
-                Fundamentals)
-              </p>
-            </div>
-          </div>
-        </Section>
+        </BentoCard>
 
         {/* Connect */}
-        <Section>
-          <SectionTitle>Let&apos;s Connect</SectionTitle>
+        <BentoCard title="🤝 Let's Connect">
           <p className="mb-4 text-base leading-relaxed">
             I&apos;m always interested in discussing new projects, innovative
             technologies, and challenging problems. Feel free to reach out!
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="mt-auto flex flex-wrap gap-3">
             <a
               href="mailto:ayuth.mang@gmail.com"
               className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
@@ -240,8 +237,13 @@ function AboutPage() {
               GitHub
             </a>
           </div>
-        </Section>
-      </div>
+        </BentoCard>
+
+        {/* Playground — interactive frontend toys */}
+        <BentoCard title="🎮 Playground" className="md:col-span-2">
+          <PlaygroundCard />
+        </BentoCard>
+      </BentoGrid>
     </div>
   )
 }
@@ -250,11 +252,13 @@ function WavingHand() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <div className="inline-block text-4xl">
-          <p role="img" aria-label="Waving hand" className={styles.animateWave}>
-            👋
-          </p>
-        </div>
+        <span
+          role="img"
+          aria-label="Waving hand"
+          className={`${styles.animateWave} text-4xl`}
+        >
+          👋
+        </span>
       </TooltipTrigger>
       <TooltipContent>
         <p>Friendly greeting!</p>
@@ -264,19 +268,11 @@ function WavingHand() {
 }
 
 function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="mb-2 text-center text-4xl font-bold">{children}</h2>
-}
-
-function Section({ children }: { children: React.ReactNode }) {
   return (
-    <section className="border-b border-gray-200 pb-8 dark:border-gray-800">
+    <h2 className="font-header mb-2 text-center text-4xl font-bold">
       {children}
-    </section>
+    </h2>
   )
-}
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="mb-4 text-2xl font-bold">{children}</h3>
 }
 
 interface ExperienceItemProps {
