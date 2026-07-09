@@ -8,6 +8,14 @@ import {
 } from '@/components/ui/tooltip'
 import { BentoGrid, BentoCard } from '@/components/bento-grid'
 import { PlaygroundCard } from '@/components/playground-card'
+import { TechStack } from '@/components/tech-stack'
+import { PROFILE_LINKS } from '@/constants'
+import { cn } from '@/utils'
+import {
+  EnvelopeClosedIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from '@radix-ui/react-icons'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -28,16 +36,23 @@ export const metadata: Metadata = {
 function AboutPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12">
-      <div className="mb-12">
+      <div className={cn('relative mb-12', styles.heroEnter)}>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-64 w-xl max-w-full -translate-x-1/2 rounded-full bg-gradient-to-r from-cyan-500/25 via-blue-500/15 to-indigo-500/25 blur-3xl"
+        />
         <Heading>
-          Hi there <WavingHand />
+          <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400">
+            Hi there
+          </span>{' '}
+          <WavingHand />
         </Heading>
-        <p className="mb-8 text-center text-lg text-gray-600 dark:text-gray-400">
+        <p className="mx-auto max-w-xl text-center text-lg text-balance text-gray-600 dark:text-gray-400">
           I&apos;m a full-stack developer building the future of web experiences
         </p>
       </div>
 
-      <BentoGrid>
+      <BentoGrid className={styles.gridEnter}>
         {/* Main intro — large card */}
         <BentoCard title="👨‍💻 About Me" className="md:col-span-2 md:row-span-2">
           <p className="text-base leading-relaxed">
@@ -47,8 +62,7 @@ function AboutPage() {
             cryptocurrency trading platforms to B2B e-commerce solutions. With
             experience spanning fintech, banking, and innovation labs, I thrive
             in fast-paced environments where I can collaborate with talented
-            international teams and push the boundaries of what&apos;s
-            possible.
+            international teams and push the boundaries of what&apos;s possible.
           </p>
           <p className="mt-4 text-base leading-relaxed">
             Beyond code, I love{' '}
@@ -86,6 +100,11 @@ function AboutPage() {
             </a>
             .
           </p>
+          <div className="mt-auto flex flex-wrap gap-2 pt-6">
+            <FactChip>💼 Full-Stack Dev @ OOZOU</FactChip>
+            <FactChip>🎓 MSc CS @ Chulalongkorn</FactChip>
+            <FactChip>🚀 GitKraken Ambassador</FactChip>
+          </div>
         </BentoCard>
 
         {/* Highlights — tall card */}
@@ -124,7 +143,7 @@ function AboutPage() {
 
         {/* Professional Experience — wide card */}
         <BentoCard title="💼 Professional Journey" className="md:col-span-2">
-          <div className="space-y-6">
+          <div className="relative ml-1.5 space-y-8 border-l-2 border-gray-200 pl-6 dark:border-gray-800">
             <ExperienceItem
               company="OOZOU"
               position="Full-Stack Developer"
@@ -162,53 +181,28 @@ function AboutPage() {
               </p>
             </div>
             <div>
-              <p className="text-sm">
-                Microsoft Certified: Azure (AI Fundamentals, Data Fundamentals,
-                Fundamentals)
-              </p>
+              <h4 className="mb-2 font-semibold">Microsoft Certified</h4>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'Azure AI Fundamentals',
+                  'Azure Data Fundamentals',
+                  'Azure Fundamentals',
+                ].map((cert) => (
+                  <span
+                    key={cert}
+                    className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  >
+                    {cert}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </BentoCard>
 
         {/* Technical Skills — wide card */}
         <BentoCard title="🛠️ Technical Stack" className="md:col-span-2">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <SkillCategory
-              category="Frontend"
-              skills={[
-                'React',
-                'Next.js',
-                'Vue.js',
-                'TypeScript',
-                'HTML5/CSS3',
-              ]}
-            />
-            <SkillCategory
-              category="Backend"
-              skills={[
-                'Node.js',
-                'Nest.js',
-                'Express',
-                'Spring Boot',
-                'Python',
-              ]}
-            />
-            <SkillCategory
-              category="Databases & Cloud"
-              skills={[
-                'PostgreSQL',
-                'MongoDB',
-                'AWS',
-                'GCP',
-                'Docker',
-                'Kubernetes',
-              ]}
-            />
-            <SkillCategory
-              category="Mobile"
-              skills={['React Native', 'Flutter', 'Kotlin']}
-            />
-          </div>
+          <TechStack />
         </BentoCard>
 
         {/* Connect */}
@@ -218,29 +212,34 @@ function AboutPage() {
             technologies, and challenging problems. Feel free to reach out!
           </p>
           <div className="mt-auto flex flex-wrap gap-3">
-            <a
+            <ConnectLink
               href="mailto:ayuth.mang@gmail.com"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+              className="bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700"
             >
+              <EnvelopeClosedIcon aria-hidden />
               Email
-            </a>
-            <a
-              href="https://linkedin.com"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+            </ConnectLink>
+            <ConnectLink
+              href={PROFILE_LINKS.LINKEDIN}
+              external
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
+              <LinkedInLogoIcon aria-hidden />
               LinkedIn
-            </a>
-            <a
-              href="https://github.com"
-              className="rounded-lg bg-gray-800 px-4 py-2 text-white transition hover:bg-gray-900 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-300"
+            </ConnectLink>
+            <ConnectLink
+              href={PROFILE_LINKS.GITHUB}
+              external
+              className="bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-300"
             >
+              <GitHubLogoIcon aria-hidden />
               GitHub
-            </a>
+            </ConnectLink>
           </div>
         </BentoCard>
 
         {/* Playground — interactive frontend toys */}
-        <BentoCard title="🎮 Playground" className="md:col-span-2">
+        <BentoCard title="🎮 Playground" className="md:col-span-3">
           <PlaygroundCard />
         </BentoCard>
       </BentoGrid>
@@ -269,7 +268,7 @@ function WavingHand() {
 
 function Heading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-header mb-2 text-center text-4xl font-bold">
+    <h2 className="font-header mb-3 text-center text-4xl font-bold tracking-tight md:text-5xl">
       {children}
     </h2>
   )
@@ -288,16 +287,27 @@ function ExperienceItem({
   period,
   description,
 }: ExperienceItemProps) {
+  const isCurrent = period.includes('Present')
+
   return (
-    <div>
-      <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <div className="relative">
+      <span
+        aria-hidden
+        className={cn(
+          'absolute top-1.5 -left-[31px] size-3 rounded-full ring-4 ring-white dark:ring-gray-900',
+          isCurrent
+            ? 'bg-blue-500 shadow-md shadow-blue-500/50'
+            : 'bg-gray-300 dark:bg-gray-700',
+        )}
+      />
+      <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h4 className="text-lg font-semibold">{position}</h4>
+          <h4 className="text-lg leading-snug font-semibold">{position}</h4>
           <p className="font-medium text-blue-600 dark:text-blue-400">
             {company}
           </p>
         </div>
-        <span className="mt-1 text-sm text-gray-600 sm:mt-0 dark:text-gray-400">
+        <span className="mt-1 w-fit shrink-0 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium whitespace-nowrap text-gray-600 sm:mt-0.5 dark:bg-gray-800 dark:text-gray-400">
           {period}
         </span>
       </div>
@@ -306,26 +316,35 @@ function ExperienceItem({
   )
 }
 
-interface SkillCategoryProps {
-  category: string
-  skills: string[]
+function FactChip({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm text-gray-700 dark:border-gray-800 dark:bg-gray-800/60 dark:text-gray-300">
+      {children}
+    </span>
+  )
 }
 
-function SkillCategory({ category, skills }: SkillCategoryProps) {
+interface ConnectLinkProps extends React.ComponentPropsWithoutRef<'a'> {
+  external?: boolean
+}
+
+function ConnectLink({
+  external,
+  className,
+  children,
+  ...rest
+}: ConnectLinkProps) {
   return (
-    <div>
-      <h4 className="mb-2 font-semibold">{category}</h4>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill) => (
-          <span
-            key={skill}
-            className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
+    <a
+      {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+      className={cn(
+        'inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+        className,
+      )}
+      {...rest}
+    >
+      {children}
+    </a>
   )
 }
 

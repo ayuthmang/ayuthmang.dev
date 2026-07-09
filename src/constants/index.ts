@@ -14,6 +14,7 @@ export const PROFILE_LINKS = {
   GITHUB: 'https://github.com/ayuthmang',
   MEDIUM: 'https://medium.com/@ayuthmang',
   DEV: 'https://dev.to/ayuthmang',
+  LINKEDIN: 'https://www.linkedin.com/in/ayuth-mangmesap-116139121',
 }
 
 export * from './route.constants'

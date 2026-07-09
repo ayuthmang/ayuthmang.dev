@@ -17,8 +17,10 @@ export function BentoGrid({
   )
 }
 
-interface BentoCardProps
-  extends Omit<React.ComponentPropsWithoutRef<'section'>, 'title'> {
+interface BentoCardProps extends Omit<
+  React.ComponentPropsWithoutRef<'section'>,
+  'title'
+> {
   title?: React.ReactNode
 }
 
@@ -31,7 +33,7 @@ export function BentoCard({
   return (
     <section
       className={cn(
-        'group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition-shadow duration-200 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:shadow-gray-950/50',
+        'group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500/30 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-400/30 dark:hover:shadow-gray-950/50',
         className,
       )}
       {...rest}

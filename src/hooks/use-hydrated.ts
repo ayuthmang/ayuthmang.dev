@@ -9,7 +9,13 @@ export function useHydrated() {
   const [hydrated, setHydrated] = React.useState(false)
 
   React.useEffect(() => {
-    setHydrated(true)
+    const handle = window.setTimeout(() => {
+      setHydrated(true)
+    }, 0)
+
+    return () => {
+      window.clearTimeout(handle)
+    }
   }, [])
 
   return hydrated

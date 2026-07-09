@@ -12,3 +12,48 @@
   animation: wave 1000ms infinite alternate ease-in-out;
   transform-origin: 75% 80%;
 }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* `backwards` (not `both`) so the finished animation releases `transform`
+   and hover translations on the cards keep working. */
+@media (prefers-reduced-motion: no-preference) {
+  .heroEnter {
+    animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .gridEnter > section {
+    animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .gridEnter > section:nth-child(1) {
+    animation-delay: 100ms;
+  }
+  .gridEnter > section:nth-child(2) {
+    animation-delay: 170ms;
+  }
+  .gridEnter > section:nth-child(3) {
+    animation-delay: 240ms;
+  }
+  .gridEnter > section:nth-child(4) {
+    animation-delay: 310ms;
+  }
+  .gridEnter > section:nth-child(5) {
+    animation-delay: 380ms;
+  }
+  .gridEnter > section:nth-child(6) {
+    animation-delay: 450ms;
+  }
+  .gridEnter > section:nth-child(7) {
+    animation-delay: 520ms;
+  }
+}

@@ -30,4 +30,4 @@ export interface Item {
   categories: string[]
 }
 
-export interface Enclosure {}
+export type Enclosure = Record<string, never>

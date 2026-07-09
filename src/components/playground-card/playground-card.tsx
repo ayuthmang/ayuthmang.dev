@@ -75,7 +75,7 @@ function BoopCounter() {
           type="button"
           aria-label="Boop!"
           onClick={boop}
-          className="cursor-pointer text-4xl transition-transform duration-100 active:scale-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+          className="cursor-pointer text-4xl transition-transform duration-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500 active:scale-75"
         >
           🐽
         </button>
