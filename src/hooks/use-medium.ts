@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { RssToJsonMediumResponse } from './use-medium.types'
+import type { Item, RssToJsonMediumResponse } from './use-medium.types'
 import { useSuspenseQuery } from '@tanstack/react-query'
 
 const rssToJsonUrl =
@@ -53,6 +53,39 @@ export function slugFromLink(link: string): string {
 
   const decodedSegment = decodeURIComponent(lastSegment)
   return decodedSegment.split('-').pop() ?? decodedSegment
+}
+
+/**
+ * Fetches Medium posts but never throws — returns an empty list if the RSS
+ * feed is unreachable (e.g. during a build with no network). Lets local MDX
+ * posts render even when Medium is down.
+ */
+export async function getMediumItemsSafe(username: string): Promise<Item[]> {
+  try {
+    const { items } = await getLatestMediumPosts(username)
+    return items
+  } catch (error) {
+    console.warn(
+      '[medium] failed to fetch posts, continuing without them:',
+      error instanceof Error ? error.message : error,
+    )
+    return []
+  }
+}
+
+/**
+ * Like {@link getMediumPostBySlug} but never throws; returns `null` on failure.
+ */
+export async function getMediumPostBySlugSafe(username: string, slug: string) {
+  try {
+    return await getMediumPostBySlug(username, slug)
+  } catch (error) {
+    console.warn(
+      '[medium] failed to fetch post by slug, continuing without it:',
+      error instanceof Error ? error.message : error,
+    )
+    return null
+  }
 }
 
 /**
