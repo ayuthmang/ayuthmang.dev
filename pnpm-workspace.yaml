@@ -12,9 +12,18 @@ overrides:
   # eslint-plugin-react (via eslint-config-next) has no ESLint 10 compatible
   # release yet — it calls context.getFilename(), removed in v10. Pin to 9.x.
   eslint: ^9.39.4
-  # next pins postcss to 8.4.31 (transitive); force >=8.5.10 to clear the
-  # postcss XSS advisory (vulnerable < 8.5.10).
-  postcss: '>=8.5.10'
+  # next pins postcss to 8.4.31 (transitive); force >=8.5.18 to clear both the
+  # postcss XSS advisory (< 8.5.10) and the source-map path-traversal advisory
+  # (<= 8.5.17).
+  postcss: '>=8.5.18'
+  # sharp (transitive via next) < 0.35.0 inherits libvips CVEs
+  # (CVE-2026-33327/33328/35590/35591); patched in 0.35.0.
+  sharp: '>=0.35.0'
+  # brace-expansion DoS via unbounded expansion (GHSA-mh99-v99m-4gvg); patched
+  # in 5.0.8. Scoped to the 5.x line (via minimatch@10). The old minimatch@3's
+  # 1.1.16 cannot be forced to 5.x — 5.x changed its export shape and breaks
+  # minimatch@3's require(); see report note.
+  'brace-expansion@5': '>=5.0.8'
 peerDependencyRules:
   allowedVersions:
     typescript: '6'
