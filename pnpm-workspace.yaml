@@ -12,6 +12,9 @@ overrides:
   # eslint-plugin-react (via eslint-config-next) has no ESLint 10 compatible
   # release yet — it calls context.getFilename(), removed in v10. Pin to 9.x.
   eslint: ^9.39.4
+  # next pins postcss to 8.4.31 (transitive); force >=8.5.10 to clear the
+  # postcss XSS advisory (vulnerable < 8.5.10).
+  postcss: '>=8.5.10'
 peerDependencyRules:
   allowedVersions:
     typescript: '6'
