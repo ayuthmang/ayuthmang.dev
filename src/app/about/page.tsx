@@ -79,6 +79,7 @@ function AboutPage() {
                   alt="security researcher"
                   width="120"
                   height="120"
+                  unoptimized
                   className="rounded-md"
                 />
               </TooltipContent>
