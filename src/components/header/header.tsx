@@ -5,7 +5,7 @@ import MobileMenu from '@/components/mobile-menu'
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import UnstyledButton from '@/components/unstyled-button'
 import VisuallyHidden from '@/components/visually-hidden'
-import { PROFILE_LINKS } from '@/constants'
+import { PROFILE_LINKS, ROUTES } from '@/constants'
 import { cn } from '@/utils'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { usePathname } from 'next/navigation'
@@ -30,7 +30,8 @@ export function Header() {
         <DesktopNav>
           <DesktopActions>
             <BlogsNavMenu />
-            <NavLink href="/about">About</NavLink>
+            <NavLink href={ROUTES.BLOG}>Blog</NavLink>
+            <NavLink href={ROUTES.ABOUT}>About</NavLink>
           </DesktopActions>
           <Filler />
           <DesktopActions>
