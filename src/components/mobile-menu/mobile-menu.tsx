@@ -3,7 +3,7 @@ import React from 'react'
 import UnstyledButton from '@/components/unstyled-button'
 import styles from './mobile-menu.module.css'
 import clsx from 'clsx'
-import { PROFILE_LINKS } from '@/constants'
+import { PROFILE_LINKS, ROUTES } from '@/constants'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import { ModeToggle } from '../mode-toggle'
 
@@ -38,7 +38,8 @@ export function MobileMenu({
               <Filler />
               <Nav>
                 <NavLink href="/">Home</NavLink>
-                <NavLink href="/about">About</NavLink>
+                <NavLink href={ROUTES.BLOG}>Blog</NavLink>
+                <NavLink href={ROUTES.ABOUT}>About</NavLink>
                 <NavLink href={PROFILE_LINKS.GITHUB}>GitHub</NavLink>
                 <NavLink href={PROFILE_LINKS.MEDIUM}>Medium</NavLink>
                 <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>

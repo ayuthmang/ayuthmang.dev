@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Blog post">
+  <defs>
+    <linearGradient id="ph" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#ph)" />
+  <text x="80" y="345" font-family="'Maven Pro', system-ui, sans-serif" font-size="80" font-weight="800" fill="#94a3b8">ayuthmang.dev</text>
+</svg>

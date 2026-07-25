@@ -176,3 +176,57 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+/*
+  Syntax highlighting for MDX code blocks (rehype-pretty-code + Shiki).
+  Themes are emitted as CSS variables per token so we can switch between the
+  light and dark Shiki themes based on next-themes' `.dark` class.
+*/
+@layer components {
+  .prose [data-rehype-pretty-code-figure] pre {
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    padding-block: 1rem;
+    background-color: #f6f8fa;
+  }
+
+  .dark .prose [data-rehype-pretty-code-figure] pre {
+    background-color: #0d1117;
+  }
+
+  .prose [data-rehype-pretty-code-figure] code {
+    display: grid;
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .prose [data-rehype-pretty-code-figure] code [data-line] {
+    padding-inline: 1rem;
+  }
+
+  /* Token colours: default to the light theme, swap under `.dark`. */
+  .prose code[data-theme] span,
+  .prose code[data-theme] {
+    color: var(--shiki-light);
+  }
+
+  .dark .prose code[data-theme] span,
+  .dark .prose code[data-theme] {
+    color: var(--shiki-dark);
+  }
+
+  /* Inline code: drop the default typography backticks. */
+  .prose :not(pre) > code[data-theme] {
+    border-radius: 0.25rem;
+    padding: 0.15rem 0.35rem;
+    background-color: var(--muted);
+    font-weight: 500;
+  }
+
+  .prose :not(pre) > code::before,
+  .prose :not(pre) > code::after {
+    content: none;
+  }
+}
