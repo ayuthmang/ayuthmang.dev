@@ -1,0 +1,57 @@
+---
+title: Hello, World — Authoring Posts in MDX
+description: A tour of the local MDX blog pipeline — headings, syntax-highlighted code, images, and embedded React components.
+date: 2026-07-25
+tags:
+  - mdx
+  - nextjs
+  - blog
+coverImage: /images/hello-world-cover.svg
+---
+
+Welcome to the first locally-authored post on this site. It lives as a plain
+`.mdx` file under `content/blog/` and is statically generated at build time,
+sitting right alongside the posts pulled from Medium.
+
+## Why MDX?
+
+MDX lets me write in Markdown but drop in real React components whenever prose
+isn't enough. The frontmatter above drives the title, description, tags, and
+social metadata.
+
+<Callout type="info" title="Good to know">
+  This entire callout is a React component embedded directly in Markdown. No
+  imports needed — it's registered globally in `mdx-components.tsx`.
+</Callout>
+
+## Code blocks
+
+Fenced code blocks are highlighted at build time with
+[rehype-pretty-code](https://rehype-pretty-code.netlify.app/) (powered by
+Shiki), using a dual light/dark theme that follows the site's theme toggle.
+
+```tsx
+import { getAllPosts } from '@/lib/posts'
+
+export function LatestPost() {
+  const [latest] = getAllPosts()
+  return <h2>{latest.title}</h2>
+}
+```
+
+Inline code such as `getPostBySlug('hello-world')` works too.
+
+## Images
+
+Local images are optimized through `next/image`:
+
+![A gradient cover illustration](/images/hello-world-cover.svg)
+
+## A quick warning
+
+<Callout type="warning" title="Drafts stay hidden">
+  Set `draft: true` in the frontmatter and a post is excluded from production
+  builds while remaining visible during local development.
+</Callout>
+
+That's the whole pipeline — write Markdown, sprinkle in components, ship.
