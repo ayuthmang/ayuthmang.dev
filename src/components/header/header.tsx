@@ -26,14 +26,14 @@ export function Header() {
           </DesktopActions>
           <Filler />
           <DesktopActions>
-            <div className="flex items-center gap-4 border-r border-border pr-6">
-              <a href={PROFILE_LINKS.GITHUB} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
+            <div className="flex items-center gap-5 border-r border-border pr-6">
+              <a href={PROFILE_LINKS.GITHUB} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-125 hover:-rotate-6" aria-label="GitHub">
                 <GitHubIcon className="h-5 w-5 fill-current" />
               </a>
-              <a href={PROFILE_LINKS.MEDIUM} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Medium">
+              <a href={PROFILE_LINKS.MEDIUM} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-125 hover:-rotate-6" aria-label="Medium">
                 <MediumIcon className="h-5 w-5 fill-current" />
               </a>
-              <a href={PROFILE_LINKS.DEV} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Dev.to">
+              <a href={PROFILE_LINKS.DEV} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-125 hover:-rotate-6" aria-label="Dev.to">
                 <DevIcon className="h-5 w-5 fill-current" />
               </a>
             </div>
