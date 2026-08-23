@@ -10,6 +10,7 @@ import { cn } from '@/utils'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ModeToggle } from '../mode-toggle'
 
 export function Header() {
@@ -173,101 +174,56 @@ function DevIcon(props: React.ComponentProps<'svg'>) {
 }
 
 function DesktopSocials() {
-  const [activeRect, setActiveRect] = React.useState<{ width: number; height: number; left: number; top: number } | null>(null)
-  const [isHovered, setIsHovered] = React.useState(false)
-  const [isEntering, setIsEntering] = React.useState(false)
-  const containerRef = React.useRef<HTMLDivElement>(null)
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
 
-  const handleInteract = (e: React.MouseEvent<HTMLAnchorElement> | React.FocusEvent<HTMLAnchorElement>) => {
-    const target = e.currentTarget
-    const rect = {
-      width: target.offsetWidth,
-      height: target.offsetHeight,
-      left: target.offsetLeft,
-      top: target.offsetTop,
-    }
-
-    if (!isHovered) {
-      // First hover: Instantly show at correct position without animation
-      setIsEntering(true)
-      setActiveRect(rect)
-      setIsHovered(true)
-      
-      // Enable transitions shortly after it appears
-      setTimeout(() => setIsEntering(false), 0)
-    } else {
-      // Moving between icons: slide smoothly
-      setActiveRect(rect)
-    }
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovered(false)
-    // Instantly disable transitions for the fade out to avoid weird bezier fades
-    setIsEntering(true) 
-  }
-
-  const handleBlur = (e: React.FocusEvent) => {
-    if (!containerRef.current?.contains(e.relatedTarget as Node)) {
-      handleMouseLeave()
-    }
-  }
+  const links = [
+    { href: PROFILE_LINKS.GITHUB, icon: GitHubIcon, label: "Visit my GitHub profile" },
+    { href: PROFILE_LINKS.MEDIUM, icon: MediumIcon, label: "Visit my Medium blog" },
+    { href: PROFILE_LINKS.DEV, icon: DevIcon, label: "Visit my Dev.to profile" },
+  ]
 
   return (
     <div
-      ref={containerRef}
       className="relative flex items-center gap-1 border-r border-border pr-6"
-      onMouseLeave={handleMouseLeave}
-      onBlur={handleBlur}
+      onMouseLeave={() => setHoveredIndex(null)}
     >
-      {/* Sliding Highlight */}
-      <div
-        className={cn(
-          "pointer-events-none absolute left-0 top-0 z-0 rounded-lg bg-muted/80 dark:bg-muted",
-          "motion-safe:transition-all",
-          isEntering ? "duration-0" : "duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
-          isHovered ? "opacity-100" : "opacity-0"
-        )}
-        style={{
-          width: activeRect?.width ?? 0,
-          height: activeRect?.height ?? 0,
-          transform: `translate(${activeRect?.left ?? 0}px, ${activeRect?.top ?? 0}px)`,
-        }}
-      />
-
-      <a
-        href={PROFILE_LINKS.GITHUB}
-        target="_blank"
-        rel="noreferrer"
-        className="relative z-10 p-2 text-muted-foreground motion-safe:transition-all motion-safe:duration-300 hover:text-foreground motion-safe:hover:-rotate-6 motion-safe:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-        onMouseEnter={handleInteract}
-        onFocus={handleInteract}
-      >
-        <span className="sr-only">Visit my GitHub profile</span>
-        <GitHubIcon className="h-5 w-5 fill-current" />
-      </a>
-      <a
-        href={PROFILE_LINKS.MEDIUM}
-        target="_blank"
-        rel="noreferrer"
-        className="relative z-10 p-2 text-muted-foreground motion-safe:transition-all motion-safe:duration-300 hover:text-foreground motion-safe:hover:-rotate-6 motion-safe:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-        onMouseEnter={handleInteract}
-        onFocus={handleInteract}
-      >
-        <span className="sr-only">Visit my Medium blog</span>
-        <MediumIcon className="h-5 w-5 fill-current" />
-      </a>
-      <a
-        href={PROFILE_LINKS.DEV}
-        target="_blank"
-        rel="noreferrer"
-        className="relative z-10 p-2 text-muted-foreground motion-safe:transition-all motion-safe:duration-300 hover:text-foreground motion-safe:hover:-rotate-6 motion-safe:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-        onMouseEnter={handleInteract}
-        onFocus={handleInteract}
-      >
-        <span className="sr-only">Visit my Dev.to profile</span>
-        <DevIcon className="h-5 w-5 fill-current" />
-      </a>
+      {links.map((link, i) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noreferrer"
+          className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+          onMouseEnter={() => setHoveredIndex(i)}
+          onFocus={() => setHoveredIndex(i)}
+          onBlur={(e) => {
+            if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) {
+              setHoveredIndex(null)
+            }
+          }}
+        >
+          <span className="sr-only">{link.label}</span>
+          <link.icon className="h-5 w-5 fill-current" />
+          
+          <AnimatePresence>
+            {hoveredIndex === i && (
+              <motion.div
+                layoutId="social-highlight"
+                className="absolute inset-0 -z-10 rounded-lg bg-muted/80 dark:bg-muted"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ 
+                  type: 'spring',
+                  bounce: 0.25,
+                  duration: 0.4,
+                  opacity: { duration: 0.15 } // ultra fast fade
+                }}
+              />
+            )}
+          </AnimatePresence>
+        </a>
+      ))}
     </div>
   )
 }
