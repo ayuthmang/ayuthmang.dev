@@ -4,6 +4,7 @@ import Header from '@/components/header'
 import React from 'react'
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import Providers from './providers'
+import Konami from '@/components/konami'
 import './globals.css'
 
 const siteUrl = 'https://ayuthmang-dev.vercel.app'
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning={true}>
+        <Konami />
         <Providers>
           <Header />
           <MaxWidthWrapper>{children}</MaxWidthWrapper>
