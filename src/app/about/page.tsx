@@ -145,7 +145,7 @@ function AboutPage() {
 
         {/* Professional Experience — wide card */}
         <BentoCard title="💼 Professional Journey" className="md:col-span-2">
-          <div className="relative ml-1.5 space-y-8 border-l-2 border-gray-200 pl-6 dark:border-gray-800">
+          <div className="relative ml-1.5 space-y-8 border-l-2 border-gray-200 pl-4 md:pl-6 dark:border-gray-800">
             <ExperienceItem
               company="OOZOU"
               position="Full-Stack Developer"
@@ -300,7 +300,7 @@ function ExperienceItem({
       <span
         aria-hidden
         className={cn(
-          'absolute top-1.5 -left-[31px] size-3 rounded-full ring-4 ring-white dark:ring-gray-900',
+          'absolute top-1.5 -left-[23px] md:-left-[31px] size-3 rounded-full ring-4 ring-white dark:ring-gray-900',
           isCurrent
             ? 'bg-blue-500 shadow-md shadow-blue-500/50'
             : 'bg-gray-300 dark:bg-gray-700',
