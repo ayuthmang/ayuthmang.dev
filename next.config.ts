@@ -26,6 +26,7 @@ const withMDX = createMDX({
       ['remark-mdx-frontmatter', { name: 'frontmatter' }],
     ],
     rehypePlugins: [
+      ['rehype-slug'],
       [
         'rehype-pretty-code',
         {
