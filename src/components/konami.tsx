@@ -17,35 +17,35 @@ const KONAMI_CODE = [
 ]
 
 function triggerEasterEgg() {
-  // A glorious, screen-filling firework confetti explosion
-  const duration = 5 * 1000
-  const animationEnd = Date.now() + duration
-  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 }
+  console.log('🎉 KONAMI CODE ACTIVATED! 🎉')
+  
+  const duration = 3000
+  const end = Date.now() + duration
 
-  const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min
+  const frame = () => {
+    confetti({
+      particleCount: 7,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0, y: 0.8 },
+      colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'],
+      zIndex: 9999
+    })
+    confetti({
+      particleCount: 7,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1, y: 0.8 },
+      colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'],
+      zIndex: 9999
+    })
 
-  const interval = setInterval(function () {
-    const timeLeft = animationEnd - Date.now()
-
-    if (timeLeft <= 0) {
-      return clearInterval(interval)
+    if (Date.now() < end) {
+      requestAnimationFrame(frame)
     }
-
-    const particleCount = 50 * (timeLeft / duration)
-    
-    confetti({
-      ...defaults,
-      particleCount,
-      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-      colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff']
-    })
-    confetti({
-      ...defaults,
-      particleCount,
-      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-      colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff']
-    })
-  }, 250)
+  }
+  
+  frame()
 }
 
 export default function Konami() {
@@ -53,6 +53,11 @@ export default function Konami() {
     let input: string[] = []
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore modifier keys that might break the sequence (like Shift for capital A/B)
+      if (e.key === 'Shift' || e.key === 'Control' || e.key === 'Alt' || e.key === 'Meta') {
+        return
+      }
+
       // Ignore if user is typing in an input or textarea
       if (
         e.target instanceof HTMLInputElement ||
