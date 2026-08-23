@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest'
-import { extractHeadings, slugify, type Heading } from '../headings'
+import { extractHeadings, slugify } from '../headings'
 
 describe('extractHeadings', () => {
   test('Empty string', () => {

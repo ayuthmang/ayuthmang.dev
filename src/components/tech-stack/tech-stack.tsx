@@ -132,7 +132,7 @@ function TechBadge({ tech }: { tech: Tech }) {
           aria-hidden
           style={color ? { color } : undefined}
           className={cn(
-            'size-6 opacity-70 grayscale transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/tech:scale-125 group-hover/tech:-rotate-6 group-hover/tech:opacity-100 group-hover/tech:grayscale-0 group-focus-visible/tech:scale-125 group-focus-visible/tech:-rotate-6 group-focus-visible/tech:opacity-100 group-focus-visible/tech:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover/tech:scale-100 motion-reduce:group-hover/tech:rotate-0',
+            'size-6 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/tech:scale-125 group-hover/tech:-rotate-6 group-focus-visible/tech:scale-125 group-focus-visible/tech:-rotate-6 motion-reduce:transition-none motion-reduce:group-hover/tech:scale-100 motion-reduce:group-hover/tech:rotate-0',
             iconClassName,
           )}
         />

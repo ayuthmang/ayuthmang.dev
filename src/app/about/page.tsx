@@ -6,6 +6,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { Button } from '@/components/ui/button'
 import { BentoGrid, BentoCard } from '@/components/bento-grid'
 import { PlaygroundCard } from '@/components/playground-card'
 import { TechStack } from '@/components/tech-stack'
@@ -213,29 +214,33 @@ function AboutPage() {
             technologies, and challenging problems. Feel free to reach out!
           </p>
           <div className="mt-auto flex flex-wrap gap-3">
-            <ConnectLink
-              href="mailto:ayuth.mang@gmail.com"
-              className="bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700"
+            <Button
+              asChild
+              className="bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-0.5 transition-transform"
             >
-              <EnvelopeClosedIcon aria-hidden />
-              Email
-            </ConnectLink>
-            <ConnectLink
-              href={PROFILE_LINKS.LINKEDIN}
-              external
-              className="bg-blue-600 text-white hover:bg-blue-700"
+              <a href="mailto:ayuth.mang@gmail.com">
+                <EnvelopeClosedIcon aria-hidden />
+                Email
+              </a>
+            </Button>
+            <Button
+              asChild
+              className="bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5 transition-transform"
             >
-              <LinkedInLogoIcon aria-hidden />
-              LinkedIn
-            </ConnectLink>
-            <ConnectLink
-              href={PROFILE_LINKS.GITHUB}
-              external
-              className="bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-300"
+              <a href={PROFILE_LINKS.LINKEDIN} target="_blank" rel="noreferrer">
+                <LinkedInLogoIcon aria-hidden />
+                LinkedIn
+              </a>
+            </Button>
+            <Button
+              asChild
+              className="bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-300 hover:-translate-y-0.5 transition-transform"
             >
-              <GitHubLogoIcon aria-hidden />
-              GitHub
-            </ConnectLink>
+              <a href={PROFILE_LINKS.GITHUB} target="_blank" rel="noreferrer">
+                <GitHubLogoIcon aria-hidden />
+                GitHub
+              </a>
+            </Button>
           </div>
         </BentoCard>
 
@@ -322,30 +327,6 @@ function FactChip({ children }: { children: React.ReactNode }) {
     <span className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm text-gray-700 dark:border-gray-800 dark:bg-gray-800/60 dark:text-gray-300">
       {children}
     </span>
-  )
-}
-
-interface ConnectLinkProps extends React.ComponentPropsWithoutRef<'a'> {
-  external?: boolean
-}
-
-function ConnectLink({
-  external,
-  className,
-  children,
-  ...rest
-}: ConnectLinkProps) {
-  return (
-    <a
-      {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
-      className={cn(
-        'inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
-        className,
-      )}
-      {...rest}
-    >
-      {children}
-    </a>
   )
 }
 
