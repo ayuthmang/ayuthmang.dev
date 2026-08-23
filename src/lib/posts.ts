@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
+import { estimateReadingTime } from './reading-time'
 
 /**
  * Directory that holds locally-authored `.mdx` blog posts.
@@ -16,6 +17,7 @@ export type PostFrontmatter = {
   tags?: string[]
   draft?: boolean
   coverImage?: string
+  readingTime: number
 }
 
 export type Post = {
@@ -74,6 +76,7 @@ function toPost(slug: string, fileContents: string): Post {
     tags: frontmatter.tags ?? [],
     draft: frontmatter.draft ?? false,
     coverImage: frontmatter.coverImage,
+    readingTime: estimateReadingTime(fileContents),
   }
 }
 

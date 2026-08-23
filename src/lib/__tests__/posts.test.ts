@@ -22,7 +22,16 @@ describe('getAllPosts', () => {
       tags: ['react'],
       draft: false,
       coverImage: '/images/alpha.png',
+      readingTime: expect.any(Number),
     })
+  })
+
+
+  test('computes readingTime for each post', () => {
+    const posts = getAllPosts(opts(true))
+    for (const post of posts) {
+      expect(post.readingTime).toBeGreaterThanOrEqual(1)
+    }
   })
 
   test('sorts posts by date descending', () => {
