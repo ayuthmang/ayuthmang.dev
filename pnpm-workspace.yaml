@@ -12,6 +12,15 @@ overrides:
   # eslint-plugin-react (via eslint-config-next) has no ESLint 10 compatible
   # release yet — it calls context.getFilename(), removed in v10. Pin to 9.x.
   eslint: ^9.39.4
+  # js-yaml quadratic CPU consumption in !!omap resolution (CVE-2026-59870);
+  # patched in 3.15.1 / 4.3.1. Scoped per major because gray-matter (runtime,
+  # parses blog frontmatter) is on the 3.x line and forcing it to 4.x would
+  # change js-yaml's API out from under it.
+  # Ranges are upper-bounded: a bare '>=3.15.1' also matches 4.x/5.x, and pnpm
+  # resolves overrides to the newest match, which drags gray-matter onto
+  # js-yaml 4 and breaks it at import (it calls the removed yaml.safeLoad).
+  'js-yaml@3': '>=3.15.1 <4'
+  'js-yaml@4': '>=4.3.1 <5'
   # next pins postcss to 8.4.31 (transitive); force >=8.5.18 to clear both the
   # postcss XSS advisory (< 8.5.10) and the source-map path-traversal advisory
   # (<= 8.5.17).
