@@ -173,22 +173,39 @@ function DevIcon(props: React.ComponentProps<'svg'>) {
 }
 
 function DesktopSocials() {
-  const [hoveredRect, setHoveredRect] = React.useState<{ width: number; height: number; left: number; top: number; opacity: number } | null>(null)
+  const [activeRect, setActiveRect] = React.useState<{ width: number; height: number; left: number; top: number } | null>(null)
+  const [isHovered, setIsHovered] = React.useState(false)
+  const [isEntering, setIsEntering] = React.useState(false)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
   const handleInteract = (e: React.MouseEvent<HTMLAnchorElement> | React.FocusEvent<HTMLAnchorElement>) => {
     const target = e.currentTarget
-    setHoveredRect({
+    const rect = {
       width: target.offsetWidth,
       height: target.offsetHeight,
       left: target.offsetLeft,
       top: target.offsetTop,
-      opacity: 1,
-    })
+    }
+
+    if (!isHovered) {
+      // First hover: snap instantly without transition
+      setIsEntering(true)
+      setActiveRect(rect)
+      
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsEntering(false)
+          setIsHovered(true)
+        })
+      })
+    } else {
+      // Moving between icons: just update rect so it slides
+      setActiveRect(rect)
+    }
   }
 
   const handleMouseLeave = () => {
-    setHoveredRect((prev) => prev ? { ...prev, opacity: 0 } : null)
+    setIsHovered(false)
   }
 
   const handleBlur = (e: React.FocusEvent) => {
@@ -206,12 +223,15 @@ function DesktopSocials() {
     >
       {/* Sliding Highlight */}
       <div
-        className="pointer-events-none absolute left-0 top-0 z-0 rounded-lg bg-muted/80 dark:bg-muted motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+        className={cn(
+          "pointer-events-none absolute left-0 top-0 z-0 rounded-lg bg-muted/80 dark:bg-muted",
+          isEntering ? "transition-none" : "motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+          isHovered ? "opacity-100" : "opacity-0"
+        )}
         style={{
-          opacity: hoveredRect?.opacity ?? 0,
-          width: hoveredRect?.width ?? 0,
-          height: hoveredRect?.height ?? 0,
-          transform: `translate(${hoveredRect?.left ?? 0}px, ${hoveredRect?.top ?? 0}px)`,
+          width: activeRect?.width ?? 0,
+          height: activeRect?.height ?? 0,
+          transform: `translate(${activeRect?.left ?? 0}px, ${activeRect?.top ?? 0}px)`,
         }}
       />
 
