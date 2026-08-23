@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import confetti from 'canvas-confetti'
+import clsx from 'clsx'
 
 const KONAMI_CODE = [
   'ArrowUp',
@@ -15,6 +16,15 @@ const KONAMI_CODE = [
   'b',
   'a',
 ]
+
+const KEY_LABELS: Record<string, string> = {
+  ArrowUp: '↑',
+  ArrowDown: '↓',
+  ArrowLeft: '←',
+  ArrowRight: '→',
+  b: 'B',
+  a: 'A',
+}
 
 function triggerEasterEgg() {
   console.log('🎉 KONAMI CODE ACTIVATED! 🎉')
@@ -108,14 +118,35 @@ export default function Konami() {
 
   return (
     <div className="fixed bottom-6 right-6 z-[9999] animate-in slide-in-from-bottom-5 fade-in duration-300">
-      <div className="rounded-lg border border-cyan-500/30 bg-slate-900/90 px-4 py-3 text-sm font-mono text-cyan-400 shadow-lg shadow-cyan-500/20 backdrop-blur-md">
+      <div className="rounded-xl border border-cyan-500/20 bg-slate-950/95 p-4 shadow-2xl shadow-cyan-500/10 backdrop-blur-md">
         {progress === KONAMI_CODE.length ? (
-          <span className="font-bold text-green-400">Cheat Code Activated! 🚀</span>
+          <div className="flex h-8 items-center justify-center font-mono font-bold text-green-400">
+            Cheat Code Activated! 🚀
+          </div>
         ) : (
-          <span className="flex items-center gap-2">
-            <span className="animate-pulse">_</span>
-            Secret sequence: {progress}/{KONAMI_CODE.length}
-          </span>
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-medium text-slate-400">Secret sequence detected:</span>
+            <div className="flex items-center gap-1.5">
+              {KONAMI_CODE.map((key, index) => {
+                const isPressed = index < progress
+                const isNext = index === progress
+                
+                return (
+                  <kbd
+                    key={index}
+                    className={clsx(
+                      "flex h-7 min-w-[28px] items-center justify-center rounded border px-1.5 font-sans text-sm font-semibold transition-all duration-200",
+                      isPressed && "border-cyan-500/50 bg-cyan-500/10 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]",
+                      isNext && "animate-pulse border-slate-500 bg-slate-800 text-slate-200 scale-110",
+                      !isPressed && !isNext && "border-slate-800 bg-slate-900 text-slate-600"
+                    )}
+                  >
+                    {KEY_LABELS[key]}
+                  </kbd>
+                )
+              })}
+            </div>
+          </div>
         )}
       </div>
     </div>
