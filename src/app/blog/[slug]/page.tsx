@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
 import { Badge } from '@/components/ui/badge'
+import { TableOfContents } from '@/components/table-of-contents'
 import {
   getMediumItemsSafe,
   getMediumPostBySlugSafe,
@@ -102,30 +103,35 @@ async function LocalPost({ post }: { post: Post }) {
   )
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
-      <BackLink />
-      <header className="mb-8">
-        <h1 className="mb-3 text-3xl font-bold leading-tight">{post.title}</h1>
-        <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          {post.tags.length > 0 ? (
-            <>
-              <span>·</span>
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </>
-          ) : null}
-        </div>
-      </header>
+    <div className="mx-auto max-w-5xl px-4 py-10">
+      <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
+        <div>
+          <BackLink />
+          <header className="mb-8">
+            <h1 className="mb-3 text-3xl font-bold leading-tight">{post.title}</h1>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              {post.tags.length > 0 ? (
+                <>
+                  <span>·</span>
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </>
+              ) : null}
+            </div>
+          </header>
 
-      <article className={proseClassName}>
-        <MDXContent />
-      </article>
+          <article className={proseClassName}>
+            <MDXContent />
+          </article>
+        </div>
+        <TableOfContents headings={post.headings} />
+      </div>
     </div>
   )
 }
