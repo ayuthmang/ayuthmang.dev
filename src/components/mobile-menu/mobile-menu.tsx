@@ -38,7 +38,8 @@ export function MobileMenu({
                   <Cross1Icon width={24} height={24} />
                 </CloseButton>
               </Dialog.Close>
-              <div className="pt-16 pb-8">
+              <Filler />
+              <div className="pb-8">
                 <Nav>
                   <NavLink href="/" onClick={() => onOpenChange(false)}>Home</NavLink>
                   <NavLink href={ROUTES.BLOG} onClick={() => onOpenChange(false)}>Blog</NavLink>
