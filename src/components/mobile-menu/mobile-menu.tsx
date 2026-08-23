@@ -135,7 +135,7 @@ function InnerWrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
 }
 
 function Nav({ children }: React.ComponentPropsWithoutRef<'nav'>) {
-  return <nav className="flex flex-col gap-5">{children}</nav>
+  return <nav className="flex flex-col gap-4">{children}</nav>
 }
 
 function NavLink({
@@ -152,7 +152,7 @@ function NavLink({
       href={href}
       onClick={onClick}
       className={clsx(
-        "text-2xl font-semibold tracking-tight transition-colors duration-200",
+        "text-lg font-medium transition-colors duration-200",
         isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
       )}
       {...delegated}
