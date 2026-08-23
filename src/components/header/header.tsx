@@ -26,17 +26,7 @@ export function Header() {
           </DesktopActions>
           <Filler />
           <DesktopActions>
-            <div className="flex items-center gap-5 border-r border-border pr-6">
-              <a href={PROFILE_LINKS.GITHUB} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-125 hover:-rotate-6" aria-label="GitHub">
-                <GitHubIcon className="h-5 w-5 fill-current" />
-              </a>
-              <a href={PROFILE_LINKS.MEDIUM} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-125 hover:-rotate-6" aria-label="Medium">
-                <MediumIcon className="h-5 w-5 fill-current" />
-              </a>
-              <a href={PROFILE_LINKS.DEV} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-125 hover:-rotate-6" aria-label="Dev.to">
-                <DevIcon className="h-5 w-5 fill-current" />
-              </a>
-            </div>
+            <DesktopSocials />
             <ModeToggle />
           </DesktopActions>
         </DesktopNav>
@@ -179,6 +169,78 @@ function DevIcon(props: React.ComponentProps<'svg'>) {
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" {...props}>
       <path d="M120.12 208.29c-3.88-2.9-7.77-4.35-11.65-4.35H91.03v104.47h17.45c3.88 0 7.77-1.45 11.65-4.35 3.88-2.9 5.82-7.25 5.82-13.06v-69.65c-.01-5.8-1.96-10.16-5.83-13.06zM404.1 32H43.9C19.7 32 .06 51.59 0 75.8v360.4C.06 460.41 19.7 480 43.9 480h360.2c24.21 0 43.84-19.59 43.9-43.8V75.8c-.06-24.21-19.7-43.8-43.9-43.8zM154.2 291.19c0 18.81-11.61 47.31-48.36 47.25h-46.4V172.98h47.38c35.44 0 47.36 28.46 47.37 47.28l.01 70.93zm100.68-88.66H201.6v38.42h32.57v29.57H201.6v38.41h53.29v29.57h-62.18c-11.16.29-20.44-8.53-20.72-19.69V193.7c-.27-11.15 8.56-20.41 19.71-20.69h63.19l-.01 29.52zm103.64 115.29c-13.2 30.75-36.85 24.63-47.44 0l-38.53-144.8h32.57l29.71 113.72 29.57-113.72h32.58l-38.46 144.8z" />
     </svg>
+  )
+}
+
+function DesktopSocials() {
+  const [hoveredRect, setHoveredRect] = React.useState<{ width: number; height: number; left: number; top: number; opacity: number } | null>(null)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!containerRef.current) return
+    const container = containerRef.current.getBoundingClientRect()
+    const rect = e.currentTarget.getBoundingClientRect()
+    setHoveredRect({
+      width: rect.width,
+      height: rect.height,
+      left: rect.left - container.left,
+      top: rect.top - container.top,
+      opacity: 1,
+    })
+  }
+
+  const handleMouseLeave = () => {
+    setHoveredRect((prev) => prev ? { ...prev, opacity: 0 } : null)
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative flex items-center gap-1 border-r border-border pr-6"
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Sliding Highlight */}
+      <div
+        className="pointer-events-none absolute z-0 rounded-lg bg-muted/80 dark:bg-muted transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+        style={{
+          opacity: hoveredRect?.opacity ?? 0,
+          width: hoveredRect?.width ?? 0,
+          height: hoveredRect?.height ?? 0,
+          transform: `translate(${hoveredRect?.left ?? 0}px, ${hoveredRect?.top ?? 0}px)`,
+        }}
+      />
+
+      <a
+        href={PROFILE_LINKS.GITHUB}
+        target="_blank"
+        rel="noreferrer"
+        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
+        aria-label="GitHub"
+        onMouseEnter={handleMouseEnter}
+      >
+        <GitHubIcon className="h-5 w-5 fill-current" />
+      </a>
+      <a
+        href={PROFILE_LINKS.MEDIUM}
+        target="_blank"
+        rel="noreferrer"
+        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
+        aria-label="Medium"
+        onMouseEnter={handleMouseEnter}
+      >
+        <MediumIcon className="h-5 w-5 fill-current" />
+      </a>
+      <a
+        href={PROFILE_LINKS.DEV}
+        target="_blank"
+        rel="noreferrer"
+        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
+        aria-label="Dev.to"
+        onMouseEnter={handleMouseEnter}
+      >
+        <DevIcon className="h-5 w-5 fill-current" />
+      </a>
+    </div>
   )
 }
 
