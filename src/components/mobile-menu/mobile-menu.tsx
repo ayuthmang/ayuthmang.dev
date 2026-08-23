@@ -6,6 +6,8 @@ import clsx from 'clsx'
 import { PROFILE_LINKS, ROUTES } from '@/constants'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import { ModeToggle } from '../mode-toggle'
+import NextLink from 'next/link'
+import { GitHubIcon, MediumIcon, DevIcon } from '../header/header'
 
 export type MobileMenuProps = {
   isOpen?: boolean
@@ -27,7 +29,7 @@ export function MobileMenu({
         </Dialog.Overlay>
         <div className="fixed inset-0 z-50 flex justify-end bg-(--color-backdrop)">
           <Content>
-            <Dialog.Title>Mobile Menu</Dialog.Title>
+            <Dialog.Title className="sr-only">Mobile Menu</Dialog.Title>
             <Backdrop />
             <InnerWrapper>
               <Dialog.Close asChild>
@@ -37,15 +39,41 @@ export function MobileMenu({
               </Dialog.Close>
               <Filler />
               <Nav>
-                <NavLink href="/">Home</NavLink>
-                <NavLink href={ROUTES.BLOG}>Blog</NavLink>
-                <NavLink href={ROUTES.ABOUT}>About</NavLink>
-                <NavLink href={PROFILE_LINKS.GITHUB}>GitHub</NavLink>
-                <NavLink href={PROFILE_LINKS.MEDIUM}>Medium</NavLink>
-                <NavLink href={PROFILE_LINKS.DEV}>Dev</NavLink>
+                <NavLink href="/" onClick={() => onOpenChange(false)}>Home</NavLink>
+                <NavLink href={ROUTES.BLOG} onClick={() => onOpenChange(false)}>Blog</NavLink>
+                <NavLink href={ROUTES.ABOUT} onClick={() => onOpenChange(false)}>About</NavLink>
               </Nav>
               <Filler />
-              <div>
+              <div className="flex items-center justify-between border-t border-border pt-6">
+                <div className="flex items-center gap-4">
+                  <a
+                    href={PROFILE_LINKS.GITHUB}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
+                    aria-label="GitHub"
+                  >
+                    <GitHubIcon className="h-6 w-6 fill-current" />
+                  </a>
+                  <a
+                    href={PROFILE_LINKS.MEDIUM}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
+                    aria-label="Medium"
+                  >
+                    <MediumIcon className="h-6 w-6 fill-current" />
+                  </a>
+                  <a
+                    href={PROFILE_LINKS.DEV}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
+                    aria-label="Dev.to"
+                  >
+                    <DevIcon className="h-6 w-6 fill-current" />
+                  </a>
+                </div>
                 <ModeToggle />
               </div>
             </InnerWrapper>
@@ -75,7 +103,7 @@ function Content({ children }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <Dialog.Content
       className={clsx(
-        'relative z-50 flex h-full w-[calc(300px+var(--overfill))] flex-col bg-(--color-background) p-6',
+        'relative z-50 flex h-full w-[calc(300px+var(--overfill))] flex-col bg-background p-6',
       )}
       style={
         {
@@ -105,23 +133,24 @@ function InnerWrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
 }
 
 function Nav({ children }: React.ComponentPropsWithoutRef<'nav'>) {
-  return <nav className="flex flex-col gap-4">{children}</nav>
+  return <nav className="flex flex-col gap-6">{children}</nav>
 }
 
 function NavLink({
   children,
+  href,
+  onClick,
   ...delegated
-}: React.ComponentPropsWithoutRef<'a'>) {
+}: Omit<React.ComponentPropsWithoutRef<typeof NextLink>, 'href'> & { href: string; onClick?: () => void }) {
   return (
-    <a
-      className="cursor-pointer font-semibold text-gray-100 opacity-75 transition-opacity duration-200 ease-in-out hover:opacity-100"
-      style={{
-        transition: 'opacity 0.2s ease-in-out 0s',
-      }}
+    <NextLink
+      href={href}
+      onClick={onClick}
+      className="text-4xl font-bold tracking-tight text-foreground/75 transition-colors duration-200 hover:text-foreground"
       {...delegated}
     >
       {children}
-    </a>
+    </NextLink>
   )
 }
 
