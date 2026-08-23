@@ -20,7 +20,6 @@ export type PostFrontmatter = {
   tags?: string[]
   draft?: boolean
   coverImage?: string
-  readingTime: number
 }
 
 export type Post = {
@@ -31,6 +30,7 @@ export type Post = {
   tags: string[]
   draft: boolean
   coverImage?: string
+  readingTime: number
   headings: Heading[]
 }
 
