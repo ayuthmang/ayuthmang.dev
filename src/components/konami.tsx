@@ -27,35 +27,15 @@ const KEY_LABELS: Record<string, string> = {
 }
 
 function triggerEasterEgg() {
-  console.log('🎉 KONAMI CODE ACTIVATED! 🎉')
-  
-  const duration = 3000
-  const end = Date.now() + duration
-
-  const frame = () => {
-    confetti({
-      particleCount: 7,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0, y: 0.8 },
-      colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'],
-      zIndex: 9999
-    })
-    confetti({
-      particleCount: 7,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1, y: 0.8 },
-      colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'],
-      zIndex: 9999
-    })
-
-    if (Date.now() < end) {
-      requestAnimationFrame(frame)
-    }
-  }
-  
-  frame()
+  // A single, elegant burst of confetti
+  confetti({
+    particleCount: 150,
+    spread: 100,
+    origin: { y: 0.6 },
+    colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'],
+    zIndex: 9999,
+    disableForReducedMotion: true,
+  })
 }
 
 export default function Konami() {
