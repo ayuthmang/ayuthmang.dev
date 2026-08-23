@@ -10,7 +10,6 @@ import { cn } from '@/utils'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ModeToggle } from '../mode-toggle'
 
 export function Header() {
@@ -174,56 +173,47 @@ function DevIcon(props: React.ComponentProps<'svg'>) {
 }
 
 function DesktopSocials() {
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
-
-  const links = [
-    { href: PROFILE_LINKS.GITHUB, icon: GitHubIcon, label: "Visit my GitHub profile" },
-    { href: PROFILE_LINKS.MEDIUM, icon: MediumIcon, label: "Visit my Medium blog" },
-    { href: PROFILE_LINKS.DEV, icon: DevIcon, label: "Visit my Dev.to profile" },
-  ]
-
   return (
-    <div
-      className="relative flex items-center gap-1 border-r border-border pr-6"
-      onMouseLeave={() => setHoveredIndex(null)}
-    >
-      {links.map((link, i) => (
-        <a
-          key={link.href}
-          href={link.href}
-          target="_blank"
-          rel="noreferrer"
-          className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-          onMouseEnter={() => setHoveredIndex(i)}
-          onFocus={() => setHoveredIndex(i)}
-          onBlur={(e) => {
-            if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) {
-              setHoveredIndex(null)
-            }
-          }}
-        >
-          <span className="sr-only">{link.label}</span>
-          <link.icon className="h-5 w-5 fill-current" />
-          
-          <AnimatePresence>
-            {hoveredIndex === i && (
-              <motion.div
-                layoutId="social-highlight"
-                className="absolute inset-0 -z-10 rounded-lg bg-muted/80 dark:bg-muted"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ 
-                  type: 'spring',
-                  bounce: 0.25,
-                  duration: 0.4,
-                  opacity: { duration: 0 } // completely instant
-                }}
-              />
-            )}
-          </AnimatePresence>
-        </a>
-      ))}
+    <div className="group relative flex items-center gap-1 border-r border-border pr-6">
+      {/* Pure CSS Sliding Highlight - ZERO JS OVERHEAD */}
+      <div
+        className={cn(
+          "pointer-events-none absolute left-0 top-1/2 z-0 h-[36px] w-[36px] -translate-y-1/2 rounded-lg bg-muted/80 dark:bg-muted",
+          "opacity-0 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+          "group-hover:opacity-100",
+          "group-has-[a:nth-of-type(1):hover]:translate-x-[0px]",
+          "group-has-[a:nth-of-type(2):hover]:translate-x-[40px]",
+          "group-has-[a:nth-of-type(3):hover]:translate-x-[80px]"
+        )}
+      />
+
+      <a
+        href={PROFILE_LINKS.GITHUB}
+        target="_blank"
+        rel="noreferrer"
+        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+      >
+        <span className="sr-only">Visit my GitHub profile</span>
+        <GitHubIcon className="h-5 w-5 fill-current" />
+      </a>
+      <a
+        href={PROFILE_LINKS.MEDIUM}
+        target="_blank"
+        rel="noreferrer"
+        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+      >
+        <span className="sr-only">Visit my Medium blog</span>
+        <MediumIcon className="h-5 w-5 fill-current" />
+      </a>
+      <a
+        href={PROFILE_LINKS.DEV}
+        target="_blank"
+        rel="noreferrer"
+        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+      >
+        <span className="sr-only">Visit my Dev.to profile</span>
+        <DevIcon className="h-5 w-5 fill-current" />
+      </a>
     </div>
   )
 }
