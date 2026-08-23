@@ -3,6 +3,7 @@ import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import Callout from '@/components/callout'
 import PieChart from '@/components/pie-chart'
+import { Pre } from '@/components/mdx-pre'
 
 /**
  * Global MDX component overrides. Next.js (App Router) picks this file up
@@ -14,6 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Callout,
     PieChart,
+    pre: Pre,
     a: ({ href = '', ...props }) => {
       const isInternal = href.startsWith('/') || href.startsWith('#')
       if (isInternal) {
