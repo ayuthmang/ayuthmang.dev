@@ -210,14 +210,14 @@ function DesktopSocials() {
               <motion.div
                 layoutId="social-highlight"
                 className="absolute inset-0 -z-10 rounded-lg bg-muted/80 dark:bg-muted"
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ 
                   type: 'spring',
                   bounce: 0.25,
                   duration: 0.4,
-                  opacity: { duration: 0.15 } // ultra fast fade
+                  opacity: { duration: 0 } // completely instant
                 }}
               />
             )}
