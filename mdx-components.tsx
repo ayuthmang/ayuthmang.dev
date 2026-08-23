@@ -2,15 +2,18 @@ import type { MDXComponents } from 'mdx/types'
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import Callout from '@/components/callout'
+import PieChart from '@/components/pie-chart'
 
 /**
  * Global MDX component overrides. Next.js (App Router) picks this file up
  * automatically for every compiled `.mdx` module. Components declared here are
- * available inside posts without importing them (e.g. `<Callout />`).
+ * available inside posts without importing them (e.g. `<Callout />`,
+ * `<PieChart />`).
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Callout,
+    PieChart,
     a: ({ href = '', ...props }) => {
       const isInternal = href.startsWith('/') || href.startsWith('#')
       if (isInternal) {
