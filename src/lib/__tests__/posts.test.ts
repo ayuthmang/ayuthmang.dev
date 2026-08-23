@@ -23,6 +23,7 @@ describe('getAllPosts', () => {
       draft: false,
       coverImage: '/images/alpha.png',
       readingTime: expect.any(Number),
+      headings: expect.any(Array),
     })
   })
 
@@ -60,6 +61,12 @@ describe('getAllPosts', () => {
 
   test('returns an empty list for a non-existent directory', () => {
     expect(getAllPosts({ directory: path.join(FIXTURES_DIR, 'nope') })).toEqual([])
+  })
+
+  test('extracts headings from post content', () => {
+    const alpha = getAllPosts(opts(true)).find((p) => p.slug === 'alpha-post')
+    // alpha-post only has `# Alpha` (h1) — no h2/h3 headings
+    expect(alpha?.headings).toEqual([])
   })
 })
 
