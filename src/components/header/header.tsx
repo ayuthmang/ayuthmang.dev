@@ -177,14 +177,12 @@ function DesktopSocials() {
   const containerRef = React.useRef<HTMLDivElement>(null)
 
   const handleInteract = (e: React.MouseEvent<HTMLAnchorElement> | React.FocusEvent<HTMLAnchorElement>) => {
-    if (!containerRef.current) return
-    const container = containerRef.current.getBoundingClientRect()
-    const rect = e.currentTarget.getBoundingClientRect()
+    const target = e.currentTarget
     setHoveredRect({
-      width: rect.width,
-      height: rect.height,
-      left: rect.left - container.left,
-      top: rect.top - container.top,
+      width: target.offsetWidth,
+      height: target.offsetHeight,
+      left: target.offsetLeft,
+      top: target.offsetTop,
       opacity: 1,
     })
   }
@@ -208,7 +206,7 @@ function DesktopSocials() {
     >
       {/* Sliding Highlight */}
       <div
-        className="pointer-events-none absolute z-0 rounded-lg bg-muted/80 dark:bg-muted motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+        className="pointer-events-none absolute left-0 top-0 z-0 rounded-lg bg-muted/80 dark:bg-muted motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]"
         style={{
           opacity: hoveredRect?.opacity ?? 0,
           width: hoveredRect?.width ?? 0,
