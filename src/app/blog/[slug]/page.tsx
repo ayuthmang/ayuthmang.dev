@@ -108,6 +108,8 @@ async function LocalPost({ post }: { post: Post }) {
         <h1 className="mb-3 text-3xl font-bold leading-tight">{post.title}</h1>
         <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span>·</span>
+          <span>{post.readingTime} min read</span>
           {post.tags.length > 0 ? (
             <>
               <span>·</span>
