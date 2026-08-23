@@ -21,6 +21,7 @@ type BlogListItem = {
   date: string
   tags: string[]
   source: 'Local' | 'Medium'
+  readingTime?: number
 }
 
 function stripHtml(value: string): string {
@@ -35,6 +36,7 @@ async function getBlogList(): Promise<BlogListItem[]> {
     date: post.date,
     tags: post.tags,
     source: 'Local',
+    readingTime: post.readingTime,
   }))
 
   const mediumItems = await getMediumItemsSafe(MEDIUM_USERNAME)
@@ -86,6 +88,12 @@ export default async function BlogIndexPage() {
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <Badge variant="outline">{post.source}</Badge>
+                  {post.readingTime !== undefined ? (
+                    <>
+                      <span>·</span>
+                      <span>{post.readingTime} min read</span>
+                    </>
+                  ) : null}
                 </div>
                 <h2 className="text-xl font-semibold">
                   <Link
