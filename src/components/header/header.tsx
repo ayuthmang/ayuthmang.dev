@@ -173,18 +173,50 @@ function DevIcon(props: React.ComponentProps<'svg'>) {
 }
 
 function DesktopSocials() {
+  const pillRef = React.useRef<HTMLDivElement>(null)
+
+  const handleEnter = (x: number) => {
+    if (pillRef.current) {
+      const isHidden = window.getComputedStyle(pillRef.current).opacity === '0'
+      
+      if (isHidden) {
+        // Snap instantly without transition
+        pillRef.current.style.transition = 'none'
+        pillRef.current.style.transform = `translate(${x}px, -50%)`
+        // Force reflow
+        void pillRef.current.offsetHeight
+      }
+      
+      // Enable transitions and move/show
+      pillRef.current.style.transition = 'all 300ms cubic-bezier(0.34,1.56,0.64,1)'
+      pillRef.current.style.transform = `translate(${x}px, -50%)`
+      pillRef.current.style.opacity = '1'
+    }
+  }
+
+  const handleLeave = () => {
+    if (pillRef.current) {
+      pillRef.current.style.opacity = '0'
+    }
+  }
+
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) {
+      handleLeave()
+    }
+  }
+
   return (
-    <div className="group relative flex items-center gap-1 border-r border-border pr-6">
-      {/* Pure CSS Sliding Highlight - ZERO JS OVERHEAD */}
+    <div
+      className="relative flex items-center gap-1 border-r border-border pr-6"
+      onMouseLeave={handleLeave}
+      onBlur={handleBlur}
+    >
+      {/* Pure DOM Sliding Highlight */}
       <div
-        className={cn(
-          "pointer-events-none absolute left-0 top-1/2 z-0 h-[36px] w-[36px] -translate-y-1/2 rounded-lg bg-muted/80 dark:bg-muted",
-          "opacity-0 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
-          "group-hover:opacity-100",
-          "group-has-[a:nth-of-type(1):hover]:translate-x-[0px]",
-          "group-has-[a:nth-of-type(2):hover]:translate-x-[40px]",
-          "group-has-[a:nth-of-type(3):hover]:translate-x-[80px]"
-        )}
+        ref={pillRef}
+        className="pointer-events-none absolute left-0 top-1/2 z-0 h-[36px] w-[36px] -translate-y-1/2 rounded-lg bg-muted/80 dark:bg-muted"
+        style={{ opacity: 0, transition: 'all 300ms cubic-bezier(0.34,1.56,0.64,1)' }}
       />
 
       <a
@@ -192,6 +224,8 @@ function DesktopSocials() {
         target="_blank"
         rel="noreferrer"
         className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+        onMouseEnter={() => handleEnter(0)}
+        onFocus={() => handleEnter(0)}
       >
         <span className="sr-only">Visit my GitHub profile</span>
         <GitHubIcon className="h-5 w-5 fill-current" />
@@ -201,6 +235,8 @@ function DesktopSocials() {
         target="_blank"
         rel="noreferrer"
         className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+        onMouseEnter={() => handleEnter(40)}
+        onFocus={() => handleEnter(40)}
       >
         <span className="sr-only">Visit my Medium blog</span>
         <MediumIcon className="h-5 w-5 fill-current" />
@@ -210,6 +246,8 @@ function DesktopSocials() {
         target="_blank"
         rel="noreferrer"
         className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+        onMouseEnter={() => handleEnter(80)}
+        onFocus={() => handleEnter(80)}
       >
         <span className="sr-only">Visit my Dev.to profile</span>
         <DevIcon className="h-5 w-5 fill-current" />
