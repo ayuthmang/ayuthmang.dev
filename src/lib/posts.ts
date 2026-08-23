@@ -1,6 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
+import { extractHeadings, type Heading } from './headings'
+
+export type { Heading }
 
 /**
  * Directory that holds locally-authored `.mdx` blog posts.
@@ -26,6 +29,7 @@ export type Post = {
   tags: string[]
   draft: boolean
   coverImage?: string
+  headings: Heading[]
 }
 
 type GetPostsOptions = {
@@ -74,6 +78,7 @@ function toPost(slug: string, fileContents: string): Post {
     tags: frontmatter.tags ?? [],
     draft: frontmatter.draft ?? false,
     coverImage: frontmatter.coverImage,
+    headings: extractHeadings(fileContents),
   }
 }
 
