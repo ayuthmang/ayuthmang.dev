@@ -7,6 +7,7 @@ import { PROFILE_LINKS, ROUTES } from '@/constants'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import { ModeToggle } from '../mode-toggle'
 import NextLink from 'next/link'
+import { usePathname } from 'next/navigation'
 import { GitHubIcon, MediumIcon, DevIcon } from '../header/header'
 
 export type MobileMenuProps = {
@@ -34,15 +35,16 @@ export function MobileMenu({
             <InnerWrapper>
               <Dialog.Close asChild>
                 <CloseButton>
-                  <Cross1Icon width={32} height={32} />
+                  <Cross1Icon width={24} height={24} />
                 </CloseButton>
               </Dialog.Close>
-              <Filler />
-              <Nav>
-                <NavLink href="/" onClick={() => onOpenChange(false)}>Home</NavLink>
-                <NavLink href={ROUTES.BLOG} onClick={() => onOpenChange(false)}>Blog</NavLink>
-                <NavLink href={ROUTES.ABOUT} onClick={() => onOpenChange(false)}>About</NavLink>
-              </Nav>
+              <div className="pt-16 pb-8">
+                <Nav>
+                  <NavLink href="/" onClick={() => onOpenChange(false)}>Home</NavLink>
+                  <NavLink href={ROUTES.BLOG} onClick={() => onOpenChange(false)}>Blog</NavLink>
+                  <NavLink href={ROUTES.ABOUT} onClick={() => onOpenChange(false)}>About</NavLink>
+                </Nav>
+              </div>
               <Filler />
               <div className="flex items-center justify-between border-t border-border pt-6">
                 <div className="flex items-center gap-4">
@@ -133,7 +135,7 @@ function InnerWrapper({ children }: React.ComponentPropsWithoutRef<'div'>) {
 }
 
 function Nav({ children }: React.ComponentPropsWithoutRef<'nav'>) {
-  return <nav className="flex flex-col gap-6">{children}</nav>
+  return <nav className="flex flex-col gap-5">{children}</nav>
 }
 
 function NavLink({
@@ -142,11 +144,17 @@ function NavLink({
   onClick,
   ...delegated
 }: Omit<React.ComponentPropsWithoutRef<typeof NextLink>, 'href'> & { href: string; onClick?: () => void }) {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
   return (
     <NextLink
       href={href}
       onClick={onClick}
-      className="text-4xl font-bold tracking-tight text-foreground/75 transition-colors duration-200 hover:text-foreground"
+      className={clsx(
+        "text-2xl font-semibold tracking-tight transition-colors duration-200",
+        isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+      )}
       {...delegated}
     >
       {children}
