@@ -176,7 +176,7 @@ function DesktopSocials() {
   const [hoveredRect, setHoveredRect] = React.useState<{ width: number; height: number; left: number; top: number; opacity: number } | null>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleInteract = (e: React.MouseEvent<HTMLAnchorElement> | React.FocusEvent<HTMLAnchorElement>) => {
     if (!containerRef.current) return
     const container = containerRef.current.getBoundingClientRect()
     const rect = e.currentTarget.getBoundingClientRect()
@@ -193,15 +193,22 @@ function DesktopSocials() {
     setHoveredRect((prev) => prev ? { ...prev, opacity: 0 } : null)
   }
 
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!containerRef.current?.contains(e.relatedTarget as Node)) {
+      handleMouseLeave()
+    }
+  }
+
   return (
     <div
       ref={containerRef}
       className="relative flex items-center gap-1 border-r border-border pr-6"
       onMouseLeave={handleMouseLeave}
+      onBlur={handleBlur}
     >
       {/* Sliding Highlight */}
       <div
-        className="pointer-events-none absolute z-0 rounded-lg bg-muted/80 dark:bg-muted transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+        className="pointer-events-none absolute z-0 rounded-lg bg-muted/80 dark:bg-muted motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]"
         style={{
           opacity: hoveredRect?.opacity ?? 0,
           width: hoveredRect?.width ?? 0,
@@ -214,30 +221,33 @@ function DesktopSocials() {
         href={PROFILE_LINKS.GITHUB}
         target="_blank"
         rel="noreferrer"
-        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
-        aria-label="GitHub"
-        onMouseEnter={handleMouseEnter}
+        className="relative z-10 p-2 text-muted-foreground motion-safe:transition-all motion-safe:duration-300 hover:text-foreground motion-safe:hover:-rotate-6 motion-safe:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+        onMouseEnter={handleInteract}
+        onFocus={handleInteract}
       >
+        <span className="sr-only">Visit my GitHub profile</span>
         <GitHubIcon className="h-5 w-5 fill-current" />
       </a>
       <a
         href={PROFILE_LINKS.MEDIUM}
         target="_blank"
         rel="noreferrer"
-        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
-        aria-label="Medium"
-        onMouseEnter={handleMouseEnter}
+        className="relative z-10 p-2 text-muted-foreground motion-safe:transition-all motion-safe:duration-300 hover:text-foreground motion-safe:hover:-rotate-6 motion-safe:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+        onMouseEnter={handleInteract}
+        onFocus={handleInteract}
       >
+        <span className="sr-only">Visit my Medium blog</span>
         <MediumIcon className="h-5 w-5 fill-current" />
       </a>
       <a
         href={PROFILE_LINKS.DEV}
         target="_blank"
         rel="noreferrer"
-        className="relative z-10 p-2 text-muted-foreground transition-all duration-300 hover:text-foreground hover:-rotate-6 hover:scale-110"
-        aria-label="Dev.to"
-        onMouseEnter={handleMouseEnter}
+        className="relative z-10 p-2 text-muted-foreground motion-safe:transition-all motion-safe:duration-300 hover:text-foreground motion-safe:hover:-rotate-6 motion-safe:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+        onMouseEnter={handleInteract}
+        onFocus={handleInteract}
       >
+        <span className="sr-only">Visit my Dev.to profile</span>
         <DevIcon className="h-5 w-5 fill-current" />
       </a>
     </div>
