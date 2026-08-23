@@ -188,24 +188,23 @@ function DesktopSocials() {
     }
 
     if (!isHovered) {
-      // First hover: snap instantly without transition
+      // First hover: Instantly show at correct position without animation
       setIsEntering(true)
       setActiveRect(rect)
+      setIsHovered(true)
       
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setIsEntering(false)
-          setIsHovered(true)
-        })
-      })
+      // Enable transitions shortly after it appears
+      setTimeout(() => setIsEntering(false), 0)
     } else {
-      // Moving between icons: just update rect so it slides
+      // Moving between icons: slide smoothly
       setActiveRect(rect)
     }
   }
 
   const handleMouseLeave = () => {
     setIsHovered(false)
+    // Instantly disable transitions for the fade out to avoid weird bezier fades
+    setIsEntering(true) 
   }
 
   const handleBlur = (e: React.FocusEvent) => {
@@ -225,7 +224,8 @@ function DesktopSocials() {
       <div
         className={cn(
           "pointer-events-none absolute left-0 top-0 z-0 rounded-lg bg-muted/80 dark:bg-muted",
-          isEntering ? "transition-none" : "motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+          "motion-safe:transition-all",
+          isEntering ? "duration-0" : "duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
           isHovered ? "opacity-100" : "opacity-0"
         )}
         style={{
