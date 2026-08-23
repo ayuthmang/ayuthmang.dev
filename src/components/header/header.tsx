@@ -10,14 +10,6 @@ import { cn } from '@/utils'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
 import { ModeToggle } from '../mode-toggle'
 
 export function Header() {
@@ -29,12 +21,22 @@ export function Header() {
         <HomeLink href="/">AYUTH</HomeLink>
         <DesktopNav>
           <DesktopActions>
-            <BlogsNavMenu />
             <NavLink href={ROUTES.BLOG}>Blog</NavLink>
             <NavLink href={ROUTES.ABOUT}>About</NavLink>
           </DesktopActions>
           <Filler />
           <DesktopActions>
+            <div className="flex items-center gap-4 border-r border-border pr-6">
+              <a href={PROFILE_LINKS.GITHUB} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
+                <GitHubIcon className="h-5 w-5 fill-current" />
+              </a>
+              <a href={PROFILE_LINKS.MEDIUM} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Medium">
+                <MediumIcon className="h-5 w-5 fill-current" />
+              </a>
+              <a href={PROFILE_LINKS.DEV} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Dev.to">
+                <DevIcon className="h-5 w-5 fill-current" />
+              </a>
+            </div>
             <ModeToggle />
           </DesktopActions>
         </DesktopNav>
@@ -126,51 +128,6 @@ function HomeLink({
     >
       {children}
     </NextLink>
-  )
-}
-
-export function BlogsNavMenu() {
-  return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <NavLink
-                    href={PROFILE_LINKS.GITHUB}
-                    className="flex-row items-center gap-2"
-                  >
-                    <GitHubIcon />
-                    GitHub
-                  </NavLink>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <NavLink
-                    href={PROFILE_LINKS.MEDIUM}
-                    className="flex-row items-center gap-2"
-                  >
-                    <MediumIcon className='fill-mode-initial dark:fill-white'/>
-                    Medium
-                  </NavLink>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <NavLink
-                    href={PROFILE_LINKS.DEV}
-                    className="flex-row items-center gap-2"
-                  >
-                    <DevIcon className='fill-mode-initial dark:fill-white' />
-                    Dev
-                  </NavLink>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
   )
 }
 
