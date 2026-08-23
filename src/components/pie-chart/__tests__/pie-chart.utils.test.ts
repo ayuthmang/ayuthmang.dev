@@ -1,9 +1,11 @@
 import { describe, test, expect } from 'vitest'
 import {
+  clampTooltip,
   donutSlicePath,
   foldToOther,
   polarToCartesian,
   toPercents,
+  viewBoxToPixel,
 } from '../pie-chart.utils'
 
 const TAU = Math.PI * 2
@@ -155,5 +157,102 @@ describe('donutSlicePath', () => {
     for (let i = 1; i < 12; i += 1) {
       expect(donutSlicePath(0, (TAU * i) / 12, 80, 48)).not.toContain('NaN')
     }
+  })
+})
+
+describe('clampTooltip', () => {
+  // The chart's own box, and a card roughly the size of a two-line tooltip.
+  const BOUNDS = 240
+  const W = 100
+  const H = 40
+
+  test('sits up and to the right of the pointer when there is room', () => {
+    expect(clampTooltip(60, 120, W, H, BOUNDS, BOUNDS, 12)).toEqual({
+      x: 72,
+      y: 68,
+    })
+  })
+
+  test('defaults to a 12px offset', () => {
+    expect(clampTooltip(60, 120, W, H, BOUNDS, BOUNDS)).toEqual({
+      x: 72,
+      y: 68,
+    })
+  })
+
+  test('flips to the pointer’s left at the right edge', () => {
+    // 200 + 12 + 100 would overrun 240, so the card mirrors across the pointer.
+    expect(clampTooltip(200, 120, W, H, BOUNDS, BOUNDS, 12)).toEqual({
+      x: 88,
+      y: 68,
+    })
+  })
+
+  test('flips below the pointer at the top edge', () => {
+    expect(clampTooltip(60, 20, W, H, BOUNDS, BOUNDS, 12)).toEqual({
+      x: 72,
+      y: 32,
+    })
+  })
+
+  test('handles the top-right corner by flipping on both axes', () => {
+    expect(clampTooltip(236, 4, W, H, BOUNDS, BOUNDS, 12)).toEqual({
+      x: 124,
+      y: 16,
+    })
+  })
+
+  test('clamps a flipped card back inside a short box', () => {
+    // Flipping below would put the card at y 22 in a 60px-tall box, so the
+    // final clamp pulls it up to the last fully-visible row.
+    expect(clampTooltip(10, 10, W, H, BOUNDS, 60, 12)).toEqual({ x: 22, y: 20 })
+  })
+
+  test('pins to the top-left when the card is larger than the box', () => {
+    expect(clampTooltip(10, 10, 300, 200, BOUNDS, BOUNDS, 12)).toEqual({
+      x: 0,
+      y: 22,
+    })
+  })
+
+  test.each([
+    [10, 10],
+    [120, 120],
+    [239, 1],
+    [1, 239],
+    [239, 239],
+  ])('stays fully inside the box for a pointer at %i,%i', (x, y) => {
+    const placed = clampTooltip(x, y, W, H, BOUNDS, BOUNDS, 12)
+
+    expect(placed.x).toBeGreaterThanOrEqual(0)
+    expect(placed.y).toBeGreaterThanOrEqual(0)
+    expect(placed.x + W).toBeLessThanOrEqual(BOUNDS)
+    expect(placed.y + H).toBeLessThanOrEqual(BOUNDS)
+  })
+})
+
+describe('viewBoxToPixel', () => {
+  test('maps the centre-origin viewBox onto the rendered box', () => {
+    expect(viewBoxToPixel({ x: 0, y: 0 }, 240, 240)).toEqual({ x: 120, y: 120 })
+    expect(viewBoxToPixel({ x: -120, y: -120 }, 240, 240)).toEqual({
+      x: 0,
+      y: 0,
+    })
+    expect(viewBoxToPixel({ x: 120, y: 120 }, 240, 240)).toEqual({
+      x: 240,
+      y: 240,
+    })
+  })
+
+  test('scales when the SVG renders smaller than its viewBox', () => {
+    expect(viewBoxToPixel({ x: 64, y: 0 }, 240, 120)).toEqual({ x: 92, y: 60 })
+  })
+
+  test('anchors a focused slice inside the rendered box', () => {
+    // 3 o'clock on the mid-radius ring, where a keyboard-focused slice anchors.
+    const anchor = viewBoxToPixel(polarToCartesian(64, TAU / 4), 240, 240)
+
+    expect(anchor.x).toBeCloseTo(184)
+    expect(anchor.y).toBeCloseTo(120)
   })
 })

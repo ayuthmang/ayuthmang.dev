@@ -100,6 +100,58 @@ export function toPercents(values: number[]): number[] {
   return percents
 }
 
+/** Restricts `value` to `[min, max]`. */
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max)
+
+/**
+ * Places a tooltip card near an anchor (a pointer position, or a point on the
+ * ring for keyboard focus) and returns its **top-left corner**, in pixels
+ * relative to the top-left of the box it must stay inside.
+ *
+ * The preferred spot is `offset` px right of the anchor and `offset` px above
+ * it. When the card would spill past the right edge it mirrors to the anchor's
+ * left; when it would spill past the top it drops below. A final clamp keeps
+ * it fully inside the box for the corner case, and pins it to the top-left
+ * when the card is larger than the box itself.
+ */
+export function clampTooltip(
+  x: number,
+  y: number,
+  tooltipW: number,
+  tooltipH: number,
+  boundsW: number,
+  boundsH: number,
+  offset = 12,
+): Point {
+  let left = x + offset
+  if (left + tooltipW > boundsW) left = x - offset - tooltipW
+
+  let top = y - offset - tooltipH
+  if (top < 0) top = y + offset
+
+  return {
+    x: clamp(left, 0, Math.max(0, boundsW - tooltipW)),
+    y: clamp(top, 0, Math.max(0, boundsH - tooltipH)),
+  }
+}
+
+/**
+ * Converts a centre-origin viewBox coordinate — the space the slices are drawn
+ * in — into pixels measured from the top-left of the rendered square, so an
+ * HTML overlay can be anchored to a point inside the SVG.
+ */
+export function viewBoxToPixel(
+  at: Point,
+  viewBoxSize: number,
+  renderedSize: number,
+): Point {
+  const scale = renderedSize / viewBoxSize
+  const half = viewBoxSize / 2
+
+  return { x: (at.x + half) * scale, y: (at.y + half) * scale }
+}
+
 /**
  * Drops non-positive values, then caps the series at `max` slices: the first
  * `max - 1` entries keep their order and everything after them is merged into a
