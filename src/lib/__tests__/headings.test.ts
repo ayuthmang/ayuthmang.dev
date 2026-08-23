@@ -60,11 +60,11 @@ More content
   })
 
   test('Strips frontmatter before processing', () => {
-    const content = \`---
+    const content = `---
 title: "## Fake heading"
 ---
 ## Real heading
-    \`
+    `
     expect(extractHeadings(content)).toEqual([
       { depth: 2, text: 'Real heading', id: 'real-heading' },
     ])
