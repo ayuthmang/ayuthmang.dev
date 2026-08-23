@@ -25,7 +25,7 @@ export function Header() {
             <NavLink href={ROUTES.ABOUT}>About</NavLink>
           </DesktopActions>
           <Filler />
-          <DesktopActions>
+          <DesktopActions className="gap-4">
             <DesktopSocials />
             <ModeToggle />
           </DesktopActions>
@@ -67,14 +67,14 @@ function MainHeader({
 
 function DesktopNav({ children }: React.ComponentPropsWithoutRef<'nav'>) {
   return (
-    <nav className="hidden h-[--navbar-height] flex-1 items-center justify-between md:flex md:gap-6 md:pl-6">
+    <nav className="hidden h-[--navbar-height] flex-1 items-center justify-between md:flex md:pl-10">
       {children}
     </nav>
   )
 }
 
-function DesktopActions({ children }: React.ComponentPropsWithoutRef<'div'>) {
-  return <div className="flex items-center gap-6">{children}</div>
+function DesktopActions({ children, className }: React.ComponentPropsWithoutRef<'div'>) {
+  return <div className={cn("flex items-center gap-8", className)}>{children}</div>
 }
 
 function Filler({ children }: React.ComponentPropsWithoutRef<'div'>) {
