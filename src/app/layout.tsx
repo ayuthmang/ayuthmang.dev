@@ -64,6 +64,19 @@ export type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/*
+          Advertised here rather than via `metadata.alternates.types`: Next.js
+          merges metadata shallowly per top-level key, so every page that sets
+          its own `alternates.canonical` would drop the feed link.
+        */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Ayuth Mangmesap"
+          href="/feed.xml"
+        />
+      </head>
       <body suppressHydrationWarning={true}>
         <Konami />
         <Providers>
