@@ -24,6 +24,9 @@ const withMDX = createMDX({
     remarkPlugins: [
       ['remark-frontmatter'],
       ['remark-mdx-frontmatter', { name: 'frontmatter' }],
+      // GitHub-flavored Markdown: tables, footnotes, strikethrough, task
+      // lists, and autolink literals.
+      ['remark-gfm'],
     ],
     rehypePlugins: [
       ['rehype-slug'],

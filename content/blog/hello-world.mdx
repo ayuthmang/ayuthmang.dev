@@ -48,6 +48,27 @@ Local images are optimized through `next/image`:
 
 ![A gradient cover illustration](/images/hello-world-cover.svg)
 
+## GitHub-flavored Markdown
+
+Thanks to `remark-gfm`, the same syntax you'd use in a README works here.
+Tables, for instance:
+
+| Plugin               | Stage  | What it does                  |
+| -------------------- | ------ | ----------------------------- |
+| `remark-frontmatter` | remark | Parses the YAML block up top  |
+| `remark-gfm`         | remark | Tables, footnotes, task lists |
+| `rehype-slug`        | rehype | Adds `id`s to headings        |
+| `rehype-pretty-code` | rehype | Highlights code with Shiki    |
+
+Text can be ~~struck through~~ when a plan changes, and checklists render as
+real (non-interactive) checkboxes:
+
+- [x] Write the post in MDX
+- [ ] Remember to flip `draft` before shipping
+
+Footnotes work too[^1], and a bare link like https://nextjs.org is turned into
+an anchor automatically — no angle brackets required.
+
 ## A quick warning
 
 <Callout type="warning" title="Drafts stay hidden">
@@ -56,3 +77,7 @@ Local images are optimized through `next/image`:
 </Callout>
 
 That's the whole pipeline — write Markdown, sprinkle in components, ship.
+
+[^1]:
+    Footnote definitions can live at the bottom of the file; the plugin
+    collects them into a linked list at the end of the rendered post.
