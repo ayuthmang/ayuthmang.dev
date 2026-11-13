@@ -103,7 +103,7 @@ async function LocalPost({ post }: { post: Post }) {
   )
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10">
+    <div className="mx-auto max-w-5xl py-10">
       <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
         <div>
           <BackLink />
@@ -143,7 +143,7 @@ async function MediumPost({ slug }: { slug: string }) {
   if (!post) notFound()
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
+    <div className="mx-auto max-w-3xl py-10">
       <BackLink />
       <header className="mb-8">
         <h1 className="mb-3 text-3xl font-bold leading-tight">{post.title}</h1>

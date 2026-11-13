@@ -69,7 +69,7 @@ export default async function BlogIndexPage() {
   const posts = await getBlogList()
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
+    <div className="mx-auto max-w-3xl py-10">
       <header className="mb-10">
         <h1 className="mb-2 text-3xl font-bold leading-tight">Blog</h1>
         <p className="text-muted-foreground">
