@@ -25,7 +25,7 @@ function Article({ guid, title, categories, thumbnail, slug }: ArticleProps) {
       )}
     >
       <article className="flex flex-col gap-3">
-        <div className="relative h-60 w-full overflow-hidden rounded-2xl">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
           <Image
             className={cn(
               'inline h-full w-full object-cover transition-all duration-500 ease-in-out',
