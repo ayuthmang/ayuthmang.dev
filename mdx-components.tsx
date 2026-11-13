@@ -2,6 +2,7 @@ import type { MDXComponents } from 'mdx/types'
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import Callout from '@/components/callout'
+import Figure from '@/components/figure'
 import PieChart from '@/components/pie-chart'
 import { Pre } from '@/components/mdx-pre'
 
@@ -14,6 +15,7 @@ import { Pre } from '@/components/mdx-pre'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Callout,
+    Figure,
     PieChart,
     pre: Pre,
     a: ({ href = '', ...props }) => {
