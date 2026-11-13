@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       new URL('https://*.medium.com/**'),
       new URL('https://media.tenor.com/**'),
+      // Unsplash photos used to illustrate blog posts.
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
 }
