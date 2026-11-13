@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import React from 'react'
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <MaxWidthWrapper>{children}</MaxWidthWrapper>
           <Footer />
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
