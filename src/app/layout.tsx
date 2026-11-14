@@ -17,9 +17,12 @@ export const metadata: Metadata = {
     template: '%s | Ayuth Mangmesap',
   },
   description:
-    'Full-Stack Developer specializing in React, Next.js, and Node.js. Writing about web development, cloud architecture, and open-source on Medium and DEV.',
+    'Senior software engineer building APIs and web platforms with Kotlin, Spring Boot, React, and TypeScript. Writing about web development and open source on Medium and DEV.',
   keywords: [
+    'Software Engineer',
     'Full-Stack Developer',
+    'Kotlin',
+    'Spring Boot',
     'React',
     'Next.js',
     'TypeScript',
@@ -36,13 +39,13 @@ export const metadata: Metadata = {
     siteName: 'Ayuth Mangmesap',
     title: 'Ayuth Mangmesap',
     description:
-      'Full-Stack Developer specializing in React, Next.js, and Node.js. Writing about web development, cloud architecture, and open-source.',
+      'Senior software engineer building APIs and web platforms with Kotlin, Spring Boot, React, and TypeScript. Writing about web development and open source.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ayuth Mangmesap',
     description:
-      'Full-Stack Developer specializing in React, Next.js, and Node.js. Writing about web development, cloud architecture, and open-source.',
+      'Senior software engineer building APIs and web platforms with Kotlin, Spring Boot, React, and TypeScript. Writing about web development and open source.',
     creator: '@ayuthmang',
   },
   robots: {

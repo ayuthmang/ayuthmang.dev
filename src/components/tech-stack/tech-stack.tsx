@@ -81,14 +81,15 @@ const TECH_CATEGORIES: TechCategory[] = [
   {
     category: 'Backend',
     techs: [
+      { name: 'Kotlin', Icon: SiKotlin, color: SiKotlinHex },
+      { name: 'Spring Boot', Icon: SiSpringboot, color: SiSpringbootHex },
       { name: 'Node.js', Icon: SiNodedotjs, color: SiNodedotjsHex },
-      { name: 'Nest.js', Icon: SiNestjs, color: SiNestjsHex },
+      { name: 'NestJS', Icon: SiNestjs, color: SiNestjsHex },
       {
         name: 'Express',
         Icon: SiExpress,
         iconClassName: 'text-black dark:text-white',
       },
-      { name: 'Spring Boot', Icon: SiSpringboot, color: SiSpringbootHex },
       { name: 'Python', Icon: SiPython, color: SiPythonHex },
     ],
   },
@@ -114,7 +115,6 @@ const TECH_CATEGORIES: TechCategory[] = [
     techs: [
       { name: 'React Native', Icon: SiReact, color: SiReactHex },
       { name: 'Flutter', Icon: SiFlutter, color: SiFlutterHex },
-      { name: 'Kotlin', Icon: SiKotlin, color: SiKotlinHex },
     ],
   },
 ]

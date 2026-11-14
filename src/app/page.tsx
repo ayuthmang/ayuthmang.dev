@@ -7,7 +7,7 @@ import ArticleGridSkeleton from '@/components/article-grid-skeleton'
 import { ROUTES } from '@/constants'
 
 const siteDescription =
-  'Full-stack developer at OOZOU writing about web development, TypeScript, and the things I build.'
+  'Senior software engineer at Ascend Nano writing about web development, TypeScript, and the things I build.'
 
 export const metadata: Metadata = {
   title: 'Ayuth Mangmesap',
@@ -45,9 +45,9 @@ function HomePage() {
           Hi, I&apos;m Ayuth.
         </h1>
         <p className="text-muted-foreground mt-3 max-w-2xl text-lg text-balance">
-          Full-stack developer at OOZOU, building things with React, Next.js,
-          and TypeScript. I write about web development and whatever I&apos;m
-          learning along the way.
+          Senior software engineer at Ascend Nano, building APIs and web
+          platforms with Kotlin, Spring Boot, React, and TypeScript. I write
+          about web development and whatever I&apos;m learning along the way.
         </p>
         <div className="mt-5">
           <ArrowLink href={ROUTES.ABOUT}>More about me</ArrowLink>
