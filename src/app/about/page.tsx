@@ -22,11 +22,11 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    "Ayuth Mangmesap is a Full-Stack Developer at OOZOU with experience in fintech, banking, and Web 3.0. Currently pursuing a Master's in Computer Science at Chulalongkorn University.",
+    "Ayuth Mangmesap is a senior software engineer at Ascend Nano with 6+ years of experience building APIs and web platforms for banking and fintech. Currently pursuing a Master's in Computer Science at Chulalongkorn University.",
   openGraph: {
     title: 'About | Ayuth Mangmesap',
     description:
-      'Full-Stack Developer at OOZOU with experience across fintech, banking, and Web 3.0. Security researcher and open-source contributor.',
+      'Senior software engineer at Ascend Nano with 6+ years in banking and fintech. Security researcher, technical writer, and speaker.',
     url: 'https://ayuthmang-dev.vercel.app/about',
   },
   alternates: {
@@ -49,7 +49,8 @@ function AboutPage() {
           <WavingHand />
         </Heading>
         <p className="mx-auto max-w-xl text-center text-lg text-balance text-gray-600 dark:text-gray-400">
-          I&apos;m a full-stack developer building the future of web experiences
+          I&apos;m a software engineer building reliable APIs and web platforms
+          for fintech
         </p>
       </div>
 
@@ -57,16 +58,16 @@ function AboutPage() {
         {/* Main intro — large card */}
         <BentoCard title="👨‍💻 About Me" className="md:col-span-2 md:row-span-2">
           <p className="text-base leading-relaxed">
-            I&apos;m a Full-Stack Developer with a passion for building
-            scalable, user-centric applications. Currently at{' '}
-            <strong>OOZOU</strong>, I work on high-impact projects ranging from
-            cryptocurrency trading platforms to B2B e-commerce solutions. With
-            experience spanning fintech, banking, and innovation labs, I thrive
-            in fast-paced environments where I can collaborate with talented
-            international teams and push the boundaries of what&apos;s possible.
+            I&apos;m a senior software engineer with 6+ years of experience in
+            banking and fintech. At <strong>Ascend Nano</strong>, I design and
+            maintain a Kotlin and Spring Boot service that brings together 15+
+            backend services into one API. Before that, I built cryptocurrency
+            trading and B2B e-commerce platforms at OOZOU, and worked on open
+            APIs, prototypes, and engineering bootcamps at Siam Commercial Bank
+            and SCB TechX.
           </p>
           <p className="mt-4 text-base leading-relaxed">
-            Beyond code, I love{' '}
+            Beyond code, I enjoy{' '}
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="relative cursor-pointer font-semibold">
@@ -85,8 +86,7 @@ function AboutPage() {
                 />
               </TooltipContent>
             </Tooltip>
-            , contributing to open-source, and sharing knowledge through
-            technical writing on{' '}
+            , contributing to open source, and writing about what I learn on{' '}
             <a
               href="https://medium.com/@ayuthmang"
               className="text-blue-600 hover:underline dark:text-blue-400"
@@ -103,7 +103,7 @@ function AboutPage() {
             .
           </p>
           <div className="mt-auto flex flex-wrap gap-2 pt-6">
-            <FactChip>💼 Full-Stack Dev @ OOZOU</FactChip>
+            <FactChip>💼 Senior Engineer @ Ascend</FactChip>
             <FactChip>🎓 MSc CS @ Chulalongkorn</FactChip>
             <FactChip>🚀 GitKraken Ambassador</FactChip>
           </div>
@@ -115,8 +115,8 @@ function AboutPage() {
             <li className="flex items-start">
               <span className="mr-3 text-lg">🏆</span>
               <span>
-                1st Runner-Up, SCB Innovation Bootcamp 2022 for a reusable
-                components library that accelerated development by 40%
+                1st Runner-Up, SCB Innovation Bootcamp 2022, for a reusable
+                component library that sped up prototype development by 40%
               </span>
             </li>
             <li className="flex items-start">
@@ -129,15 +129,15 @@ function AboutPage() {
             <li className="flex items-start">
               <span className="mr-3 text-lg">📚</span>
               <span>
-                Active technical writer and speaker, sharing knowledge on Web
-                3.0, cloud architecture, and development best practices
+                Technical writer and speaker on Web 3.0, Git, Flutter, and
+                modern web development
               </span>
             </li>
             <li className="flex items-start">
               <span className="mr-3 text-lg">🚀</span>
               <span>
-                GitKraken Ambassador, passionate about developer tools and
-                community engagement
+                GitKraken Ambassador, sharing developer tools with the
+                community
               </span>
             </li>
           </ul>
@@ -147,22 +147,28 @@ function AboutPage() {
         <BentoCard title="💼 Professional Journey" className="md:col-span-2">
           <div className="relative ml-1.5 space-y-8 border-l-2 border-gray-200 pl-4 md:pl-6 dark:border-gray-800">
             <ExperienceItem
+              company="Ascend Nano"
+              position="Senior Engineer"
+              period="Nov 2025 – Present"
+              description="Designing and maintaining a Kotlin and Spring Boot BFF (API composition) service on AWS EKS that brings together 15+ downstream services."
+            />
+            <ExperienceItem
               company="OOZOU"
               position="Full-Stack Developer"
-              period="Aug 2023 – Present"
-              description="Building high-performance cryptocurrency and e-commerce platforms using modern JavaScript technologies. Leading initiatives to improve collaboration workflows and reduce iteration cycles by 50%."
+              period="Aug 2023 – Oct 2025"
+              description="Built cryptocurrency fund trading and B2B e-commerce platforms with Next.js and NestJS. Improved client collaboration, cutting iteration cycles from 2–4 days to 1 day or less."
             />
             <ExperienceItem
               company="SCB TechX"
               position="Technology Evangelist & Software Engineer"
               period="Jul 2021 – Jul 2023"
-              description="Developed reusable component libraries, implemented internal engagement platforms with NFT integration, and mentored teams on Web 3.0 and smart contract development."
+              description="Led a reusable component library that sped up prototyping by 40%, built an NFT-based engagement platform, set testing standards with 80%+ code coverage, and gave internal talks on Web 3.0 and smart contracts."
             />
             <ExperienceItem
               company="Siam Commercial Bank"
-              position="Software Engineer - SCB Digital Academy"
+              position="Software Engineer, SCB Digital Academy"
               period="Sep 2019 – Jun 2021"
-              description="Built internal applications, taught web development bootcamps, and established testing standards achieving 80%+ code coverage from the ground up."
+              description="Built an internal web portal with React and Spring Boot, taught internal web development bootcamps, and helped run Scrum workshops at five Thai universities."
             />
           </div>
         </BentoCard>
@@ -174,6 +180,9 @@ function AboutPage() {
               <h4 className="font-semibold">Chulalongkorn University</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Master&apos;s in Computer Science (2024 – Present)
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Thesis: vehicle speed estimation from surveillance video
               </p>
             </div>
             <div>
@@ -210,8 +219,8 @@ function AboutPage() {
         {/* Connect */}
         <BentoCard title="🤝 Let's Connect">
           <p className="mb-4 text-base leading-relaxed">
-            I&apos;m always interested in discussing new projects, innovative
-            technologies, and challenging problems. Feel free to reach out!
+            I&apos;m always happy to talk about new projects, interesting
+            technology, and hard problems. Feel free to reach out!
           </p>
           <div className="mt-auto flex flex-wrap gap-3">
             <Button
