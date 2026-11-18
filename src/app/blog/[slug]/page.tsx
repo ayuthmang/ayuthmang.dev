@@ -93,7 +93,7 @@ function BackLink() {
 }
 
 const proseClassName =
-  'prose prose-neutral max-w-none dark:prose-invert prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-xl dark:prose-a:text-blue-400'
+  'prose prose-neutral max-w-none dark:prose-invert prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-xl prose-headings:scroll-mt-24 dark:prose-a:text-blue-400'
 
 async function LocalPost({ post }: { post: Post }) {
   // Dynamic import with a static prefix + `.mdx` suffix lets Turbopack build a
@@ -104,7 +104,7 @@ async function LocalPost({ post }: { post: Post }) {
 
   return (
     <div className="mx-auto max-w-5xl py-10">
-      <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
+      <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-8">
         <div>
           <BackLink />
           <header className="mb-8">
@@ -128,11 +128,15 @@ async function LocalPost({ post }: { post: Post }) {
             </div>
           </header>
 
-          <article className={proseClassName}>
+          <article id="post-content" className={proseClassName}>
             <MDXContent />
           </article>
         </div>
-        <TableOfContents headings={post.headings} />
+        <TableOfContents
+          headings={post.headings}
+          contentId="post-content"
+          readingTime={post.readingTime}
+        />
       </div>
     </div>
   )
