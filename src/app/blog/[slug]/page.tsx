@@ -104,7 +104,7 @@ async function LocalPost({ post }: { post: Post }) {
 
   return (
     <div className="mx-auto max-w-5xl py-10">
-      <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-8">
+      <div className="lg:grid lg:grid-cols-[1fr_240px] lg:gap-12">
         <div>
           <BackLink />
           <header className="mb-8">

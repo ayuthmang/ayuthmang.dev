@@ -1,16 +1,19 @@
+import GithubSlugger, { slug } from 'github-slugger'
+
 export type Heading = {
   depth: 2 | 3
   text: string
   id: string
 }
 
+/**
+ * Must produce exactly the ids `rehype-slug` puts on rendered headings, or
+ * table-of-contents links point nowhere. Both use github-slugger, which keeps
+ * Unicode letters (e.g. Thai) and leaves a trailing hyphen where an emoji was
+ * stripped ("Hello 🔥" → "hello-").
+ */
 export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '')
-    .replace(/-+/g, '-')
-    .replace(/^-+|-+$/g, '')
+  return slug(text)
 }
 
 export function extractHeadings(content: string): Heading[] {
@@ -21,6 +24,9 @@ export function extractHeadings(content: string): Heading[] {
   cleanContent = cleanContent.replace(/```[\s\S]*?```/g, '')
 
   const headings: Heading[] = []
+  // One slugger per document so duplicate headings get "-1", "-2" suffixes,
+  // matching rehype-slug.
+  const slugger = new GithubSlugger()
   const regex = /^(#{2,3})\s+(.+)$/gm
   let match
 
@@ -36,7 +42,7 @@ export function extractHeadings(content: string): Heading[] {
     headings.push({
       depth,
       text,
-      id: slugify(text)
+      id: slugger.slug(text)
     })
   }
 

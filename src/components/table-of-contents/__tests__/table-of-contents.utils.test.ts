@@ -1,8 +1,10 @@
 import { describe, test, expect } from 'vitest'
 import {
+  computeReadingLine,
   computeReadingProgress,
-  findActiveHeadingId,
+  locateSection,
   minutesLeft,
+  railOffset,
 } from '../table-of-contents.utils'
 
 describe('computeReadingProgress', () => {
@@ -36,35 +38,74 @@ describe('computeReadingProgress', () => {
   })
 })
 
-describe('findActiveHeadingId', () => {
-  const positions = [
-    { id: 'a', top: -500 },
-    { id: 'b', top: 50 },
-    { id: 'c', top: 400 },
-  ]
+describe('computeReadingLine', () => {
+  const base = { viewportHeight: 800, contentTop: 200, contentHeight: 2800, offset: 120 }
 
-  test('empty list', () => {
-    expect(findActiveHeadingId([], 100)).toBeNull()
+  test('sits `offset` below the viewport top early on', () => {
+    expect(computeReadingLine({ ...base, scrollY: 300 })).toBe(420)
   })
 
-  test('null before the first heading', () => {
-    expect(findActiveHeadingId([{ id: 'a', top: 300 }], 100)).toBeNull()
+  test('reaches the end of the article at 100%', () => {
+    expect(computeReadingLine({ ...base, scrollY: 2200 })).toBe(3000)
   })
 
-  test('last heading above the offset line wins', () => {
-    expect(findActiveHeadingId(positions, 100)).toBe('b')
+  test('never moves backwards as the reader scrolls down', () => {
+    let previous = -Infinity
+    for (let scrollY = 0; scrollY <= 2400; scrollY += 50) {
+      const line = computeReadingLine({ ...base, scrollY })
+      expect(line).toBeGreaterThanOrEqual(previous)
+      previous = line
+    }
+  })
+})
+
+describe('locateSection', () => {
+  // Article spans 0..1000 with headings at 100, 400, 900.
+  const tops = [100, 400, 900]
+
+  test('no headings', () => {
+    expect(locateSection([], 0, 1000, 500)).toEqual({ index: -1, fraction: 0 })
   })
 
-  test('heading exactly on the line is active', () => {
-    expect(findActiveHeadingId(positions, 50)).toBe('b')
+  test('intro, before the first heading', () => {
+    expect(locateSection(tops, 0, 1000, 50)).toEqual({ index: -1, fraction: 0.5 })
   })
 
-  test('smaller offset keeps the previous section active', () => {
-    expect(findActiveHeadingId(positions, 10)).toBe('a')
+  test('on a heading', () => {
+    expect(locateSection(tops, 0, 1000, 400)).toEqual({ index: 1, fraction: 0 })
   })
 
-  test('reaching the end selects the last heading', () => {
-    expect(findActiveHeadingId(positions, 100, true)).toBe('c')
+  test('partway through a section', () => {
+    expect(locateSection(tops, 0, 1000, 250)).toEqual({ index: 0, fraction: 0.5 })
+  })
+
+  test('last section runs to the end of the article', () => {
+    expect(locateSection(tops, 0, 1000, 950)).toEqual({ index: 2, fraction: 0.5 })
+  })
+
+  test('past the end clamps to 1', () => {
+    expect(locateSection(tops, 0, 1000, 5000)).toEqual({ index: 2, fraction: 1 })
+  })
+})
+
+describe('railOffset', () => {
+  const nodes = [10, 40, 100]
+  const railEnd = 130
+
+  test('no nodes', () => {
+    expect(railOffset([], 0, { index: 0, fraction: 0.5 })).toBe(0)
+  })
+
+  test('intro parks on the first node', () => {
+    expect(railOffset(nodes, railEnd, { index: -1, fraction: 0.9 })).toBe(10)
+  })
+
+  test('interpolates between nodes', () => {
+    expect(railOffset(nodes, railEnd, { index: 1, fraction: 0.5 })).toBe(70)
+  })
+
+  test('last section travels to the end of the rail', () => {
+    expect(railOffset(nodes, railEnd, { index: 2, fraction: 1 })).toBe(130)
   })
 })
 

@@ -13,8 +13,8 @@ export type ProgressInput = {
  * Reading progress through the article, 0..1.
  *
  * 0 when the article's top hits the top of the viewport, 1 when its bottom
- * hits the bottom of the viewport. Short articles that fit on one screen are
- * treated as fully read once the reader scrolls to them.
+ * hits the bottom of the viewport. Articles that fit on one screen count as
+ * fully read once the reader scrolls to them.
  */
 export function computeReadingProgress({
   scrollY,
@@ -28,32 +28,62 @@ export function computeReadingProgress({
   return clamp((scrollY - start) / (end - start), 0, 1)
 }
 
-export type HeadingPosition = {
-  id: string
-  /** getBoundingClientRect().top — distance from the viewport top */
-  top: number
+/**
+ * Document y-coordinate of the "reading line": the point the reader is
+ * considered to be at.
+ *
+ * It sits `offset` px below the viewport top, but is pushed down as the
+ * reader approaches the end so it reaches the article's last pixel exactly
+ * at 100%. Without that push, short final sections never become current.
+ */
+export function computeReadingLine(input: ProgressInput & { offset: number }): number {
+  const progress = computeReadingProgress(input)
+  const sweep = input.contentTop + progress * input.contentHeight
+  return Math.max(input.scrollY + input.offset, sweep)
+}
+
+export type SectionPosition = {
+  /** Index of the current heading; -1 while still in the intro */
+  index: number
+  /** How far through that section the reading line is, 0..1 */
+  fraction: number
+}
+
+/** Which section the reading line is in, and how far through it. */
+export function locateSection(
+  headingTops: number[],
+  contentTop: number,
+  contentBottom: number,
+  line: number,
+): SectionPosition {
+  if (headingTops.length === 0) return { index: -1, fraction: 0 }
+
+  let index = -1
+  for (let i = 0; i < headingTops.length; i++) {
+    if (headingTops[i] <= line) index = i
+    else break
+  }
+
+  const start = index === -1 ? contentTop : headingTops[index]
+  const end = index === -1 ? headingTops[0] : (headingTops[index + 1] ?? contentBottom)
+  const fraction = end > start ? clamp((line - start) / (end - start), 0, 1) : 1
+  return { index, fraction }
 }
 
 /**
- * The section the reader is in: the last heading that has scrolled past
- * `offset` px from the top of the viewport. Returns `null` before the first
- * heading. When the reader has reached the end of the article, the last
- * heading wins even if it never crossed the line (short final sections).
+ * Where the marker sits on the outline rail: on the current item's node,
+ * eased toward the next node as the reader moves through the section.
  */
-export function findActiveHeadingId(
-  positions: HeadingPosition[],
-  offset: number,
-  reachedEnd = false,
-): string | null {
-  if (positions.length === 0) return null
-  if (reachedEnd) return positions[positions.length - 1].id
-
-  let active: string | null = null
-  for (const { id, top } of positions) {
-    if (top - offset <= 0) active = id
-    else break
-  }
-  return active
+export function railOffset(
+  nodes: number[],
+  railEnd: number,
+  { index, fraction }: SectionPosition,
+): number {
+  if (nodes.length === 0) return 0
+  if (index < 0) return nodes[0]
+  const start = nodes[index]
+  const end = nodes[index + 1] ?? railEnd
+  return start + (end - start) * fraction
 }
 
 /** Minutes left to read, rounded up, never negative. */

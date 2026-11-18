@@ -1,0 +1,17 @@
+/*
+  Brand gradient (same stops as the AYUTH wordmark and playground card),
+  exposed as variables so the rail, ring and mobile bar sample one source.
+*/
+.root {
+  --toc-from: #0891b2;
+  --toc-via: #2563eb;
+  --toc-to: #4f46e5;
+  --toc-gradient-y: linear-gradient(to bottom, var(--toc-from), var(--toc-via), var(--toc-to));
+  --toc-gradient-x: linear-gradient(to right, var(--toc-from), var(--toc-via), var(--toc-to));
+}
+
+:global(.dark) .root {
+  --toc-from: #22d3ee;
+  --toc-via: #60a5fa;
+  --toc-to: #818cf8;
+}
