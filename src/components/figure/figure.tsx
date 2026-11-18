@@ -8,6 +8,12 @@ export type FigureProps = {
   width?: number
   /** Intrinsic height of the image. Defaults to a 16:9 frame. */
   height?: number
+  /**
+   * Forwarded to `next/image`. Defaults to `lazy`. Set `eager` on an image
+   * that sits above the fold (usually the first figure in a post) so it is not
+   * lazy-loaded as the page's Largest Contentful Paint element.
+   */
+  loading?: 'eager' | 'lazy'
   /** Caption shown directly under the image, e.g. a photo credit. */
   children?: React.ReactNode
 }
@@ -23,6 +29,7 @@ export function Figure({
   alt,
   width = 1600,
   height = 900,
+  loading,
   children,
 }: FigureProps) {
   return (
@@ -32,6 +39,7 @@ export function Figure({
         alt={alt}
         width={width}
         height={height}
+        loading={loading}
         sizes="(max-width: 768px) 100vw, 768px"
         className="h-auto w-full rounded-xl"
       />
