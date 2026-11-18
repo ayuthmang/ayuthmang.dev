@@ -7,7 +7,7 @@ function FourOFour() {
       <Mascot
         pose="shell"
         size={160}
-        label="Kop the frog hiding under a coconut shell"
+        label="Kala the frog hiding under a coconut shell"
       />
       <p className="mt-6 text-xl">Page does not exist</p>
       <div className="my-4"></div>

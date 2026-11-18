@@ -1,5 +1,5 @@
 /**
- * Kop the frog is drawn as pixel art: every pose is a list of equal-length
+ * Kala the frog is drawn as pixel art: every pose is a list of equal-length
  * rows, one character per pixel. `.` is transparent; any other character is a
  * key into the palette below.
  */

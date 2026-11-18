@@ -113,7 +113,7 @@ function HomeLink({
       className="group flex items-center gap-2 transition-all duration-300 ease-in-out hover:scale-110"
       {...props}
     >
-      {/* Kop grins while the link is hovered or focused. */}
+      {/* Kala grins while the link is hovered or focused. */}
       <Mascot
         size={32}
         className="block group-hover:hidden group-focus-visible:hidden"
