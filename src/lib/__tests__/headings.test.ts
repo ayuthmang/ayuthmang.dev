@@ -71,6 +71,16 @@ title: "## Fake heading"
   })
 })
 
+describe('extractHeadings ids match rehype-slug', () => {
+  test('Duplicate headings get numbered suffixes', () => {
+    expect(extractHeadings('## Setup\n## Setup\n### Setup').map((h) => h.id)).toEqual([
+      'setup',
+      'setup-1',
+      'setup-2',
+    ])
+  })
+})
+
 describe('slugify', () => {
   test('Lowercases', () => {
     expect(slugify('Hello World')).toBe('hello-world')
@@ -84,11 +94,18 @@ describe('slugify', () => {
     expect(slugify("What's New?")).toBe('whats-new')
   })
 
-  test('Collapses multiple hyphens', () => {
-    expect(slugify('a---b')).toBe('a-b')
+  // The cases below pin parity with rehype-slug (github-slugger). The old
+  // hand-rolled slugify collapsed/trimmed hyphens and dropped non-ASCII
+  // letters, so TOC links to headings like "FIRE Lights Me 🔥" were dead.
+  test('Keeps the trailing hyphen left by a stripped emoji', () => {
+    expect(slugify('FIRE Lights Me 🔥')).toBe('fire-lights-me-')
   })
 
-  test('Trims leading/trailing hyphens', () => {
-    expect(slugify('-hello-')).toBe('hello')
+  test('Keeps repeated hyphens', () => {
+    expect(slugify('a---b')).toBe('a---b')
+  })
+
+  test('Keeps non-Latin letters', () => {
+    expect(slugify('สวัสดี World')).toBe('สวัสดี-world')
   })
 })
