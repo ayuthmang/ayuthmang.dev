@@ -1,10 +1,15 @@
 import Link from 'next/link'
+import Mascot from '@/components/mascot'
 
 function FourOFour() {
   return (
     <div className="flex  min-h-96 w-full flex-col items-center justify-center">
-      <p className="text-4xl">{'(๑ > ᴗ < ๑)'}</p>
-      <p className="text-xl">Page does not exist</p>
+      <Mascot
+        pose="shell"
+        size={160}
+        label="Kala the frog hiding under a coconut shell"
+      />
+      <p className="mt-6 text-xl">Page does not exist</p>
       <div className="my-4"></div>
       <LinkText href="/">👉 Bring me home 👈</LinkText>
     </div>

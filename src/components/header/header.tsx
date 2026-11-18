@@ -1,6 +1,7 @@
 'use client'
 
 import NextLink from 'next/link'
+import Mascot from '@/components/mascot'
 import MobileMenu from '@/components/mobile-menu'
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import UnstyledButton from '@/components/unstyled-button'
@@ -109,14 +110,27 @@ function HomeLink({
 }: React.ComponentProps<typeof NextLink>) {
   return (
     <NextLink
-      className={cn(
-        "bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400",
-        "font-header font-bold uppercase text-transparent text-xl",
-        "transition-all duration-300 ease-in-out hover:scale-110"
-      )}
+      className="group flex items-center gap-2 transition-all duration-300 ease-in-out hover:scale-110"
       {...props}
     >
-      {children}
+      {/* Kala grins while the link is hovered or focused. */}
+      <Mascot
+        size={32}
+        className="block group-hover:hidden group-focus-visible:hidden"
+      />
+      <Mascot
+        pose="happy"
+        size={32}
+        className="hidden group-hover:block group-focus-visible:block"
+      />
+      <span
+        className={cn(
+          'bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400',
+          'font-header text-xl font-bold text-transparent uppercase',
+        )}
+      >
+        {children}
+      </span>
     </NextLink>
   )
 }
