@@ -56,4 +56,7 @@
   .gridEnter > section:nth-child(7) {
     animation-delay: 520ms;
   }
+  .gridEnter > section:nth-child(8) {
+    animation-delay: 590ms;
+  }
 }
