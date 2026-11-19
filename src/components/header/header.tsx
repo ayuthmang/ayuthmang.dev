@@ -1,7 +1,7 @@
 'use client'
 
 import NextLink from 'next/link'
-import Mascot from '@/components/mascot'
+import Mascot, { MascotGaze } from '@/components/mascot'
 import MobileMenu from '@/components/mobile-menu'
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import UnstyledButton from '@/components/unstyled-button'
@@ -113,8 +113,8 @@ function HomeLink({
       className="group flex items-center gap-2 transition-all duration-300 ease-in-out hover:scale-110"
       {...props}
     >
-      {/* Kala grins while the link is hovered or focused. */}
-      <Mascot
+      {/* Kala watches the pointer, and grins while the link is hovered or focused. */}
+      <MascotGaze
         size={32}
         className="block group-hover:hidden group-focus-visible:hidden"
       />

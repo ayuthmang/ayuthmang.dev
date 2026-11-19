@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import Mascot from '@/components/mascot'
 import { Button } from '@/components/ui/button'
 
 type ErrorPageProps = {
@@ -16,7 +17,12 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
   return (
     <div className="flex min-h-96 w-full flex-col items-center justify-center gap-3 text-center">
-      <p className="text-4xl">(╥﹏╥)</p>
+      <Mascot
+        pose="sad"
+        size={160}
+        label="Kala the frog with a tear in his eye"
+        className="mb-3"
+      />
       <p className="text-xl">Something went wrong</p>
       <div className="flex items-center gap-3">
         <Button onClick={reset}>Try again</Button>
