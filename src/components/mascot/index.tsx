@@ -1,3 +1,6 @@
 export * from './mascot'
+export * from './mascot-buddy'
+export * from './mascot-gaze'
 export * from './mascot.utils'
+export * from './use-pointer-gaze'
 export { default } from './mascot'

@@ -9,7 +9,7 @@ import {
 } from './mascot.utils'
 
 export type MascotProps = Omit<
-  React.ComponentPropsWithoutRef<'svg'>,
+  React.ComponentProps<'svg'>,
   'width' | 'height' | 'viewBox'
 > & {
   pose?: MascotPose
@@ -26,6 +26,7 @@ export function Mascot({
   pose = 'idle',
   size = 32,
   label,
+  children,
   ...props
 }: MascotProps) {
   const rows = MASCOT_POSES[pose]
@@ -46,6 +47,8 @@ export function Mascot({
       {spriteToPaths(rows).map(({ key, d }) => (
         <path key={key} fill={MASCOT_PALETTE[key as MascotColorKey]} d={d} />
       ))}
+      {/* Extra shapes drawn on top of the sprite, in sprite pixels. */}
+      {children}
     </svg>
   )
 }

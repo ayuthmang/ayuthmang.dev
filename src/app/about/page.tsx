@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import { BentoGrid, BentoCard } from '@/components/bento-grid'
-import Mascot from '@/components/mascot'
+import { MascotBuddy } from '@/components/mascot'
 import { PlaygroundCard } from '@/components/playground-card'
 import { TechStack } from '@/components/tech-stack'
 import { PROFILE_LINKS } from '@/constants'
@@ -257,19 +257,7 @@ function AboutPage() {
         {/* Kala — the site mascot */}
         <BentoCard title="🐸 Meet Kala" className="md:col-span-3">
           <div className="flex flex-1 flex-col items-center gap-6 sm:flex-row sm:gap-8">
-            {/* Kala grins while the card is hovered. */}
-            <span
-              role="img"
-              aria-label="Kala, a green pixel-art frog"
-              className="shrink-0"
-            >
-              <Mascot size={96} className="block group-hover:hidden" />
-              <Mascot
-                pose="happy"
-                size={96}
-                className="hidden group-hover:block"
-              />
-            </span>
+            <MascotBuddy size={96} className="shrink-0" />
             <div>
               <p className="text-base leading-relaxed">
                 Kala (กะลา) is the little frog you see around this site. His
@@ -280,6 +268,9 @@ function AboutPage() {
               <p className="mt-4 text-base leading-relaxed">
                 Kala climbed out to see what else is out there, and that is why
                 I write this blog. He also guards the 404 page.
+              </p>
+              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                Psst: he is watching your cursor. Click or tap him to say hi.
               </p>
             </div>
           </div>
